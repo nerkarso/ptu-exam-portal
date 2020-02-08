@@ -1,0 +1,42 @@
+{
+  "name": "bca-notes",
+  "version": "0.1.0",
+  "title": "BCA Notes",
+  "description": "A collection of notes of the BCA course.",
+  "homepage": "/bca-notes",
+  "license": "MIT",
+  "author": "Ner Karso",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "react-scripts": "3.3.1",
+    "typescript": "~3.7.2"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
