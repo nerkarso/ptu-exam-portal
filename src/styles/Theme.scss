@@ -1,0 +1,36 @@
+// Brand colors
+$primary: #1c9e60;
+$secondary: #1e515c;
+
+// Derived colors
+$lighten: mix(#fff, $secondary, 95%);
+$darken: mix(#000, $secondary, 90%);
+
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+}
+
+// Light theme
+html {
+  --background: #fff;
+  --background-1: #{#fff};
+  --background-2: #{mix(#000, $lighten, 10%)};
+  --background-3: #{mix(#000, $lighten, 20%)};
+  --background-4: #{mix(#000, $lighten, 30%)};
+  --text: #{$darken};
+  --text-1: #{mix(#fff, $darken, 10%)};
+  --text-2: #{mix(#fff, $darken, 20%)};
+}
+
+// Dark theme
+html[theme='dark'] {
+  --background: #{mix(#fff, $darken, 5%)};
+  --background-1: #{mix(#fff, $darken, 10%)};
+  --background-2: #{mix(#fff, $darken, 20%)};
+  --background-3: #{mix(#fff, $darken, 30%)};
+  --background-4: #{mix(#fff, $darken, 40%)};
+  --text: #{$lighten};
+  --text-1: #{mix(#000, $lighten, 10%)};
+  --text-2: #{mix(#000, $lighten, 20%)};
+}
