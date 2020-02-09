@@ -3,7 +3,8 @@
   border-bottom: 1px solid var(--background-2);
   height: 4rem;
   padding: 0 1rem;
-  transition: background, border 0.3s;
+  transition-property: background, border;
+  transition-duration: 0.3s;
   @include fade-in;
 }
 
@@ -23,4 +24,17 @@
 .brand__image {
   width: 2rem;
   margin-right: 0.75rem;
+}
+
+.header__buttons {
+  $margin: 5px;
+
+  display: flex;
+  margin-left: -$margin;
+  margin-right: -$margin;
+
+  .button {
+    margin-left: $margin;
+    margin-right: $margin;
+  }
 }
