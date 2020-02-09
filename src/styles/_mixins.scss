@@ -1,0 +1,8 @@
+@mixin container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@mixin fade-in {
+  animation: fadeIn 0.3s ease-in-out both;
+}

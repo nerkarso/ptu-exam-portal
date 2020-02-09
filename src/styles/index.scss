@@ -1,5 +1,12 @@
+// Imports
+@import 'mixins';
+
 // Theme
 @import 'Theme';
 
 // Components
 @import 'App';
+@import 'Header';
+
+// Utilities
+@import 'Animations';
