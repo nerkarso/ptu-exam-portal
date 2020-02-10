@@ -29,3 +29,8 @@ button {
   outline: 0;
   -webkit-tap-highlight-color: transparent;
 }
+
+main {
+  height: calc(100% - (4rem + 1px));
+  @include fade-in;
+}
