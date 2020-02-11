@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
-import Subject from './components/Subject';
+import SubjectCard from './components/SubjectCard';
 import SubjectView from './components/SubjectView';
 
 const App = () => {
@@ -26,9 +26,9 @@ const App = () => {
                 <h2 className="section__title">Subjects</h2>
               </header>
               <div className="section__body">
-                <div className="subjects">
+                <div className="grid">
                   {subjects.map(subject => (
-                    <Subject info={subject} />
+                    <SubjectCard info={subject} />
                   ))}
                 </div>
               </div>
