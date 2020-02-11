@@ -23,7 +23,11 @@
 
 .brand__image {
   width: 2rem;
-  margin-right: 0.75rem;
+}
+
+.brand__title {
+  margin-left: 0.75rem;
+  line-height: 0;
 }
 
 .header__buttons {
