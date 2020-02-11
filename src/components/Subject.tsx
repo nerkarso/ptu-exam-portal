@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Props {
   info: {
@@ -14,11 +15,15 @@ const Subject: React.FC<Props> = ({
   ...props
 }) => {
   return (
-    <div className={`subject subject--${color}`} {...props}>
+    <Link
+      to={`/subjects/${name}`}
+      className={`subject subject--${color}`}
+      {...props}
+    >
       <h3 className="subject__title">{name}</h3>
       <div className="subject__body">{category}</div>
       <time className="subject__time">{updated_at}</time>
-    </div>
+    </Link>
   );
 };
 
