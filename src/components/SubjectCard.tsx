@@ -17,7 +17,7 @@ const SubjectCard: React.FC<Props> = ({
   return (
     <Link
       to={`/subjects/${name}`}
-      className={`subject-card subject--${color}`}
+      className={`subject-card gradient--${color}`}
       {...props}
     >
       <h3 className="subject-card__title">{name}</h3>
