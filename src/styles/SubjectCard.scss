@@ -2,7 +2,10 @@
   border-radius: 0.75rem;
   padding: 1rem;
   user-select: none;
-  transition: transform 0.5s;
+  text-decoration: none;
+  transition-property: opacity, transform;
+  transition-duration: 0.5s;
+  -webkit-tap-highlight-color: transparent;
 
   &:hover {
     transform: scale(1.025);
@@ -10,6 +13,7 @@
 
   &:active,
   &:focus {
+    opacity: 0.75;
     transform: scale(1.05);
   }
 }
