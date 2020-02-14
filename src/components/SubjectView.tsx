@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ButtonBack from './ButtonBack';
+import Container from './common/Container';
 
 interface Props {}
 
@@ -16,7 +17,7 @@ const SubjectView: React.FC<Props> = () => {
           <div className="header__buttons"></div>
         </div>
       </header>
-      <main></main>
+      <Container></Container>
     </>
   );
 };

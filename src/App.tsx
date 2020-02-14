@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import Header from './components/Header';
+import Container from './components/common/Container';
 import SubjectCard from './components/SubjectCard';
 import SubjectView from './components/SubjectView';
 
@@ -20,7 +21,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact>
           <Header />
-          <main>
+          <Container>
             <section className="section">
               <header className="section__header">
                 <h2 className="section__title">Subjects</h2>
@@ -33,7 +34,7 @@ const App = () => {
                 </div>
               </div>
             </section>
-          </main>
+          </Container>
         </Route>
         <Route path="/subjects/:id" component={SubjectView} />
       </Switch>

@@ -2,7 +2,6 @@
   background: var(--background-1);
   border-bottom: 1px solid var(--background-2);
   height: 4rem;
-  padding: 0 1rem;
   transition-property: background, border;
   transition-duration: 0.3s;
   @include fade-in;
