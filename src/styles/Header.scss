@@ -2,9 +2,6 @@
   background: var(--background-1);
   border-bottom: 1px solid var(--background-2);
   height: 4rem;
-  transition-property: background, border;
-  transition-duration: 0.3s;
-  @include fade-in;
 }
 
 .header__container {
@@ -21,12 +18,13 @@
 }
 
 .brand__image {
-  width: 2rem;
+  width: 2.25rem;
 }
 
 .brand__title {
+  font-size: 1.25em;
   margin-left: 0.75rem;
-  line-height: 0;
+  line-height: 1;
 }
 
 .header__buttons {
