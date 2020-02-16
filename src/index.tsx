@@ -8,7 +8,7 @@ import './styles/index.scss';
 import { ThemeProvider } from './context/theme-context';
 import * as serviceWorker from './serviceWorker';
 
-import App from './App';
+import App from './components/App';
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GITHUB_API_URI,

@@ -1,3 +1,13 @@
+button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .button {
   border-radius: 10px;
   display: flex;
@@ -12,4 +22,8 @@
   &:focus {
     background: var(--background-3);
   }
+}
+
+.button--leading {
+  margin-left: -0.5rem;
 }

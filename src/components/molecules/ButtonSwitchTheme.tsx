@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { Sun } from 'react-feather';
 
-import { ThemeContext } from '../context/theme-context';
+import { ThemeContext } from '../../context/theme-context';
 
-import Button from './common/Button';
+import Button from '../atoms/Button';
 
 interface Props {}
 
-const ButtonChangeTheme: React.FC<Props> = () => {
+const ButtonSwitchTheme: React.FC<Props> = () => {
   const { switchTheme } = useContext(ThemeContext);
 
   return (
@@ -17,4 +17,4 @@ const ButtonChangeTheme: React.FC<Props> = () => {
   );
 };
 
-export default ButtonChangeTheme;
+export default ButtonSwitchTheme;

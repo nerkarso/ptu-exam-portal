@@ -19,17 +19,17 @@
 }
 
 .subject-card__title {
-  font-size: 1.25em;
+  font-size: 1.3em;
   margin: 0;
   @include truncate;
 }
 
 .subject-card__body {
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
   @include truncate;
 }
 
-.subject-card__time {
+.subject-card__extra {
   font-size: 0.85em;
   font-weight: 500;
   opacity: 0.75;

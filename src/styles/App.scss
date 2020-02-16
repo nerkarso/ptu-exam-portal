@@ -12,16 +12,6 @@ body {
   transition: background 0.3s;
 }
 
-button {
-  background: transparent;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  font-family: inherit;
-  outline: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
 main {
   height: calc(100% - (4rem + 1px));
   overflow-y: auto;
