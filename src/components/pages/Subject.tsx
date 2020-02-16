@@ -5,6 +5,7 @@ import ButtonBack from '../molecules/ButtonBack';
 import GistContainer from '../containers/GistContainer';
 import Header from '../organisms/Header';
 import Main from '../templates/Main';
+import Rendered from '../atoms/Rendered';
 
 interface Props {}
 
@@ -19,7 +20,7 @@ const Subject: React.FC<Props> = () => {
       <Header title={title} leading={<ButtonBack />} />
       <Main>
         <GistContainer id={params.id} onSuccess={onSuccessHandler}>
-          {(data: any) => <Main html={data.html} />}
+          {(data: any) => <Rendered html={data.html} />}
         </GistContainer>
       </Main>
     </>
