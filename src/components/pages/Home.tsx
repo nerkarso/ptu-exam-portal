@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ButtonSwitchTheme from '../molecules/ButtonSwitchTheme';
+import GistContainer from '../containers/GistContainer';
 import Grid from '../atoms/Grid';
 import Header from '../organisms/Header';
 import Main from '../templates/Main';
@@ -10,17 +11,6 @@ import SubjectCard from '../molecules/SubjectCard';
 interface Props {}
 
 const Home: React.FC<Props> = () => {
-  const subjects = [
-    {
-      id: '1',
-      code: 'BSBC',
-      title: 'Subject',
-      categories: ['Notes'],
-      color: 'grey',
-      updatedAt: '14/02/2020'
-    }
-  ];
-
   return (
     <>
       <Header
@@ -30,11 +20,18 @@ const Home: React.FC<Props> = () => {
       />
       <Main>
         <Section title="Subjects">
-          <Grid>
-            {subjects.map(subject => (
-              <SubjectCard data={subject} key={subject.id} />
-            ))}
-          </Grid>
+          <GistContainer
+            id={process.env.REACT_APP_SUBJECTS_GIST_ID}
+            onLoading={<p>Loading...</p>}
+          >
+            {(data: any) => (
+              <Grid>
+                {data.subjects.map((subject: any) => (
+                  <SubjectCard data={subject} key={subject.id} />
+                ))}
+              </Grid>
+            )}
+          </GistContainer>
         </Section>
       </Main>
     </>
