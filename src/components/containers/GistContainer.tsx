@@ -17,6 +17,7 @@ const GET_GIST = gql`
 interface Props {
   id: string | undefined;
   onLoading?: any;
+  onSuccess?: (data: any) => void;
   onError?: any;
   onEmpty?: any;
   children: (data: any) => React.ReactNode;
@@ -25,6 +26,7 @@ interface Props {
 const GistContainer: React.FC<Props> = ({
   id,
   onLoading,
+  onSuccess,
   onError,
   onEmpty,
   children
@@ -40,7 +42,9 @@ const GistContainer: React.FC<Props> = ({
 
   if (!data.viewer.gist) return onEmpty ? onEmpty : <p>Nothing here</p>;
 
-  return children(JSON.parse(data.viewer.gist.files[0].text));
+  const result = JSON.parse(data.viewer.gist.files[0].text);
+  if (onSuccess) onSuccess(result);
+  return children(result);
 };
 
 export default GistContainer;
