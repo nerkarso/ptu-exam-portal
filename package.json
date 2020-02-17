@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "title": "BCA Notes",
   "description": "A collection of notes of the BCA course.",
-  "homepage": "/bca-notes",
+  "homepage": "/",
   "license": "MIT",
   "author": "Ner Karso",
   "private": true,
