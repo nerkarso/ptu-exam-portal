@@ -1,0 +1,105 @@
+.prism *,
+.token.pre.gfm * {
+  font-weight: inherit !important;
+}
+
+.prism .token.cdata,
+.prism .token.comment,
+.prism .token.doctype,
+.prism .token.prolog,
+.token.pre.gfm .token.cdata,
+.token.pre.gfm .token.comment,
+.token.pre.gfm .token.doctype,
+.token.pre.gfm .token.prolog {
+  color: #7c91a7;
+}
+
+.prism .token.punctuation,
+.token.pre.gfm .token.punctuation {
+  color: #acacac;
+}
+
+.prism .namespace,
+.token.pre.gfm .namespace {
+  opacity: 0.7;
+}
+
+.prism .token.boolean,
+.prism .token.constant,
+.prism .token.deleted,
+.prism .token.number,
+.prism .token.property,
+.prism .token.symbol,
+.prism .token.tag,
+.token.pre.gfm .token.boolean,
+.token.pre.gfm .token.constant,
+.token.pre.gfm .token.deleted,
+.token.pre.gfm .token.number,
+.token.pre.gfm .token.property,
+.token.pre.gfm .token.symbol,
+.token.pre.gfm .token.tag {
+  color: #b40063;
+}
+
+.prism .token.attr-name,
+.prism .token.builtin,
+.prism .token.char,
+.prism .token.inserted,
+.prism .token.selector,
+.prism .token.string,
+.token.pre.gfm .token.attr-name,
+.token.pre.gfm .token.builtin,
+.token.pre.gfm .token.char,
+.token.pre.gfm .token.inserted,
+.token.pre.gfm .token.selector,
+.token.pre.gfm .token.string {
+  color: #7ab800;
+}
+
+.prism .language-css .token.string,
+.prism .style .token.string,
+.prism .token.entity,
+.prism .token.operator,
+.prism .token.url,
+.token.pre.gfm .language-css .token.string,
+.token.pre.gfm .style .token.string,
+.token.pre.gfm .token.entity,
+.token.pre.gfm .token.operator,
+.token.pre.gfm .token.url {
+  color: #ca935b;
+}
+
+.prism .token.atrule,
+.prism .token.attr-value,
+.prism .token.keyword,
+.token.pre.gfm .token.atrule,
+.token.pre.gfm .token.attr-value,
+.token.pre.gfm .token.keyword {
+  color: rgb(0, 143, 204);
+}
+
+.prism .token.function,
+.token.pre.gfm .token.function {
+  color: #ee3459;
+}
+
+.prism .token.important,
+.prism .token.regex,
+.prism .token.variable,
+.token.pre.gfm .token.important,
+.token.pre.gfm .token.regex,
+.token.pre.gfm .token.variable {
+  color: #e90;
+}
+
+.prism .token.bold,
+.prism .token.important,
+.token.pre.gfm .token.bold,
+.token.pre.gfm .token.important {
+  font-weight: 500;
+}
+
+.prism .token.italic,
+.token.pre.gfm .token.italic {
+  font-style: italic;
+}

@@ -9,6 +9,7 @@ $darken: mix(#000, $secondary, 90%);
 :root {
   --primary: #{$primary};
   --secondary: #{$secondary};
+  --font-family: system-ui, sans-serif;
 }
 
 // Light theme
