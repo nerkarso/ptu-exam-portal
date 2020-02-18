@@ -18,8 +18,12 @@ button {
   text-transform: uppercase;
   transition: background 0.3s;
 
-  &:active,
+  &:hover,
   &:focus {
+    background: var(--background-2);
+  }
+
+  &:active {
     background: var(--background-3);
   }
 }
