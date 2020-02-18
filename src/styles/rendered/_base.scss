@@ -8,7 +8,7 @@ blockquote {
 code {
   background-color: var(--background-2);
   border-radius: 0.5rem;
-  padding: 0.25rem  0.5rem;
+  padding: 0.25rem 0.5rem;
 }
 
 pre > code {
@@ -50,21 +50,16 @@ hr {
 }
 
 table {
+  border-collapse: collapse;
   border-spacing: 0;
-  border: 1px solid var(--background-2);
+  display: block;
+  width: auto;
+  overflow-x: auto;
+  white-space: nowrap;
 
   td,
   th {
-    border-right: 1px solid var(--background-2);
+    border: 1px solid var(--background-2);
     padding: 0.5rem 0.75rem;
-  }
-
-  td:last-child,
-  th:last-child {
-    border-right: 0;
-  }
-
-  td {
-    border-top: 1px solid var(--background-2);
   }
 }
