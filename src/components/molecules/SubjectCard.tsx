@@ -9,11 +9,12 @@ interface Props {
     categories: String[];
     color: string;
     updatedAt: string;
+    status: string;
   };
 }
 
 const SubjectCard: React.FC<Props> = ({
-  data: { id, code, title, categories, color, updatedAt },
+  data: { id, code, title, categories, color, updatedAt, status },
   ...props
 }) => {
   return (
@@ -26,7 +27,10 @@ const SubjectCard: React.FC<Props> = ({
       <div className="subject-card__body">
         {code} &bull; {categories.join(' ')}
       </div>
-      <div className="subject-card__extra">{updatedAt}</div>
+      <div className="subject-card__extra">Updated on {updatedAt}</div>
+      {status && status !== '' && (
+        <div className="subject-card__label">{status}</div>
+      )}
     </Link>
   );
 };

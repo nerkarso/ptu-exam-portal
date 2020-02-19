@@ -1,15 +1,18 @@
 .subject-card {
   border-radius: 0.75rem;
+  position: relative;
   padding: 1rem;
   user-select: none;
   text-decoration: none;
-  transition-property: opacity, transform;
+  transition-property: box-shadow, opacity, transform;
   transition-duration: 0.5s;
   -webkit-tap-highlight-color: transparent;
   @include fade-in;
+  @include shadow-md;
 
   &:hover {
     transform: scale(1.025);
+    @include shadow-lg;
   }
 
   &:active,
@@ -34,4 +37,18 @@
   font-size: 0.85em;
   font-weight: 500;
   opacity: 0.75;
+}
+
+.subject-card__label {
+  background: #ffd900;
+  border-radius: 0.75rem 0 0.75rem 0;
+  box-shadow: -1px -1px 3px hsla(0, 0, 0, 0.2);
+  color: #000;
+  font-size: 0.75em;
+  font-weight: 600;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.1rem 0.75rem;
+  text-transform: uppercase;
 }
