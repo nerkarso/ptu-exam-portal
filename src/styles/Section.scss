@@ -1,6 +1,7 @@
 .section__header {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  @include fade-in;
 }
 
 .section__title {

@@ -2,6 +2,8 @@
   background: var(--background-1);
   border-bottom: 1px solid var(--background-2);
   height: 4rem;
+  transition-property: background, border;
+  transition-duration: 0.3s;
 }
 
 .header__container {
@@ -26,6 +28,7 @@
   margin: 0;
   margin-left: 0.75rem;
   line-height: 1;
+  @include fade-in;
 }
 
 .header__buttons {

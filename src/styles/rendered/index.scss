@@ -1,5 +1,6 @@
 .rendered {
   padding-bottom: 1rem;
+  @include fade-in;
 
   @media (min-width: 1200px) {
     padding-left: 0.25rem;

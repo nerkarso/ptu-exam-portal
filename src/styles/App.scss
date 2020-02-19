@@ -15,7 +15,6 @@ body {
 main {
   height: calc(100% - (4rem + 1px));
   overflow-y: auto;
-  @include fade-in;
 }
 
 .container {

@@ -1,4 +1,5 @@
 import React from 'react';
+import ContentLoader from 'react-content-loader';
 
 import ButtonSwitchTheme from '../molecules/ButtonSwitchTheme';
 import GistContainer from '../containers/GistContainer';
@@ -22,7 +23,19 @@ const Home: React.FC<Props> = () => {
         <Section title="Subjects">
           <GistContainer
             id={process.env.REACT_APP_SUBJECTS_GIST_ID}
-            onLoading={<p>Loading...</p>}
+            onLoading={
+              <ContentLoader
+                speed={2}
+                width={300}
+                height={115}
+                viewBox="0 0 300 115"
+                backgroundColor="var(--background-2)"
+                foregroundColor="var(--background-3)"
+                className="content-loader"
+              >
+                <rect x="0" y="0" rx="12" ry="12" width="300" height="115" />
+              </ContentLoader>
+            }
           >
             {(data: any) => (
               <Grid>

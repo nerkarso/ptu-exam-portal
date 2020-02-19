@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import ContentLoader from 'react-content-loader';
 
 import { File } from '../../types';
 
@@ -96,7 +97,30 @@ const Subject: React.FC<Props> = () => {
         trailing={<ButtonMenu onClick={toggleDrawer} />}
       />
       <Main>
-        <GistContainer id={params.id} onSuccess={onSuccessHandler}>
+        <GistContainer
+          id={params.id}
+          onSuccess={onSuccessHandler}
+          onLoading={
+            <ContentLoader
+              style={{ margin: '1.5rem 0' }}
+              speed={2}
+              width={350}
+              height={250}
+              viewBox="0 0 350 250"
+              backgroundColor="var(--background-2)"
+              foregroundColor="var(--background-3)"
+              className="content-loader"
+            >
+              <rect x="0" y="0" rx="6" ry="6" width="140" height="30" />
+              <rect x="0" y="50" rx="4" ry="4" width="350" height="15" />
+              <rect x="0" y="75" rx="4" ry="4" width="300" height="15" />
+              <rect x="0" y="120" rx="6" ry="6" width="180" height="30" />
+              <rect x="0" y="170" rx="4" ry="4" width="220" height="15" />
+              <rect x="0" y="195" rx="4" ry="4" width="320" height="15" />
+              <rect x="0" y="220" rx="4" ry="4" width="160" height="15" />
+            </ContentLoader>
+          }
+        >
           {(file: File) => <Rendered html={file.html} />}
         </GistContainer>
       </Main>

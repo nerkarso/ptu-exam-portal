@@ -6,6 +6,7 @@
   transition-property: opacity, transform;
   transition-duration: 0.5s;
   -webkit-tap-highlight-color: transparent;
+  @include fade-in;
 
   &:hover {
     transform: scale(1.025);
