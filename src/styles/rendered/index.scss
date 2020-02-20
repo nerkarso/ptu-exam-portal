@@ -9,18 +9,6 @@
 
   @import 'base';
   @import 'prism';
-
-  --mermaid-font-family: var(--font-family);
 }
 
-html {
-  .rendered {
-    @import '../../../node_modules/mermaid/src/themes/default/';
-  }
-}
-
-html[theme='dark'] {
-  .rendered {
-    @import '../../../node_modules/mermaid/src/themes/dark/';
-  }
-}
+@import 'mermaid';

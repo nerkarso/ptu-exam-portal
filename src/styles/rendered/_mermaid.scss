@@ -1,0 +1,12 @@
+.mermaid {
+  --mermaid-font-family: var(--font-family);
+  font-size: 2em;
+  line-height: 2;
+  @import '../../../node_modules/mermaid/src/themes/default/';
+}
+
+html[theme='dark'] {
+  .mermaid {
+    @import '../../../node_modules/mermaid/src/themes/dark/';
+  }
+}
