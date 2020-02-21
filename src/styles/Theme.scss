@@ -7,9 +7,10 @@ $lighten: mix(#fff, $secondary, 95%);
 $darken: mix(#000, $secondary, 90%);
 
 :root {
+  --font-family: system-ui, sans-serif;
   --primary: #{$primary};
   --secondary: #{$secondary};
-  --font-family: system-ui, sans-serif;
+  --error: #ee0028;
 }
 
 // Light theme
@@ -22,6 +23,8 @@ html {
   --text: #{$darken};
   --text-1: #{mix(#fff, $darken, 10%)};
   --text-2: #{mix(#fff, $darken, 20%)};
+  --text-3: #{mix(#fff, $darken, 30%)};
+  --text-4: #{mix(#fff, $darken, 40%)};
 }
 
 // Dark theme
@@ -34,4 +37,6 @@ html[theme='dark'] {
   --text: #{$lighten};
   --text-1: #{mix(#000, $lighten, 10%)};
   --text-2: #{mix(#000, $lighten, 20%)};
+  --text-3: #{mix(#000, $lighten, 30%)};
+  --text-4: #{mix(#000, $lighten, 40%)};
 }

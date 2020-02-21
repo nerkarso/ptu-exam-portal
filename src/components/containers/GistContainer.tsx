@@ -2,6 +2,8 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
+import Alert from '../atoms/Alert';
+
 const GET_GIST = gql`
   query Subjects($name: String!) {
     viewer {
@@ -38,9 +40,15 @@ const GistContainer: React.FC<Props> = ({
   });
 
   if (loading) return onLoading ? onLoading : <p>Loading...</p>;
-  if (error) return onError ? onError : <p>{error.message}</p>;
+  if (error)
+    return onError ? (
+      onError
+    ) : (
+      <Alert type="error">Network error: Failed to fetch</Alert>
+    );
 
-  if (!data.viewer.gist) return onEmpty ? onEmpty : <p>Nothing here</p>;
+  if (!data.viewer.gist)
+    return onEmpty ? onEmpty : <Alert>Nothing here...</Alert>;
 
   const result = JSON.parse(data.viewer.gist.files[0].text);
   if (onSuccess) onSuccess(result);
