@@ -1,0 +1,52 @@
+.toasts {
+  max-width: 320px;
+  margin: 0 auto;
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 999999;
+}
+
+.toast {
+  background: linear-gradient(45deg, var(--text-1), var(--text-2));
+  border-radius: 0.75rem;
+  color: var(--background);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  @include shadow;
+
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &-enter {
+    transform: translateY(150%);
+  }
+  &-enter-active {
+    transform: translateY(0%);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &-exit {
+    transform: translateY(0%);
+  }
+  &-exit-active {
+    transform: translateY(150%);
+    transition-property: transform;
+    transition-duration: 0.2s;
+  }
+
+  &__body {
+    padding: 0.5rem;
+    margin-right: auto;
+  }
+
+  &__action {
+    margin-right: 0.25rem;
+  }
+}

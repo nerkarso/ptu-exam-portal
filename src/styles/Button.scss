@@ -16,7 +16,8 @@ button {
   padding: 0.5rem;
   font-weight: 500;
   text-transform: uppercase;
-  transition: background 0.3s;
+  transition-property: background, opacity;
+  transition-duration: 0.3s;
 
   &:hover,
   &:focus {
@@ -26,8 +27,37 @@ button {
   &:active {
     background: var(--background-3);
   }
-}
 
-.button--leading {
-  margin-left: -0.5rem;
+  &--primary {
+    background: var(--primary);
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background: var(--primary);
+      opacity: 0.75;
+    }
+
+    &:active {
+      background: var(--primary);
+      opacity: 0.5;
+    }
+  }
+
+  &--inverse {
+    color: var(--background);
+
+    &:hover,
+    &:focus {
+      background: var(--text-2);
+    }
+
+    &:active {
+      background: var(--text-3);
+    }
+  }
+
+  &--leading {
+    margin-left: -0.5rem;
+  }
 }
