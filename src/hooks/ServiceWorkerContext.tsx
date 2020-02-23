@@ -1,4 +1,10 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
 
 import * as serviceWorker from '../serviceWorker';
 
@@ -53,7 +59,7 @@ function ServiceWorkerProvider(props: any) {
 }
 
 function useServiceWorker() {
-  const context = React.useContext(ServiceWorkerContext);
+  const context = useContext(ServiceWorkerContext);
 
   if (!context) {
     throw new Error(

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useServiceWorker } from '../hooks/serviceWorker';
+import { useServiceWorker } from '../hooks/ServiceWorkerContext';
 
 import Toast from './molecules/Toast';
 

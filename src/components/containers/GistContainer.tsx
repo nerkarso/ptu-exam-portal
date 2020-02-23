@@ -2,7 +2,7 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
-import Alert from '../atoms/Alert';
+import Alert from '../molecules/Alert';
 
 const GET_GIST = gql`
   query Subjects($name: String!) {

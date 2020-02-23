@@ -5,8 +5,8 @@ import { ApolloProvider } from '@apollo/react-hooks';
 
 import './styles/index.scss';
 
-import { ServiceWorkerProvider } from './hooks/serviceWorker';
-import { ThemeProvider } from './context/theme-context';
+import { ServiceWorkerProvider } from './hooks/ServiceWorkerContext';
+import { ThemeProvider } from './hooks/ThemeContext';
 
 import App from './components/App';
 import ServiceWorkerUI from './components/ServiceWorkerUI';

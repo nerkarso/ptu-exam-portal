@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const initialState = {
   theme: 'light',
@@ -10,7 +10,7 @@ const ThemeContext = createContext(initialState);
 /**
  * Toggle theme
  */
-function ThemeProvider({ children }) {
+function ThemeProvider(props: any) {
   const [theme, setTheme] = useState(initialState.theme);
 
   // On mount, read the preferred theme from the persistence
@@ -19,7 +19,7 @@ function ThemeProvider({ children }) {
     setTheme(mode);
 
     // Change html element attribute
-    document.querySelector('html').setAttribute('theme', mode);
+    document.querySelector('html')?.setAttribute('theme', mode);
 
     // Change meta theme color
     const color =
@@ -28,7 +28,7 @@ function ThemeProvider({ children }) {
         : process.env.REACT_APP_THEME_DARK_COLOR;
     document
       .querySelector('meta[name="theme-color"]')
-      .setAttribute('content', color);
+      ?.setAttribute('content', color || '');
   }, [theme]);
 
   // To switch between dark and light mode
@@ -38,11 +38,19 @@ function ThemeProvider({ children }) {
     setTheme(mode);
   };
 
-  return (
-    <ThemeContext.Provider value={{ theme, switchTheme }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+  const value = { theme, switchTheme };
+
+  return <ThemeContext.Provider value={value} {...props} />;
 }
 
-export { ThemeContext, ThemeProvider };
+function useTheme() {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+
+  return context;
+}
+
+export { ThemeProvider, useTheme };

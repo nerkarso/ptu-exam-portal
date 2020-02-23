@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Sun } from 'react-feather';
 
-import { ThemeContext } from '../../context/theme-context';
+import { useTheme } from '../../hooks/ThemeContext';
 
 import Button from '../atoms/Button';
 
 interface Props {}
 
 const ButtonSwitchTheme: React.FC<Props> = () => {
-  const { switchTheme } = useContext(ThemeContext);
+  const { switchTheme } = useTheme();
 
   return (
     <Button title="Switch theme" onClick={switchTheme}>
