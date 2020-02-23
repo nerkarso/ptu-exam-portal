@@ -9,7 +9,9 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "yarn build-app && yarn build-sw",
+    "build-app": "react-scripts build",
+    "build-sw": "node ./src/sw/build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

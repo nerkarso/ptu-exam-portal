@@ -22,7 +22,7 @@ export function register(config?: Config) {
     // from what our page is served on. This might happen if a CDN is used
     if (publicUrl.origin !== window.location.origin) return;
 
-    const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+    const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
 
     if (isLocalhost) {
       // This is running on localhost. Let's check if a service worker still exists or not
