@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost';
 
 import './styles/index.scss';
 
+import { initGA } from './hooks/GoogleAnalytics';
 import { ServiceWorkerProvider } from './hooks/ServiceWorkerContext';
 import { ThemeProvider } from './hooks/ThemeContext';
 
@@ -17,6 +18,8 @@ const client = new ApolloClient({
     Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`
   }
 });
+
+initGA();
 
 ReactDOM.render(
   <ServiceWorkerProvider>
