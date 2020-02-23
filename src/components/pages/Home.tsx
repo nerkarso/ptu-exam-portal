@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
 
 import ButtonSwitchTheme from '../molecules/ButtonSwitchTheme';
@@ -12,6 +12,10 @@ import SubjectCard from '../molecules/SubjectCard';
 interface Props {}
 
 const Home: React.FC<Props> = () => {
+  useEffect(() => {
+    document.title = process.env.REACT_APP_TITLE || '';
+  }, []);
+
   return (
     <>
       <Header

@@ -2,6 +2,8 @@ import React from 'react';
 import { gql } from 'apollo-boost';
 import { useQuery } from '@apollo/react-hooks';
 
+import { trackException } from '../../hooks/GoogleAnalytics';
+
 import Alert from '../molecules/Alert';
 
 const GET_GIST = gql`
@@ -40,12 +42,12 @@ const GistContainer: React.FC<Props> = ({
   });
 
   if (loading) return onLoading ? onLoading : <p>Loading...</p>;
-  if (error)
-    return onError ? (
-      onError
-    ) : (
-      <Alert type="error">Network error: Failed to fetch</Alert>
-    );
+  if (error) {
+    trackException({
+      description: error.message
+    });
+    return onError ? onError : <Alert type="error">{error.message}</Alert>;
+  }
 
   if (!data.viewer.gist)
     return onEmpty ? onEmpty : <Alert>Nothing here...</Alert>;

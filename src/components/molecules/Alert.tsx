@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { AlertCircle } from 'react-feather';
 
 interface Props {
-  type?: string;
+  type?: 'error';
 }
 
 const Alert: React.FC<Props> = ({ type, children }) => {

@@ -1,7 +1,7 @@
 {
   "name": "BCA Notes",
   "short_name": "BCA Notes",
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "theme_color": "#1c2122",

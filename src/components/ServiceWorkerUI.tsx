@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import { trackEvent } from '../hooks/GoogleAnalytics';
 import { useServiceWorker } from '../hooks/ServiceWorkerContext';
+import { getOS } from '../utils';
 
 import Toast from './molecules/Toast';
 
@@ -37,7 +39,23 @@ const ServiceWorkerUI: React.FC = () => {
       if (choiceResult.outcome === 'accepted') {
         setOpenToastInstall(false);
         setTimeout(() => setOpenToastInstalled(true), 1000);
+
+        trackEvent({
+          category: 'App install',
+          action: 'Accepted the install',
+          label: getOS()
+        });
       }
+    });
+  };
+
+  const cancelAddToHomeScreen = () => {
+    setOpenToastInstall(false);
+
+    trackEvent({
+      category: 'App install',
+      action: 'Dismissed the install',
+      label: getOS()
     });
   };
 
@@ -48,6 +66,22 @@ const ServiceWorkerUI: React.FC = () => {
     updateAssets();
     setOpenToastUpdate(false);
     setTimeout(() => setOpenToastUpdating(true), 500);
+
+    trackEvent({
+      category: 'App update',
+      action: 'Accepted the update',
+      label: process.env.REACT_APP_VERSION || ''
+    });
+  };
+
+  const handleCancelUpdate = () => {
+    setOpenToastUpdate(false);
+
+    trackEvent({
+      category: 'App update',
+      action: 'Dismissed the update',
+      label: process.env.REACT_APP_VERSION || ''
+    });
   };
 
   useEffect(() => {
@@ -62,7 +96,7 @@ const ServiceWorkerUI: React.FC = () => {
           title: 'Install',
           callback: addToHomeScreen
         }}
-        onDismiss={() => setOpenToastInstall(false)}
+        onDismiss={cancelAddToHomeScreen}
       >
         Install this app
       </Toast>
@@ -80,7 +114,7 @@ const ServiceWorkerUI: React.FC = () => {
           title: 'Update',
           callback: handleUpdate
         }}
-        onDismiss={() => setOpenToastUpdate(false)}
+        onDismiss={handleCancelUpdate}
       >
         New version is available
       </Toast>

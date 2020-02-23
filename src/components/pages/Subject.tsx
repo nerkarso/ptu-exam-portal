@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { useRouteMatch } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useRouteMatch } from 'react-router-dom';
 import ContentLoader from 'react-content-loader';
 
+import { trackPageView, trackEvent } from '../../hooks/GoogleAnalytics';
 import { File } from '../../types';
 
 import ButtonBack from '../molecules/ButtonBack';
@@ -16,6 +17,7 @@ import Rendered from '../atoms/Rendered';
 interface Props {}
 
 const Subject: React.FC<Props> = () => {
+  const { pathname } = useLocation();
   const { params } = useRouteMatch();
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -24,14 +26,27 @@ const Subject: React.FC<Props> = () => {
 
   const [title, setTitle] = useState('');
 
+  useEffect(() => {
+    if (title !== '') {
+      document.title = title;
+      trackPageView(pathname, title);
+    }
+  }, [pathname, title]);
+
   const [anchor, setAnchor] = useState('');
-  const handleTocAction = (anchorName: string) => {
+  const handleTocAction = (anchorName: string, anchorTitle: string) => {
     document.getElementById(anchorName)?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
     setDrawerOpen(false);
     setAnchor(anchorName);
+
+    trackEvent({
+      category: 'Navigation',
+      action: 'Navigated to heading',
+      label: `${anchorTitle} - ${title}`
+    });
   };
 
   const toc: any = [];
@@ -48,7 +63,7 @@ const Subject: React.FC<Props> = () => {
               action
               {...isActive}
               id={`anchor-${item.anchor}`}
-              onClick={() => handleTocAction(item.anchor)}
+              onClick={() => handleTocAction(item.anchor, item.title)}
               style={{ paddingLeft: `${item.level * 1}rem` }}
               key={item.anchor}
             >
