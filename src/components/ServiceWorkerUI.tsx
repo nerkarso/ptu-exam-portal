@@ -4,31 +4,28 @@ import { useServiceWorker } from '../hooks/serviceWorker';
 
 import Toast from './molecules/Toast';
 
-let deferredPrompt: any;
+let deferredPrompt: any = null;
 
 const ServiceWorkerUI: React.FC = () => {
   const { assetsUpdateReady, updateAssets } = useServiceWorker();
 
   const [openToastInstall, setOpenToastInstall] = useState(false);
-  const [openToastOffline, setOpenToastOffline] = useState(false);
+  const [openToastInstalled, setOpenToastInstalled] = useState(false);
 
   useEffect(() => {
     window.addEventListener('beforeinstallprompt', (event: Event) => {
       // Prevent Chrome 67 and earlier from automatically showing the prompt
       event.preventDefault();
 
+      if (deferredPrompt === null) {
+        // Update UI notify the user they can add to home screen
+        setOpenToastInstall(true);
+      }
+
       // Stash the event so it can be triggered later
       deferredPrompt = event;
-
-      // Update UI notify the user they can add to home screen
-      setOpenToastInstall(true);
     });
   }, []);
-
-  const closeToastInstall = () => {
-    deferredPrompt = null;
-    setOpenToastInstall(false);
-  };
 
   // Attach the install prompt to a user gesture
   const addToHomeScreen = async () => {
@@ -38,12 +35,10 @@ const ServiceWorkerUI: React.FC = () => {
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult: any) => {
       if (choiceResult.outcome === 'accepted') {
-        setOpenToastOffline(true);
-        setTimeout(() => setOpenToastOffline(false), 3000);
+        setOpenToastInstall(false);
+        setTimeout(() => setOpenToastInstalled(true), 1000);
       }
     });
-
-    closeToastInstall();
   };
 
   const [openToastUpdate, setOpenToastUpdate] = useState(false);
@@ -67,16 +62,16 @@ const ServiceWorkerUI: React.FC = () => {
           title: 'Install',
           callback: addToHomeScreen
         }}
-        onDismiss={closeToastInstall}
+        onDismiss={() => setOpenToastInstall(false)}
       >
         Install this app
       </Toast>
 
       <Toast
-        isOpen={openToastOffline}
-        onDismiss={() => setOpenToastOffline(false)}
+        isOpen={openToastInstalled}
+        onDismiss={() => setOpenToastInstalled(false)}
       >
-        This app is now installed
+        This app is now installed on your home screen and app drawer
       </Toast>
 
       <Toast
