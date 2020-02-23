@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>%REACT_APP_TITLE%</title>
-    <meta charset="utf-8" />
-    <meta property="og:title" content="%REACT_APP_TITLE%" />
-    <meta property="og:description" content="%REACT_APP_DESCRIPTION%" />
-    <meta property="og:image" content="%PUBLIC_URL%/img/apple-touch-icon.png?v=%REACT_APP_VERSION%" />
-    <meta name="description" content="%REACT_APP_DESCRIPTION%" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="%REACT_APP_THEME_COLOR%" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="%REACT_APP_TITLE%">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/img/apple-touch-icon.png?v=%REACT_APP_VERSION%">
-    <link rel="mask-icon" href="%PUBLIC_URL%/img/apple-touch-icon.png?v=%REACT_APP_VERSION%" color="#1c9e60">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/img/icon-48.png?v=%REACT_APP_VERSION%" />
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
+
+<head>
+  <title>%REACT_APP_TITLE%</title>
+  <meta charset="utf-8" />
+
+  <meta property="og:description" content="%REACT_APP_DESCRIPTION%" />
+  <meta property="og:image" content="%PUBLIC_URL%/img/apple-touch-icon.png" />
+  <meta property="og:title" content="%REACT_APP_TITLE%" />
+  <meta name="description" content="%REACT_APP_DESCRIPTION%" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="%REACT_APP_THEME_COLOR%" />
+
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="%REACT_APP_TITLE%">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/img/apple-touch-icon.png">
+  <link href="%PUBLIC_URL%/img/splash-2x.png"
+        media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+        rel="apple-touch-startup-image">
+  <link href="%PUBLIC_URL%/img/splash-3x.png"
+        media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)"
+        rel="apple-touch-startup-image">
+
+  <link rel="icon" href="%PUBLIC_URL%/img/icon-48.png" />
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
 </html>

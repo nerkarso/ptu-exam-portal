@@ -3,7 +3,7 @@
   "short_name": "BCA Notes",
   "start_url": ".",
   "display": "standalone",
-  "orientation": "landscape",
+  "orientation": "portrait",
   "theme_color": "#1c2122",
   "background_color": "#1c2122",
   "icons": [
