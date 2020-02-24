@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sun } from 'react-feather';
+import { Moon, Sun } from 'react-feather';
 
 import { trackEvent } from '../../hooks/GoogleAnalytics';
 import { useTheme } from '../../hooks/ThemeContext';
@@ -9,7 +9,7 @@ import Button from '../atoms/Button';
 interface Props {}
 
 const ButtonSwitchTheme: React.FC<Props> = () => {
-  const { switchTheme } = useTheme();
+  const { theme, switchTheme } = useTheme();
 
   const handleSwitchTheme = () => {
     switchTheme();
@@ -23,7 +23,11 @@ const ButtonSwitchTheme: React.FC<Props> = () => {
 
   return (
     <Button title="Switch theme" onClick={handleSwitchTheme}>
-      <Sun color="var(--text)" size={24} />
+      {theme === 'light' ? (
+        <Sun color="var(--text)" size={24} />
+      ) : (
+        <Moon color="var(--text)" size={24} />
+      )}
     </Button>
   );
 };
