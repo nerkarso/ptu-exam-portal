@@ -89,7 +89,7 @@ const ServiceWorkerUI: React.FC = () => {
   }, [assetsUpdateReady]);
 
   return (
-    <div className="toasts">
+    <>
       <Toast
         isOpen={openToastInstall}
         action={{
@@ -120,7 +120,7 @@ const ServiceWorkerUI: React.FC = () => {
       </Toast>
 
       <Toast isOpen={openToastUpdating}>Updating...</Toast>
-    </div>
+    </>
   );
 };
 

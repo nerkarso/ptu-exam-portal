@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
 import { X } from 'react-feather';
 
@@ -14,7 +15,7 @@ interface Props {
 }
 
 const Toast: React.FC<Props> = ({ isOpen, action, onDismiss, children }) => {
-  return (
+  return ReactDOM.createPortal(
     <CSSTransition in={isOpen} timeout={300} classNames="toast" unmountOnExit>
       <div className="toast">
         <div className="toast__body">{children}</div>
@@ -33,7 +34,8 @@ const Toast: React.FC<Props> = ({ isOpen, action, onDismiss, children }) => {
           </div>
         )}
       </div>
-    </CSSTransition>
+    </CSSTransition>,
+    document.querySelector('#root-toast') as any
   );
 };
 
