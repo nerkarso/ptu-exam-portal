@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
 
+import ButtonSettings from '../molecules/ButtonSettings';
 import ButtonSwitchTheme from '../molecules/ButtonSwitchTheme';
 import GistContainer from '../containers/GistContainer';
 import Grid from '../atoms/Grid';
@@ -21,7 +22,12 @@ const Home: React.FC<Props> = () => {
       <Header
         logo={`${process.env.PUBLIC_URL}/img/icon-48.png`}
         title={process.env.REACT_APP_TITLE}
-        buttons={<ButtonSwitchTheme />}
+        buttons={
+          <>
+            <ButtonSwitchTheme />
+            <ButtonSettings />
+          </>
+        }
       />
       <Main>
         <Section title="Subjects">

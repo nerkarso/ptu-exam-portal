@@ -2,8 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface Props {
-  type?: string;
+  type?: 'primary' | 'inverse';
   className?: string;
+  style?: any;
   onClick?: () => void;
   title?: string;
 }
