@@ -27,7 +27,7 @@ const SubjectCard: React.FC<Props> = ({
       <div className="subject-card__body">
         {code} &bull; {categories.join(' ')}
       </div>
-      <div className="subject-card__extra">Updated on {updatedAt}</div>
+      <div className="subject-card__extra">Updated {updatedAt}</div>
       {status && status !== '' && (
         <div className="subject-card__label">{status}</div>
       )}
