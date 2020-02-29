@@ -25,17 +25,19 @@ const Header: React.FC<Props> = ({
           {title ? (
             <h1 className="header__title">{title}</h1>
           ) : (
-            <ContentLoader
-              style={{ marginLeft: '0.5rem' }}
-              speed={2}
-              width={180}
-              height={20}
-              viewBox="0 0 180 20"
-              backgroundColor="var(--background-2)"
-              foregroundColor="var(--background-3)"
-            >
-              <rect x="0" y="0" rx="6" ry="6" width="180" height="20" />
-            </ContentLoader>
+            title === '' && (
+              <ContentLoader
+                style={{ marginLeft: '0.5rem' }}
+                speed={2}
+                width={180}
+                height={20}
+                viewBox="0 0 180 20"
+                backgroundColor="var(--background-2)"
+                foregroundColor="var(--background-3)"
+              >
+                <rect x="0" y="0" rx="6" ry="6" width="180" height="20" />
+              </ContentLoader>
+            )
           )}
         </div>
         {trailing && <div className="header__trailing">{trailing}</div>}

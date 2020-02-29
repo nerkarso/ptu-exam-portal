@@ -1,9 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface Props {
+export interface Props {
   type?: 'primary' | 'secondary' | 'inverse';
   block?: boolean;
+  leading?: boolean;
+  trailing?: boolean;
   className?: string;
   style?: any;
   onClick?: () => void;
@@ -13,6 +15,8 @@ interface Props {
 const Button: React.FC<Props> = ({
   type,
   block,
+  leading,
+  trailing,
   className,
   children,
   ...props
@@ -23,7 +27,9 @@ const Button: React.FC<Props> = ({
         'button',
         {
           [`button--${type}`]: type,
-          'button--block': block
+          'button--block': block,
+          'button--leading': leading,
+          'button--trailing': trailing
         },
         className
       )}
