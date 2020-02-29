@@ -1,11 +1,11 @@
 {
   "name": "bca-notes",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "title": "BCA Notes",
   "description": "A collection of notes of the BCA course.",
   "homepage": "/",
   "license": "MIT",
-  "author": "Ner Karso",
+  "author": "Ngineer Lab N.V.",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
