@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
+import { isIos } from '../utils';
+
 const initialState = {
   theme: 'light',
   switchTheme: () => {}
@@ -29,6 +31,16 @@ function ThemeProvider(props: any) {
     document
       .querySelector('meta[name="theme-color"]')
       ?.setAttribute('content', color || '');
+
+    // Change iOS status bar style
+    if (isIos()) {
+      const statusBarStyle =
+        theme === 'light' ? 'default ' : 'black-translucent';
+
+      document
+        .querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
+        ?.setAttribute('content', statusBarStyle);
+    }
   }, [theme]);
 
   // To switch between dark and light mode
