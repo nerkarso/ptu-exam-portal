@@ -1,0 +1,89 @@
+.modal {
+  background: hsla(0, 0, 0, 0.5);
+  display: table;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+
+  &-enter {
+    opacity: 0;
+  }
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 0.3s;
+  }
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &__wrapper {
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  &__dialog {
+    background: var(--background-1);
+    border: 1px solid var(--background-2);
+    border-radius: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
+    @include shadow-lg;
+
+    @media only screen and (min-width: 480px) {
+      max-height: calc(100vh - 2rem);
+    }
+
+    @media only screen and (max-width: 480px) {
+      max-height: calc(100vh - 6rem);
+    }
+  }
+
+  &-enter &__dialog {
+    transform: scale(0.8);
+  }
+  &-enter-active &__dialog {
+    transform: scale(1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  &-exit &__dialog {
+    transform: scale(1);
+  }
+  &-exit-active &__dialog {
+    transform: scale(0.9);
+    transition: transform 0.3s;
+  }
+
+  &__header {
+    border-bottom: 1px solid var(--background-2);
+    flex: 1;
+    padding: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__body {
+    padding: 1rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__footer {
+    border-top: 1px solid var(--background-2);
+    flex: 1;
+    padding: 1rem;
+  }
+}

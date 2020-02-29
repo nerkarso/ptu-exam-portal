@@ -9,12 +9,14 @@ button {
 }
 
 .button {
+  font-size: 0.95em;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   font-weight: 500;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   transition-property: background, opacity;
   transition-duration: 0.3s;
@@ -44,6 +46,19 @@ button {
     }
   }
 
+  &--secondary {
+    background: var(--background-2);
+
+    &:hover,
+    &:focus {
+      background: var(--background-3);
+    }
+
+    &:active {
+      background: var(--background-4);
+    }
+  }
+
   &--inverse {
     color: var(--background);
 
@@ -57,7 +72,18 @@ button {
     }
   }
 
+  &--block {
+    width: 100%;
+  }
+
   &--leading {
     margin-left: -0.5rem;
   }
+}
+
+.button-group {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  column-gap: 0.5rem;
 }

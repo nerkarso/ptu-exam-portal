@@ -2,17 +2,31 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface Props {
-  type?: 'primary' | 'inverse';
+  type?: 'primary' | 'secondary' | 'inverse';
+  block?: boolean;
   className?: string;
   style?: any;
   onClick?: () => void;
   title?: string;
 }
 
-const Button: React.FC<Props> = ({ type, className, children, ...props }) => {
+const Button: React.FC<Props> = ({
+  type,
+  block,
+  className,
+  children,
+  ...props
+}) => {
   return (
     <button
-      className={classNames('button', { [`button--${type}`]: type }, className)}
+      className={classNames(
+        'button',
+        {
+          [`button--${type}`]: type,
+          'button--block': block
+        },
+        className
+      )}
       {...props}
     >
       {children}
