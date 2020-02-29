@@ -35,7 +35,7 @@ function ThemeProvider(props: any) {
     // Change iOS status bar style
     if (isIos()) {
       const statusBarStyle =
-        theme === 'light' ? 'default ' : 'black-translucent';
+        theme === 'light' ? 'default' : 'black-translucent';
 
       document
         .querySelector('meta[name="apple-mobile-web-app-status-bar-style"]')
