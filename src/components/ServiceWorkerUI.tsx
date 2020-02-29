@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { trackEvent } from '../hooks/GoogleAnalytics';
 import { useServiceWorker } from '../hooks/ServiceWorkerContext';
-import { getOS } from '../utils';
+import { getOS, isIos, isInStandaloneMode } from '../utils';
 
+import ModalInstallGuide from './molecules/ModalInstallGuide';
 import Toast from './molecules/Toast';
 
 let deferredPrompt: any = null;
@@ -11,6 +12,7 @@ let deferredPrompt: any = null;
 const ServiceWorkerUI: React.FC = () => {
   const { assetsUpdateReady, updateAssets } = useServiceWorker();
 
+  const [openModalInstallGuide, setOpenModalInstallGuide] = useState(false);
   const [openToastInstall, setOpenToastInstall] = useState(false);
   const [openToastInstalled, setOpenToastInstalled] = useState(false);
 
@@ -27,26 +29,36 @@ const ServiceWorkerUI: React.FC = () => {
       // Stash the event so it can be triggered later
       deferredPrompt = event;
     });
+
+    // Check if device is iOS
+    if (isIos() && !isInStandaloneMode()) {
+      setOpenToastInstall(true);
+    }
   }, []);
 
   // Attach the install prompt to a user gesture
   const addToHomeScreen = async () => {
-    // Show the prompt
-    deferredPrompt.prompt();
+    // Check if device is iOS
+    if (isIos()) {
+      setOpenModalInstallGuide(true);
+    } else {
+      // Show the prompt
+      deferredPrompt.prompt();
 
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult: any) => {
-      if (choiceResult.outcome === 'accepted') {
-        setOpenToastInstall(false);
-        setTimeout(() => setOpenToastInstalled(true), 1000);
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === 'accepted') {
+          setOpenToastInstall(false);
+          setTimeout(() => setOpenToastInstalled(true), 1000);
 
-        trackEvent({
-          category: 'App install',
-          action: 'Accepted the install',
-          label: getOS()
-        });
-      }
-    });
+          trackEvent({
+            category: 'App install',
+            action: 'Accepted the install',
+            label: getOS()
+          });
+        }
+      });
+    }
   };
 
   const cancelAddToHomeScreen = () => {
@@ -90,6 +102,11 @@ const ServiceWorkerUI: React.FC = () => {
 
   return (
     <>
+      <ModalInstallGuide
+        isOpen={openModalInstallGuide}
+        onDismiss={() => setOpenModalInstallGuide(false)}
+      />
+
       <Toast
         isOpen={openToastInstall}
         action={{
