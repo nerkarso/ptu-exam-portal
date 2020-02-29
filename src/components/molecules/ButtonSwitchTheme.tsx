@@ -4,11 +4,9 @@ import { Moon, Sun } from 'react-feather';
 import { trackEvent } from '../../hooks/GoogleAnalytics';
 import { useTheme } from '../../hooks/ThemeContext';
 
-import Button from '../atoms/Button';
+import Button, { Props } from '../atoms/Button';
 
-interface Props {}
-
-const ButtonSwitchTheme: React.FC<Props> = () => {
+const ButtonSwitchTheme: React.FC<Props> = ({ ...props }) => {
   const { theme, switchTheme } = useTheme();
 
   const handleSwitchTheme = () => {
@@ -22,7 +20,7 @@ const ButtonSwitchTheme: React.FC<Props> = () => {
   };
 
   return (
-    <Button title="Switch theme" onClick={handleSwitchTheme}>
+    <Button title="Switch theme" onClick={handleSwitchTheme} {...props}>
       {theme === 'light' ? (
         <Sun color="var(--text)" size={24} />
       ) : (

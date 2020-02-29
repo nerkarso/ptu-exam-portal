@@ -2,21 +2,22 @@ import React from 'react';
 import { ArrowLeft } from 'react-feather';
 import { useHistory } from 'react-router-dom';
 
-import Button from '../atoms/Button';
+import { Props } from '../atoms/Button';
+import ButtonIcon from '../molecules/ButtonIcon';
 
-interface Props {
-  onClick?: () => void;
-}
-
-const ButtonBack: React.FC<Props> = ({ onClick }) => {
+const ButtonBack: React.FC<Props> = ({ onClick, ...props }) => {
   const history = useHistory();
 
-  const clickHandler = () => (onClick ? onClick() : history.goBack());
+  const handleClick = () => (onClick ? onClick() : history.goBack());
 
   return (
-    <Button className="button--leading" onClick={clickHandler} title="Go back">
-      <ArrowLeft color="var(--text)" size={24} />
-    </Button>
+    <ButtonIcon
+      icon={ArrowLeft}
+      onClick={handleClick}
+      title="Go back"
+      leading
+      {...props}
+    />
   );
 };
 

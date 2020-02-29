@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import ContentLoader from 'react-content-loader';
+import { Settings } from 'react-feather';
+import { useHistory } from 'react-router-dom';
 
-import ButtonSettings from '../molecules/ButtonSettings';
+import ButtonIcon from '../molecules/ButtonIcon';
 import ButtonSwitchTheme from '../molecules/ButtonSwitchTheme';
 import GistContainer from '../containers/GistContainer';
 import Grid from '../atoms/Grid';
@@ -13,6 +15,8 @@ import SubjectCard from '../molecules/SubjectCard';
 interface Props {}
 
 const Home: React.FC<Props> = () => {
+  const history = useHistory();
+
   useEffect(() => {
     document.title = process.env.REACT_APP_TITLE || '';
   }, []);
@@ -25,7 +29,11 @@ const Home: React.FC<Props> = () => {
         buttons={
           <>
             <ButtonSwitchTheme />
-            <ButtonSettings />
+            <ButtonIcon
+              icon={Settings}
+              title="Settings"
+              onClick={() => history.push('/settings')}
+            />
           </>
         }
       />

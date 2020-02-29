@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useRouteMatch } from 'react-router-dom';
 import ContentLoader from 'react-content-loader';
+import { Menu } from 'react-feather';
 
 import { trackPageView, trackEvent } from '../../hooks/GoogleAnalytics';
 import { File } from '../../types';
 
 import ButtonBack from '../molecules/ButtonBack';
-import ButtonMenu from '../molecules/ButtonMenu';
+import ButtonIcon from '../molecules/ButtonIcon';
 import Drawer from '../organisms/Drawer';
 import GistContainer from '../containers/GistContainer';
 import Header from '../organisms/Header';
@@ -109,7 +110,9 @@ const Subject: React.FC<Props> = () => {
       <Header
         title={title}
         leading={<ButtonBack />}
-        trailing={<ButtonMenu onClick={toggleDrawer} />}
+        trailing={
+          <ButtonIcon icon={Menu} title="Open drawer" onClick={toggleDrawer} />
+        }
       />
       <Main>
         <GistContainer
@@ -143,6 +146,7 @@ const Subject: React.FC<Props> = () => {
         isOpen={drawerOpen}
         onOpen={onOpenHandler}
         onClose={closeDrawer}
+        title="Table of Contents"
         right
       >
         <List>{toc}</List>
