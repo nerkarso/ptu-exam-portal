@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+
+  body {
+    @apply h-full bg-gray-50;
+  }
+
+  #__next {
+    @apply h-full;
+  }
+}
+
+@layer components {
+  .alert {
+    @apply py-2 px-4 rounded bg-gray-200 text-gray-700;
+  }
+  .alert--danger {
+    @apply bg-red-600 text-red-100;
+  }
+
+  .btn {
+    @apply p-2 px-3 mt-6 text-white bg-black rounded;
+  }
+  .btn:focus {
+    @apply outline-none;
+  }
+
+  .form-input {
+    @apply rounded py-2 px-3 border border-gray-200;
+  }
+  .form-input:focus {
+    box-shadow: 0 0 0 1px theme('colors.black');
+    @apply outline-none border-black;
+  }
+
+  .nav-link {
+    @apply py-3 text-gray-500;
+  }
+  .nav-link.active {
+    @apply border-b-2 border-black text-black;
+  }
+}
