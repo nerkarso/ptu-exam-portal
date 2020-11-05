@@ -10,8 +10,12 @@ async function Documents(req, res) {
     case 'GET':
       try {
         const response = await handleRemoteFetch(res.cookie);
-        const documents = getList(response.data);
-        res.json({ documents });
+        if (response.request.path.includes('NewLogin.aspx')) {
+          res.status(401).json({ error: true, message: 'Remote session has expired' });
+        } else {
+          const documents = getList(response.data);
+          res.json({ documents });
+        }
       } catch (ex) {
         return res.status(ex.status || 500).json({ error: true, message: ex.message });
       }

@@ -45,7 +45,7 @@ export default function Login() {
       </Head>
       <main className="grid h-full place-items-center">
         <div className="w-full max-w-sm p-6 rounded sm:border border-base-300 dark:border-base-700">
-          <img src="/icon.png" class="w-16 h-16 mx-auto" alt="Logo" />
+          <img src="/icon.png" className="w-16 h-16 mx-auto" alt="Logo" />
           <h1 className="pb-3 mt-6 text-2xl font-semibold text-center">Log in to continue</h1>
           {error && <div className="alert alert--danger">{error}</div>}
           <form className="mt-3" onSubmit={handleSubmit}>
@@ -71,7 +71,7 @@ export default function Login() {
                 required
               />
             </div>
-            <button type="submit" className="w-full btn btn--primary" disabled={loading}>
+            <button type="submit" className="w-full mt-6 btn btn--primary" disabled={loading}>
               {loading ? 'Authenticating...' : 'Log in'}
             </button>
           </form>

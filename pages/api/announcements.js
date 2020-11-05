@@ -10,8 +10,12 @@ async function Announcements(req, res) {
     case 'GET':
       try {
         const response = await handleRemoteFetch(res.cookie);
-        const announcements = getList(response.data);
-        res.json({ announcements });
+        if (response.request.path.includes('NewLogin.aspx')) {
+          res.status(401).json({ error: true, message: 'Remote session has expired' });
+        } else {
+          const announcements = getList(response.data);
+          res.json({ announcements });
+        }
       } catch (ex) {
         return res.status(ex.status || 500).json({ error: true, message: ex.message });
       }

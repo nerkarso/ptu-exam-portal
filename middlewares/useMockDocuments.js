@@ -1,5 +1,11 @@
 const mockDocuments = (handler) => (req, res) => {
-  return handler(req, res);
+  // return handler(req, res);
+
+  // TODO: Temporary disable fetching documents, remote page unavailable
+  return res.json({
+    documents: [],
+  });
+
   // return res.json({
   //   documents: [
   //     {

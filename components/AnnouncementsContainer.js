@@ -1,11 +1,21 @@
+import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 export default function AnnouncementsContainer() {
   const { data, error } = useSWR('/api/announcements');
+  const router = useRouter();
 
   if (error) return <div className="mt-4 alert alert--danger">Failed to load</div>;
   if (!data) return <div className="mt-4 alert alert--primary">Loading...</div>;
-  if (data && data.error) return <div className="mt-4 alert alert--danger">{data.message}</div>;
+  if (data && data.error)
+    return (
+      <div className="mt-4 alert alert--danger">
+        <p>{data.message}</p>
+        <button className="py-1 mt-2 btn btn--primary" onClick={() => router.replace('/login')}>
+          Log in
+        </button>
+      </div>
+    );
   if (data && !data.announcements.length) return <div className="mt-4 alert alert--default">No announcements here</div>;
 
   return (
