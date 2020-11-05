@@ -3,10 +3,11 @@ import NavLink from '../elements/NavLink';
 
 export default function Header() {
   return (
-    <header className="fixed w-full px-4 bg-white border-b dark:bg-black dark:border-gray-800 dark:text-white">
+    <header className="fixed w-full px-4 border-b border-base-300 bg-base-50 dark:bg-base-900 dark:border-base-700">
       <div className="container max-w-screen-lg">
         <div className="flex items-center pt-4">
-          <h4 className="text-xl font-semibold">PTU Exam Portal</h4>
+          <img src="/icon.png" class="w-8 h-8" alt="Logo" />
+          <h4 className="ml-3 text-xl font-semibold">PTU Exam Portal</h4>
           <div className="ml-auto">
             <Link href="/login">
               <a className="btn btn--primary">Log out</a>

@@ -3,12 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   html {
     @apply h-full;
   }
 
   body {
-    @apply h-full bg-gray-50;
+    @apply h-full bg-base-50 dark:bg-base-900 dark:text-base-50;
   }
 
   #__next {
@@ -18,31 +22,52 @@
 
 @layer components {
   .alert {
-    @apply py-2 px-4 rounded bg-gray-200 text-gray-700;
+    @apply px-4 py-2 rounded;
+  }
+  .alert--default {
+    @apply bg-base-200 text-base-600 dark:bg-base-800 dark:text-base-400;
+  }
+  .alert--primary {
+    @apply text-blue-600 bg-blue-600 bg-opacity-20 dark:text-blue-400;
   }
   .alert--danger {
-    @apply bg-red-600 text-red-100;
+    @apply text-red-600 bg-red-500 bg-opacity-20 dark:text-red-400;
   }
 
   .btn {
-    @apply p-2 px-3 mt-6 text-white bg-black rounded;
+    @apply p-2 px-3 mt-6 transition-colors duration-150 border rounded;
+    &:focus {
+      @apply outline-none;
+    }
   }
-  .btn:focus {
-    @apply outline-none;
+  .btn--primary {
+    @apply text-base-50 bg-base-900 border-base-900 dark:text-base-900 dark:bg-base-50 dark:border-base-50;
+    &:hover {
+      @apply text-base-900 bg-base-50 dark:text-base-50 dark:bg-base-900;
+    }
+  }
+
+  .card {
+    @apply flex flex-col p-4 transition-colors duration-150 border rounded cursor-pointer border-base-300 dark:border-base-700;
+    &:hover {
+      @apply border-base-500;
+    }
   }
 
   .form-input {
-    @apply rounded py-2 px-3 border border-gray-200;
-  }
-  .form-input:focus {
-    box-shadow: 0 0 0 1px theme('colors.black');
-    @apply outline-none border-black;
+    @apply px-3 py-2 bg-transparent border rounded border-base-300 dark:border-base-700;
+    &:focus {
+      @apply outline-none border-base-900 dark:border-base-50;
+    }
   }
 
   .nav-link {
-    @apply py-3 text-gray-500;
-  }
-  .nav-link.active {
-    @apply border-b-2 border-black text-black;
+    @apply py-3 transition-colors duration-150 text-base-500;
+    &:hover {
+      @apply text-base-700 dark:text-base-300;
+    }
+    &.active {
+      @apply border-b-2 border-base-900 text-base-900 dark:border-base-50 dark:text-base-50;
+    }
   }
 }

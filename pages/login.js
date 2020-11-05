@@ -44,8 +44,9 @@ export default function Login() {
         <title>Log in | PTU Exam Portal</title>
       </Head>
       <main className="grid h-full place-items-center">
-        <div className="w-full max-w-sm p-6 bg-white rounded shadow">
-          <h1 className="pb-3 text-2xl font-semibold text-center">Log in</h1>
+        <div className="w-full max-w-sm p-6 rounded sm:border border-base-300 dark:border-base-700">
+          <img src="/icon.png" class="w-16 h-16 mx-auto" alt="Logo" />
+          <h1 className="pb-3 mt-6 text-2xl font-semibold text-center">Log in to continue</h1>
           {error && <div className="alert alert--danger">{error}</div>}
           <form className="mt-3" onSubmit={handleSubmit}>
             <div className="mt-3">
