@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-import useMockDocuments from '../../../middlewares/useMockDocuments';
-import useVerifyToken from '../../../middlewares/useVerifyToken';
+import useMockDocuments from '../../middlewares/useMockDocuments';
+import useVerifyToken from '../../middlewares/useVerifyToken';
 
 async function Documents(req, res) {
   const { method } = req;

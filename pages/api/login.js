@@ -1,6 +1,7 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import useMockLogin from '../../../middlewares/useMockLogin';
+import useMockLogin from '../../middlewares/useMockLogin';
+import { setCookie } from '../../utils/cookies';
 
 async function Login(req, res) {
   const { body, method } = req;
@@ -30,18 +31,21 @@ async function Login(req, res) {
         const sessionId = getCookieValue(sessionRes.headers['set-cookie']);
         const answer = getSolvedCaptcha(sessionRes.data['d']);
         /**
-         * Authenticates the user and gets the session token
+         * Authenticates the user and gets the session cookie
          */
         const authRes = await handleRemoteAuth(body['username'], body['password'], sessionId, answer);
+        /**
+         * Checks if { d: true }
+         */
         if (authRes.data['d'] === true) {
-          const sessionToken = getCookieValue(authRes.headers['set-cookie']);
           /**
-           * Generates a user token
+           * Sets the cookies in the header
            */
-          const token = generateUserToken({ id: sessionId, token: sessionToken });
-          res.json({ token });
+          const sessionAuth = getCookieValue(authRes.headers['set-cookie']);
+          setCookie(res, 'session', { id: sessionId, auth: sessionAuth });
+          res.json({ auth: true, userToken: generateUserToken(body['username'], body['password']) });
         } else {
-          res.json({ error: true, message: 'Your username or password is incorrect' });
+          res.json({ auth: false, message: 'Your username or password is incorrect' });
         }
       } catch (ex) {
         res.status(ex.status || 500).json({ error: true, message: ex.message });
@@ -93,7 +97,7 @@ function handleRemoteAuth(username, password, sessionId, answer) {
  *
  * @param {string[]} cookies
  *
- * @returns {string[]} Array of values
+ * @returns {string} Cookie value
  */
 function getCookieValue(cookies) {
   /**
@@ -121,20 +125,13 @@ function getSolvedCaptcha(captcha) {
 /**
  * Signs and generates a user token
  *
- * @param {Session} session
+ * @param {string} username
+ * @param {string} password
  *
  * @returns {string} JWT token
  */
-function generateUserToken(session) {
-  const { id, token } = session;
-  const payload = `ASP.NET_SessionId=${id}; .ASPXAUTH=${token}`;
-  return jwt.sign(payload, 'ptu');
+function generateUserToken(username, password) {
+  return jwt.sign({ username, password }, process.env.JWT_SECRET);
 }
 
 export default useMockLogin(Login);
-
-/**
- * @typedef Session
- * @property {string} id
- * @property {string} token
- */

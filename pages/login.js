@@ -12,19 +12,17 @@ export default function Login() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/students/login', {
+      const res = await fetch('/api/login', {
         method: 'POST',
         body: JSON.stringify(form),
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await res.json();
-      if (data && data.error) {
+      if (data && !data.auth) {
         setError(data.message);
       }
-      if (data && data.token) {
-        let expires = new Date();
-        expires.setTime(expires.getTime() + 30 * 60 * 60 * 24 * 1000);
-        document.cookie = `token=${data.token};expires=${expires.toUTCString()};path=/`;
+      if (data && data.auth) {
+        window.localStorage.setItem('userToken', data.userToken);
         Router.replace('/');
       }
     } catch (ex) {
