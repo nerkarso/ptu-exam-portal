@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import useMockAnnouncements from '../../middlewares/useMockAnnouncements';
-import useVerifyToken from '../../middlewares/useVerifyToken';
+import { withSession } from '../../middlewares/withSession';
 
 async function Announcements(req, res) {
   const { method } = req;
@@ -9,7 +9,7 @@ async function Announcements(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const response = await handleRemoteFetch(res.cookie);
+        const response = await handleRemoteFetch(res.session);
         if (response.request.path.includes('NewLogin.aspx')) {
           res.status(401).json({ error: true, message: 'Remote session has expired' });
         } else {
@@ -25,6 +25,8 @@ async function Announcements(req, res) {
       res.status(405).json({ error: true, message: `Method ${method} Not Allowed` });
   }
 }
+
+export default withSession(useMockAnnouncements(Announcements));
 
 /**
  * Handles remote operation
@@ -62,8 +64,6 @@ function getList(html) {
   });
   return list;
 }
-
-export default useVerifyToken(useMockAnnouncements(Announcements));
 
 /**
  * @typedef Announcement

@@ -42,8 +42,11 @@ async function Login(req, res) {
            * Sets the cookies in the header
            */
           const sessionAuth = getCookieValue(authRes.headers['set-cookie']);
-          setCookie(res, 'session', { id: sessionId, auth: sessionAuth });
-          res.json({ auth: true, userToken: generateUserToken(body['username'], body['password']) });
+          setCookie(res, 'session', `ASP.NET_SessionId=${sessionId}; .ASPXAUTH=${sessionAuth}`);
+          res.json({
+            auth: true,
+            userToken: generateUserToken(body['username'], body['password']),
+          });
         } else {
           res.json({ auth: false, message: 'Your username or password is incorrect' });
         }

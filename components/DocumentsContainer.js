@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 
 export default function DocumentsContainer() {
-  const { data, error } = useSWR('/api/students/documents');
+  const { data, error } = useSWR('/api/documents');
 
   if (error) return <div className="mt-4 alert alert--danger">Failed to load</div>;
   if (!data) return <div className="mt-4 alert alert--primary">Loading...</div>;

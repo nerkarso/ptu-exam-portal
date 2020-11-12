@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 import useMockDocuments from '../../middlewares/useMockDocuments';
-import useVerifyToken from '../../middlewares/useVerifyToken';
+import { withSession } from '../../middlewares/withSession';
 
 async function Documents(req, res) {
   const { method } = req;
@@ -9,7 +9,7 @@ async function Documents(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const response = await handleRemoteFetch(res.cookie);
+        const response = await handleRemoteFetch(res.session);
         if (response.request.path.includes('NewLogin.aspx')) {
           res.status(401).json({ error: true, message: 'Remote session has expired' });
         } else {
@@ -25,6 +25,8 @@ async function Documents(req, res) {
       res.status(405).json({ error: true, message: `Method ${method} Not Allowed` });
   }
 }
+
+export default withSession(useMockDocuments(Documents));
 
 /**
  * Handles remote operation
@@ -65,8 +67,6 @@ function getList(html) {
   });
   return list;
 }
-
-export default useVerifyToken(useMockDocuments(Documents));
 
 /**
  * @typedef Document

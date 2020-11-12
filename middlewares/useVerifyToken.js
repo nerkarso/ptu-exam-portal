@@ -7,7 +7,7 @@ const useVerifyToken = (handler) => (req, res) => {
 
   // Token verification
   try {
-    res.cookie = jwt.verify(token, 'ptu');
+    res.cookie = jwt.verify(token, process.env.JWT_SECRET);
     return handler(req, res);
   } catch (ex) {
     return res.status(401).json({ error: true, message: ex.message });
