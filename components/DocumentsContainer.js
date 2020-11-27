@@ -1,4 +1,5 @@
 import useSWR from 'swr';
+import IconExternalLink from '../elements/IconExternalLink';
 
 export default function DocumentsContainer() {
   const { data, error } = useSWR('/api/documents');
@@ -13,7 +14,12 @@ export default function DocumentsContainer() {
       {data.documents.map((document) => (
         <a className="card" href={document.url} target="_blank" key={document.id}>
           <h4 className="flex-1">{document.name}</h4>
-          <p className="mt-2 text-sm text-base-400">{document.date}</p>
+          <div className="flex items-center justify-between mt-2">
+            <span className="text-sm text-base-400">{document.date}</span>
+            <span className="text-base-400">
+              <IconExternalLink />
+            </span>
+          </div>
         </a>
       ))}
     </div>
