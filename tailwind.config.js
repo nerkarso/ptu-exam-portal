@@ -1,6 +1,7 @@
-const { colors } = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
+  darkMode: 'class',
   purge: {
     layers: ['components', 'utilities'],
     content: ['./+(components|elements|pages)/**/*.+(js|jsx|ts|tsx)'],
@@ -8,10 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        base: colors.gray,
-      },
-      screens: {
-        dark: { raw: '(prefers-color-scheme: dark)' },
+        base: colors.trueGray,
       },
     },
     container: {

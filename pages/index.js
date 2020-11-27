@@ -1,10 +1,10 @@
-import DocumentsContainer from '../components/DocumentsContainer';
+import AnnouncementsContainer from '../components/AnnouncementsContainer';
 import Layout from '../components/Layout';
 
-export default function Documents() {
+export default function Announcements() {
   return (
-    <Layout title="Documents">
-      <DocumentsContainer />
+    <Layout title="Announcements">
+      <AnnouncementsContainer />
     </Layout>
   );
 }

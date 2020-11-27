@@ -13,11 +13,12 @@
     "cheerio": "^1.0.0-rc.3",
     "cookie": "^0.4.1",
     "jsonwebtoken": "^8.5.1",
-    "next": "10.0.0",
+    "next": "10.0.3",
+    "next-themes": "^0.0.10",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "swr": "^0.3.7",
-    "tailwindcss": "2.0.0-alpha.4"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "devDependencies": {
     "postcss-preset-env": "^6.7.0"
