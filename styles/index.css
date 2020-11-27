@@ -58,7 +58,7 @@
   .form-input {
     @apply px-3 py-2 bg-transparent border rounded border-base-300 dark:border-base-700;
     &:focus {
-      @apply outline-none border-base-900 dark:border-base-50;
+      @apply outline-none border-base-900 dark:border-base-50 ring-1 ring-base-900 dark:ring-base-50;
     }
   }
 
