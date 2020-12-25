@@ -1,74 +1,47 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
-import useMockAnnouncements from '../../middlewares/useMockAnnouncements';
-import { withSession } from '../../middlewares/withSession';
+import { withAllowedMethods } from '../../middlewares/withAllowedMethods';
+import { normalizeText } from '../../utils';
 
 async function Announcements(req, res) {
-  const { method } = req;
-
-  switch (method) {
-    case 'GET':
-      try {
-        const response = await handleRemoteFetch(res.session);
-        if (response.request.path.includes('NewLogin.aspx')) {
-          res.status(401).json({ error: true, message: 'Remote session has expired' });
-        } else {
-          const announcements = getList(response.data);
-          res.json({ announcements });
-        }
-      } catch (ex) {
-        return res.status(ex.status || 500).json({ error: true, message: ex.message });
-      }
-      break;
-    default:
-      res.setHeader('Allow', ['GET']);
-      res.status(405).json({ error: true, message: `Method ${method} Not Allowed` });
+  try {
+    // Fetch the markup from the source provider
+    const response = await axios(`${process.env.SOURCE_BASE_URL}/NewLogin.aspx`);
+    return res.json({
+      announcements: extractData(response.data),
+    });
+  } catch (ex) {
+    return res.status(500).json({
+      error: true,
+      message: 'Could not get announcements',
+      details: ex.message,
+    });
   }
 }
 
-export default withSession(useMockAnnouncements(Announcements));
+export default withAllowedMethods(Announcements, ['GET']);
 
 /**
- * Handles remote operation
- *
- * @param {string} cookie
- *
- * @returns {Promise<any>} AxiosResponse
+ * Extracts the data from the markup
  */
-function handleRemoteFetch(cookie) {
-  return axios(`http://www.ptuexam.com/frmStudentPanel.aspx`, {
-    headers: { Cookie: cookie },
-  });
-}
-
-/**
- * Parses the HTML and returns a list of announcements
- *
- * @param {string} html
- *
- * @returns {Announcement[]} Array of announcements
- */
-function getList(html) {
+function extractData(html) {
+  const items = [];
   const $ = cheerio.load(html);
-  let list = [];
-  $('#AnnoucementModal ol li').each((i, el) => {
-    const message = $('div > div:nth-child(2) > b', el).text();
-    const date = $('div > div:nth-child(1) > div', el).text();
-    const url = $('div > div:nth-child(3) a', el).attr('href');
-    list.push({
-      id: i,
-      message: message === '' ? 'None' : message.trim(),
-      date: date.trim(),
-      url: url,
+  $('.event-list li').each((i, el) => {
+    items.push({
+      id: i + 1,
+      message: normalizeText(
+        $('.title')
+          .first()
+          .contents()
+          .filter(function () {
+            return this.type === 'text';
+          })
+          .text(),
+      ),
+      date: normalizeText($('time', el).text()),
+      url: $('a', el).attr('href'),
     });
   });
-  return list;
+  return items;
 }
-
-/**
- * @typedef Announcement
- * @property {number} id
- * @property {string} message
- * @property {Date} date
- * @property {string} url
- */
