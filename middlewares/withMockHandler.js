@@ -1,3 +1,6 @@
+import { constructSession } from '@/middlewares/withAuthHandler';
+import { setCookie } from '@/utils/index';
+
 /**
  * Bunch of mock data
  */
@@ -12,49 +15,50 @@ const loginFailed = {
   auth: false,
 };
 
-const announcements = [
+export const announcements = [
   {
     id: 1,
-    message: 'Instructions and Schedule for Filling of Regular Examination forms',
+    title: 'Instructions and Schedule for Filling of Regular Examination forms',
     date: '20 Oct 2020',
-    url: 'http://www.ptuexam.com/enquiry/DownloadDocZ',
+    url: 'https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf',
   },
   {
     id: 2,
-    message: 'Proposed Date Sheet for Regular Semester Examination',
+    title:
+      'Revised Amendment in Final Date Sheet for Regular Semester Examination in Offline Mode for session Nov-2020',
     date: '6 Nov 2020',
-    url: 'http://www.ptuexam.com/enquiry/DownloadDocZ',
+    url: 'http://localhost',
   },
   {
     id: 3,
-    message: 'No Dues for regular semester examination',
+    title: 'No Dues for Regular Semester Examination',
     date: '30 Nov 2020',
-    url: 'http://www.ptuexam.com/enquiry/DownloadDocZ',
+    url: 'https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf',
   },
 ];
 
-const documents = [
+export const documents = [
   {
     id: 1,
     title: 'BCA, FIRST Semester NEW 2K11, Regular Result',
     date: '03 Mar 2020',
-    url: 'http://www.ptuexam.com/OnlineDocuments',
+    url: 'https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf',
   },
   {
     id: 2,
     title: 'BCA, SECOND Semester NEW 2K11, Regular Result',
     date: '03 Sep 2020',
-    url: 'http://www.ptuexam.com/OnlineDocuments',
+    url: 'http://localhost',
   },
   {
     id: 3,
     title: 'BCA, Semester-3, 2015, Regular Result',
     date: '17 Feb 2021',
-    url: 'http://www.ptuexam.com/OnlineDocuments',
+    url: 'https://www.adobe.com/content/dam/acom/en/devnet/acrobat/pdfs/pdf_open_parameters.pdf',
   },
 ];
 
-const payments = [
+export const payments = [
   {
     id: 1,
     examSession: 'April-2020',
@@ -62,7 +66,7 @@ const payments = [
     amount: 1250,
     paymentStatus: 'Payment Successful',
     date: ['Monday, 1 March 2020 06:00:00', 'Monday, 1 March 2020 07:00:00'],
-    url: 'http://ptuexam.com/ASheetConfirmedPaymentSlip.aspx',
+    url: 'http://www.ptuexam.com',
   },
   {
     id: 2,
@@ -71,7 +75,7 @@ const payments = [
     amount: 700,
     paymentStatus: 'Payment Failed',
     date: ['Monday, 2 October 2020 08:00:00'],
-    url: 'http://ptuexam.com/ASheetConfirmedPaymentSlip.aspx',
+    url: 'http://invalid',
   },
   {
     id: 3,
@@ -80,11 +84,11 @@ const payments = [
     amount: 1250,
     paymentStatus: 'Payment Successful',
     date: ['Monday, 3 March 2021 11:00:00', 'Monday, 3 March 2021 11:00:00'],
-    url: 'http://ptuexam.com/ASheetConfirmedPaymentSlip.aspx',
+    url: 'http://www.ptuexam.com',
   },
 ];
 
-const profile = {
+export const profile = {
   rollNo: '1234567',
   collegeName: 'Punjab College of Technical Education, Baddowal, Ludhiana',
   programme: 'Bachelor of Computer Applications',
@@ -94,6 +98,9 @@ const profile = {
   motherName: 'PADME AMIDALA',
   currentSemester: '1',
   branchId: '10',
+};
+
+export const profileDetails = {
   photo: 'https://thechristiannerd.files.wordpress.com/2011/04/luke-skywalker.jpg',
   signature: 'https://powerhousebooks.com/newsletters/100308/daniel_signature.jpg',
 };
@@ -101,20 +108,27 @@ const profile = {
 /**
  * This handles the incoming request and respond with mock data
  */
-export const withMockHandler = (handler) => (req, res) => {
+export const withMockHandler = (handler) => async (req, res) => {
   // If the MOCK_ENV variable is false, it will skip this middleware
   if (!JSON.parse(process.env.MOCK_ENV)) return handler(req, res);
+  // Sleep for 3 seconds
+  await new Promise((resolve) => setTimeout(resolve, 3000));
+  // Respond with corresponding result
   if (req.url.includes('login')) {
-    if (req.body.username === '1234567' && req.body.password === '1234567') {
-      return res.json({ loginSuccessful });
+    if (req.body.username === '0' && req.body.password === '0') {
+      return res.json(loginFailed);
     } else {
-      return res.json({ loginFailed });
+      res.session = constructSession('foo', 'bar');
+      setCookie(res, 'session', res.session);
+      return res.json(loginSuccessful);
     }
   }
   if (req.url.includes('announcements')) return res.json({ announcements });
   if (req.url.includes('documents')) return res.json({ documents });
   if (req.url.includes('payments')) return res.json({ payments });
-  if (req.url.includes('profile')) return res.json({ profile });
+  if (req.url.includes('profile-details')) return res.json(profileDetails);
+  if (req.url.includes('profile')) return res.json(profile);
+  // Route is not found
   return res.status(404).json({
     error: true,
     message: 'This mock route could not be found',

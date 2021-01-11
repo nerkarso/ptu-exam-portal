@@ -1,6 +1,6 @@
+import { setCookie } from '@/utils/index';
 import axios from 'axios';
 import { parse } from 'cookie';
-import { setCookie } from '../utils';
 
 /**
  * This handles automatically authenticating the user
@@ -89,6 +89,6 @@ function handleAuthSource(username, password, sessionId, answer) {
 /**
  * Constructs the session
  */
-function constructSession(sessionId, sessionAuth) {
+export function constructSession(sessionId, sessionAuth) {
   return `ASP.NET_SessionId=${sessionId}; .ASPXAUTH=${sessionAuth}`;
 }

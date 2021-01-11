@@ -1,6 +1,6 @@
+import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withProtectedRoute } from '@/middlewares/withProtectedRoute';
 import cheerio from 'cheerio';
-import { withAllowedMethods } from '../../middlewares/withAllowedMethods';
-import { withProtectedRoute } from '../../middlewares/withProtectedRoute';
 
 async function Profile(req, res) {
   return res.json(extractData(res.html));
@@ -14,9 +14,8 @@ export default withAllowedMethods(withProtectedRoute(Profile, '/frmStudentPanel.
 function extractData(html) {
   const $ = cheerio.load(html);
   const parent = '#UserProfile .modal-body';
-  const rollNo = $(`${parent} #ContentPlaceHolder1_lblRollNo`).text().trim();
   return {
-    rollNo: rollNo,
+    rollNo: $(`${parent} #ContentPlaceHolder1_lblRollNo`).text().trim(),
     collegeName: $(`${parent} #ContentPlaceHolder1_lblCollegeName`).text().trim(),
     programme: $(`${parent} #ContentPlaceHolder1_lblBranch`).text().trim(),
     admissionStatus: $(`${parent} #ContentPlaceHolder1_lblLeet`).text().trim(),
@@ -25,7 +24,5 @@ function extractData(html) {
     motherName: $(`${parent} #ContentPlaceHolder1_lblMotherName`).text().trim(),
     currentSemester: $(`${parent} #ContentPlaceHolder1_lblCurrenetStatus`).text().trim(),
     branchId: $(`${parent} #ContentPlaceHolder1_lblBrId`).text().trim(),
-    photo: `${process.env.SOURCE_BASE_URL}/Upload/StudentPhoto/P${rollNo}.jpg`,
-    signature: `${process.env.SOURCE_BASE_URL}/Upload/StudentSign/S${rollNo}.jpg`,
   };
 }

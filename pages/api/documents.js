@@ -1,6 +1,6 @@
+import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withProtectedRoute } from '@/middlewares/withProtectedRoute';
 import cheerio from 'cheerio';
-import { withAllowedMethods } from '../../middlewares/withAllowedMethods';
-import { withProtectedRoute } from '../../middlewares/withProtectedRoute';
 
 async function Documents(req, res) {
   return res.json(extractData(res.html));

@@ -1,6 +1,7 @@
+import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withAuthHandler } from '@/middlewares/withAuthHandler';
+import { withMockHandler } from '@/middlewares/withMockHandler';
 import jwt from 'jsonwebtoken';
-import { withAllowedMethods } from '../../middlewares/withAllowedMethods';
-import { withAuthHandler } from '../../middlewares/withAuthHandler';
 
 async function Login(req, res) {
   res.json({
@@ -12,7 +13,7 @@ async function Login(req, res) {
   });
 }
 
-export default withAllowedMethods(withPreAuthCheck(withAuthHandler(Login)), ['POST']);
+export default withAllowedMethods(withPreAuthCheck(withMockHandler(withAuthHandler(Login))), ['POST']);
 
 /**
  * Checks for the necessary details before authenticating the user

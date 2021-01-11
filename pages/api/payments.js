@@ -1,7 +1,7 @@
+import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withProtectedRoute } from '@/middlewares/withProtectedRoute';
+import { normalizeText } from '@/utils/index';
 import cheerio from 'cheerio';
-import { withAllowedMethods } from '../../middlewares/withAllowedMethods';
-import { withProtectedRoute } from '../../middlewares/withProtectedRoute';
-import { normalizeText } from '../../utils';
 
 async function Payments(req, res) {
   return res.json({

@@ -1,7 +1,8 @@
+import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withMockHandler } from '@/middlewares/withMockHandler';
+import { normalizeText } from '@/utils/index';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import { withAllowedMethods } from '../../middlewares/withAllowedMethods';
-import { normalizeText } from '../../utils';
 
 async function Announcements(req, res) {
   try {
@@ -19,7 +20,7 @@ async function Announcements(req, res) {
   }
 }
 
-export default withAllowedMethods(Announcements, ['GET']);
+export default withAllowedMethods(withMockHandler(Announcements), ['GET']);
 
 /**
  * Extracts the data from the markup
@@ -30,8 +31,8 @@ function extractData(html) {
   $('.event-list li').each((i, el) => {
     items.push({
       id: i + 1,
-      message: normalizeText(
-        $('.title')
+      title: normalizeText(
+        $('.title', el)
           .first()
           .contents()
           .filter(function () {
