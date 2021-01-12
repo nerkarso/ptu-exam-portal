@@ -31,7 +31,7 @@ export default function Login() {
 
   return (
     <main className="grid h-full place-items-center">
-      <form className="w-full max-w-sm px-6 py-8 space-y-4" onSubmit={handleSubmit(onSubmit)}>
+      <form className="w-full max-w-sm px-6 py-8 space-y-5" onSubmit={handleSubmit(onSubmit)}>
         <Logo />
         {error && (
           <Note type="error" label="Error">
@@ -95,7 +95,7 @@ function useLogin() {
 function Logo() {
   return (
     <div className="space-y-3">
-      <img src="/icon.png" className="w-16 h-16 mx-auto dark:filter-invert" alt="Logo" />
+      <img src="/logo.svg" alt="Logo" className="w-16 h-16 mx-auto" />
       <h1 className="text-2xl font-bold text-center">Log in to continue</h1>
     </div>
   );

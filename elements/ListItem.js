@@ -7,7 +7,7 @@ export default function ListItem({ active, button, children, className, href, li
       <button
         type="button"
         className={cx(
-          'flex gap-4 px-2 lg:px-3 py-3 text-left transition duration-300 focus:outline-none rounded-xl dark:hover:bg-invert-800 hover:bg-base-100 focus:shadow focus:ring-2 ring-primary-400 ring-inset',
+          'flex gap-4 p-3 text-left transition duration-300 focus:outline-none rounded-xl dark:hover:bg-invert-800 hover:bg-base-100 focus:shadow focus:ring-2 ring-primary-400 ring-inset',
           {
             'bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-white hover:bg-primary-100 dark:hover:bg-primary-900': active,
           },
@@ -25,7 +25,7 @@ export default function ListItem({ active, button, children, className, href, li
         activeClassName="bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-white hover:bg-primary-100 dark:hover:bg-primary-900">
         <a
           className={cx(
-            'flex items-center gap-4 px-2 lg:px-3 py-3 transition duration-300 rounded-lg hover:bg-base-100 dark:hover:bg-invert-800 focus:shadow focus:ring-2 ring-primary-400 focus:outline-none ring-inset',
+            'flex items-center gap-4 p-3 transition duration-300 rounded-lg hover:bg-base-100 dark:hover:bg-invert-800 focus:shadow focus:ring-2 ring-primary-400 focus:outline-none ring-inset',
             className,
           )}>
           {children}
@@ -33,5 +33,5 @@ export default function ListItem({ active, button, children, className, href, li
       </NextLink>
     );
 
-  return <div className="flex items-center gap-4 px-2 py-2 lg:px-3">{children}</div>;
+  return <div className={cx('flex items-center gap-4 p-3', className)}>{children}</div>;
 }

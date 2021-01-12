@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         base: colors.blueGray,
         invert: colors.gray,
-        primary: colors.blue,
+        primary: colors.indigo,
       },
     },
     container: {

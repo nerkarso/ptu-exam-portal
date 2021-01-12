@@ -11,6 +11,7 @@ export default function MasterListItem({ icon: Icon, id, title, text, url }) {
       button
       onClick={() => setDetails({ id, title, url })}
       active={details && details.id === id ? true : false}
+      className="px-2 lg:px-3"
       key={id}>
       <ListItemIcon contained>
         <Icon size={28} />

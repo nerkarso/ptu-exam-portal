@@ -119,7 +119,7 @@ function SidebarDrawer({ children }) {
 function SidebarHeader() {
   return (
     <header className="flex items-center flex-shrink-0 h-16 gap-3 px-3 mx-3">
-      <img src="/icon.png" alt="Logo" className="w-8 h-8 dark:filter-invert" />
+      <img src="/logo.svg" alt="Logo" className="w-8 h-8" />
       <span className="text-xl font-bold">{process.env.NEXT_PUBLIC_SITE_TITLE}</span>
     </header>
   );
