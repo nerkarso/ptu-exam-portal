@@ -8,6 +8,10 @@ export default function SidebarProfile() {
   const { isLoggedIn } = useAuth();
   if (!isLoggedIn) return <ProfileCard href="/login" title="Log in" />;
 
+  return <ProfileContainer />;
+}
+
+function ProfileContainer() {
   const { data, error, loading } = useProfile();
   if (loading) return <ProfileSkeleton />;
   if (error) return <ProfileCard href="/login" title="Error" subtitle={error.message} />;
