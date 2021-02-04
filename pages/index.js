@@ -9,11 +9,9 @@ import SkeletonList from '@/elements/SkeletonList';
 import { SpeakerphoneOutline } from 'heroicons-react';
 import useSWR from 'swr';
 
-Announcements.title = 'Announcements';
-
 export default function Announcements() {
   return (
-    <Layout title={Announcements.title}>
+    <Layout title="Announcements">
       <MasterDetailsView detailsViewer={PDFViewer}>
         <MasterPaneContent />
       </MasterDetailsView>
