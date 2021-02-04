@@ -45,7 +45,7 @@
 
   @variants dark {
     .filter-invert {
-      filter: invert(1);
+      filter: invert(100%);
     }
   }
 }

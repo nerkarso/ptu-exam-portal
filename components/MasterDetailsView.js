@@ -30,7 +30,7 @@ function DetailsPane({ viewer: Viewer }) {
   return (
     <div
       className={cx(
-        'fixed inset-0 z-20 flex flex-col xl:col-span-2 h-full overflow-y-auto md:border-l border-base-200 dark:border-invert-700 md:relative md:translate-x-0 transform transition duration-300',
+        'fixed inset-0 z-20 flex flex-col h-full overflow-y-auto transition duration-300 transform bg-white xl:col-span-2 dark:bg-invert-900 md:border-l border-base-200 dark:border-invert-700 md:relative md:translate-x-0',
         {
           'translate-x-0': details,
           'translate-x-full': !details,
@@ -44,7 +44,7 @@ function DetailsPane({ viewer: Viewer }) {
           <AppBarTitle>{details.title}</AppBarTitle>
         </AppBar>
       )}
-      <div className="flex-1 overflow-y-auto bg-white dark:bg-invert-900">
+      <div className="flex-1 overflow-y-auto">
         {details ? (
           <Viewer url={details.url} />
         ) : (
