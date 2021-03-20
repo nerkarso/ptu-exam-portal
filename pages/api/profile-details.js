@@ -14,7 +14,7 @@ export default withAllowedMethods(withProtectedRoute(ProfileDetails, '/StudentDo
 function extractData(html) {
   const $ = cheerio.load(html);
   return {
-    photo: `${process.env.SOURCE_BASE_URL}/${$('#ContentPlaceHolder1_Image2').attr('src')}`,
-    signature: `${process.env.SOURCE_BASE_URL}/${$('#ContentPlaceHolder1_imgFSignature').attr('src')}`,
+    photo: $('#ContentPlaceHolder1_Image2').attr('src'),
+    signature: $('#ContentPlaceHolder1_imgFSignature').attr('src'),
   };
 }
