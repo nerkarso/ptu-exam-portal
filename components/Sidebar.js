@@ -8,7 +8,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CreditCardOutline, DocumentTextOutline, LogoutOutline, SpeakerphoneOutline } from 'heroicons-react';
+import { CreditCardOutline, DocumentReportOutline, LogoutOutline, SpeakerphoneOutline } from 'heroicons-react';
 import { useRouter } from 'next/router';
 
 export default function Sidebar() {
@@ -23,10 +23,15 @@ export default function Sidebar() {
   };
 
   const links = [
+    // {
+    //   href: '/documents',
+    //   text: 'Documents',
+    //   icon: <DocumentTextOutline />,
+    // },
     {
-      href: '/documents',
-      text: 'Documents',
-      icon: <DocumentTextOutline />,
+      href: '/results',
+      text: 'Results',
+      icon: <DocumentReportOutline />,
     },
     {
       href: '/payments',

@@ -70,15 +70,24 @@ function useLogin() {
     setError(null);
     setLoading(true);
     try {
-      const data = await (
-        await fetch('/api/login', {
-          method: 'POST',
-          body: JSON.stringify(values),
-          headers: { 'Content-Type': 'application/json' },
-        })
-      ).json();
-      if (data && data.auth) {
-        setData(data.userToken);
+      const data = await Promise.all([
+        await (
+          await fetch('/api/login', {
+            method: 'POST',
+            body: JSON.stringify(values),
+            headers: { 'Content-Type': 'application/json' },
+          })
+        ).json(),
+        await (
+          await fetch('/api/login-mobile', {
+            method: 'POST',
+            body: JSON.stringify(values),
+            headers: { 'Content-Type': 'application/json' },
+          })
+        ).json(),
+      ]);
+      if (data.length > 0 && data[0].auth) {
+        setData(data[0].userToken);
       } else {
         setError({ message: 'Username or password is incorrect' });
       }

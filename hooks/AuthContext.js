@@ -13,6 +13,7 @@ export function AuthProvider({ children }) {
   const setLoggedOut = () => {
     window.localStorage.removeItem('userToken');
     document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'sessionMobile=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     setState(false);
   };
 
