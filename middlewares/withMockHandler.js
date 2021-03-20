@@ -105,6 +105,30 @@ export const profileDetails = {
   signature: 'https://powerhousebooks.com/newsletters/100308/daniel_signature.jpg',
 };
 
+export const results = [
+  {
+    id: 1,
+    examSession: 'Nov-2018',
+    examDetails: 'BCA, FIRST Semester NEW 2K11, Regular Result',
+    date: '03 Mar 2019',
+    filename: 'sample.pdf',
+  },
+  {
+    id: 2,
+    examSession: 'April-2019',
+    examDetails: 'BCA, SECOND Semester NEW 2K11, Regular Result',
+    date: '03 Sep 2019',
+    filename: 'invalid.pdf',
+  },
+  {
+    id: 3,
+    examSession: 'Nov-2019',
+    examDetails: 'BCA, Semester-3, 2015, Regular Result',
+    date: '17 Feb 2020',
+    filename: 'sample.pdf',
+  },
+];
+
 /**
  * This handles the incoming request and respond with mock data
  */
@@ -118,8 +142,11 @@ export const withMockHandler = (handler) => async (req, res) => {
     if (req.body.username === '0' && req.body.password === '0') {
       return res.json(loginFailed);
     } else {
-      res.session = constructSession('foo', 'bar');
-      setCookie(res, 'session', res.session);
+      if (req.url.includes('login-mobile')) {
+        setCookie(res, 'sessionMobile', constructSession('foo', 'bar'));
+      } else {
+        setCookie(res, 'session', constructSession('foo', 'bar'));
+      }
       return res.json(loginSuccessful);
     }
   }
@@ -128,6 +155,7 @@ export const withMockHandler = (handler) => async (req, res) => {
   if (req.url.includes('payments')) return res.json({ payments });
   if (req.url.includes('profile-details')) return res.json(profileDetails);
   if (req.url.includes('profile')) return res.json(profile);
+  if (req.url.includes('results')) return res.json(results);
   // Route is not found
   return res.status(404).json({
     error: true,
