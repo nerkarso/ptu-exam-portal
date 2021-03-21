@@ -21,6 +21,7 @@
 }
 
 @layer components {
+  /* Linear Progress */
   @variants dark {
     .linear-progress {
       background-image: linear-gradient(
@@ -36,11 +37,6 @@
     background-image: linear-gradient(to left, theme(colors.primary.500), white, theme(colors.primary.500));
     background-size: 400%;
     animation: scroll-infinite 1.5s linear infinite;
-  }
-
-  /* React PDF Viewer */
-  .rpv-core-inner-page {
-    background: transparent !important;
   }
 
   /* Switch */
@@ -74,4 +70,12 @@
   to {
     background-position: 0;
   }
+}
+
+/* React PDF Viewer */
+.rpv-core-inner-page {
+  background: transparent !important;
+}
+.dark .rpv-core-inner-page {
+  filter: invert(100%);
 }
