@@ -4,18 +4,15 @@ import { Viewer, Worker } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 
 export default function PDFViewer({ url }) {
-  // Uses a proxy server to bypass CORS
-  const fileUrl = `${process.env.NEXT_PUBLIC_PROXY_URL}/?url=${url}`;
-
   return (
     <Worker workerUrl="https://unpkg.com/pdfjs-dist@2.5.207/build/pdf.worker.js">
-      <Viewer
-        fileUrl={fileUrl}
-        renderLoader={() => <Spinner className="w-8 h-8 text-primary-600 dark:text-primary-500" />}
-        renderError={RenderError}
-      />
+      <Viewer fileUrl={url} renderLoader={RenderSpinner} renderError={RenderError} />
     </Worker>
   );
+}
+
+function RenderSpinner() {
+  return <Spinner className="w-8 h-8 text-primary-600 dark:text-primary-500" />;
 }
 
 function RenderError(error) {

@@ -21,6 +21,23 @@
 }
 
 @layer components {
+  @variants dark {
+    .linear-progress {
+      background-image: linear-gradient(
+        to left,
+        theme(colors.primary.500),
+        theme(colors.base.900),
+        theme(colors.primary.500)
+      );
+    }
+  }
+  .linear-progress {
+    height: 4px;
+    background-image: linear-gradient(to left, theme(colors.primary.500), white, theme(colors.primary.500));
+    background-size: 400%;
+    animation: scroll-infinite 1.5s linear infinite;
+  }
+
   /* React PDF Viewer */
   .rpv-core-inner-page {
     background: transparent !important;
@@ -47,5 +64,14 @@
     .filter-invert {
       filter: invert(100%);
     }
+  }
+}
+
+@keyframes scroll-infinite {
+  0% {
+    background-position: 125% 0;
+  }
+  to {
+    background-position: 0;
   }
 }

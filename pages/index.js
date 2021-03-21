@@ -3,7 +3,7 @@ import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
 import MasterDetailsView from '@/components/MasterDetailsView';
 import MasterListItem from '@/components/MasterListItem';
-import PDFViewer from '@/components/PDFViewer';
+import PDFViewerUrl from '@/components/PDFViewerUrl';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import { SpeakerphoneOutline } from 'heroicons-react';
@@ -12,7 +12,7 @@ import useSWR from 'swr';
 export default function Announcements() {
   return (
     <Layout title="Announcements">
-      <MasterDetailsView detailsViewer={PDFViewer}>
+      <MasterDetailsView detailsViewer={PDFViewerUrl}>
         <MasterPaneContent />
       </MasterDetailsView>
     </Layout>

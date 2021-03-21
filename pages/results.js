@@ -3,7 +3,7 @@ import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
 import MasterDetailsView from '@/components/MasterDetailsView';
 import MasterListItem from '@/components/MasterListItem';
-import PDFViewer from '@/components/PDFViewer';
+import PDFViewerBlob from '@/components/PDFViewerBlob';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
@@ -16,7 +16,7 @@ export default function Results() {
   return (
     <ProtectedRoute>
       <Layout title={Results.title}>
-        <MasterDetailsView detailsViewer={PDFViewer}>
+        <MasterDetailsView detailsViewer={PDFViewerBlob}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
@@ -38,9 +38,9 @@ function MasterPaneContent() {
         <MasterListItem
           icon={DocumentReportOutline}
           id={id}
-          title={examDetails.replace(' ,', ',')}
+          title={examDetails}
           text={`${examSession} • ${date}`}
-          url={filename}
+          url={`/api/results/${filename}`}
           key={id}
         />
       ))}

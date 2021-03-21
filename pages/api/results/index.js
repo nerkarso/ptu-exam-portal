@@ -3,13 +3,13 @@ import { withProtectedRouteMobile } from '@/middlewares/withProtectedRoute';
 import { normalizeText } from '@/utils/index';
 import cheerio from 'cheerio';
 
-async function Results(req, res) {
+async function handler(req, res) {
   return res.json({
     results: extractData(res.html),
   });
 }
 
-export default withAllowedMethods(withProtectedRouteMobile(Results, '/frmResultTabulation.aspx'), ['GET']);
+export default withAllowedMethods(withProtectedRouteMobile(handler, '/frmResultTabulation.aspx'), ['GET']);
 
 /**
  * Extracts the data from the markup
@@ -35,7 +35,7 @@ function extractData(html) {
           })
           .text()
           .trim(),
-        fileName: $('.info_link', el).attr('gsm'),
+        filename: $('.info_link', el).attr('gsm'),
       });
     }
   });
