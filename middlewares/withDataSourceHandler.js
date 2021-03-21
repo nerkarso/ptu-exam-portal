@@ -32,8 +32,14 @@ export const withDataSourceHandler = (handler, endpoint) => async (req, res) => 
       // Fetches the markup
       try {
         const response = await fetchMarkup(res.endpoint, res.sessionMobile);
-        // Passes the markup to the response
-        res.html = response.data;
+        // No list items available so session has expired
+        if (response.data.includes('Notification No.0')) {
+          // Clears the session and will try re-authenticate the user once again
+          res.sessionMobile = null;
+        } else {
+          // Passes the markup to the response
+          res.html = response.data;
+        }
       } catch (ex) {
         // Session has expired or is invalid
         if (ex.response.status === 404) {

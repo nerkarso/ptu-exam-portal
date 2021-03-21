@@ -1,3 +1,4 @@
+import { parse } from 'cookie';
 import { createContext, useEffect, useState } from 'react';
 
 export const AuthContext = createContext(null);
@@ -18,8 +19,11 @@ export function AuthProvider({ children }) {
   };
 
   useEffect(() => {
-    if (window.localStorage.getItem('userToken')) {
+    const cookies = parse(document.cookie);
+    if (window.localStorage.getItem('userToken') && cookies.session && cookies.sessionMobile) {
       setState(true);
+    } else {
+      setLoggedOut();
     }
   }, []);
 
