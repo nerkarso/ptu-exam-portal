@@ -29,6 +29,7 @@ function MasterPaneContent() {
 
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
+  if (data.error) return <ErrorMessage title="Error" text={data.message} />;
   if (data.payments.length === 0)
     return <EmptyMessage title="No transactions here" text="All your bank transactions will appear here" />;
 

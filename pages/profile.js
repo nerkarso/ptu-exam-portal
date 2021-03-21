@@ -27,6 +27,7 @@ function ProfileContent() {
 
   if (loading) return <ProfileSkeleton />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
+  if (data.error) return <ErrorMessage title="Error" text={data.message} />;
   if (!data) return <EmptyMessage title="No details available" text="Your profile details will appear here" />;
 
   const {

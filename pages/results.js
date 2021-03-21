@@ -26,9 +26,10 @@ export default function Results() {
 
 function MasterPaneContent() {
   const { data, error, loading } = useProtectedFetch('/api/results');
-
+  console.log(data);
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
+  if (data.error) return <ErrorMessage title="Error" text={data.message} />;
   if (data.results.length === 0)
     return <EmptyMessage title="No results here" text="All your exam results will appear here" />;
 

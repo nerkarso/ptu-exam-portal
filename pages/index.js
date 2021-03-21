@@ -24,6 +24,7 @@ function MasterPaneContent() {
 
   if (!data && !error) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
+  if (data.error) return <ErrorMessage title="Error" text={data.message} />;
   if (data.announcements.length === 0)
     return <EmptyMessage title="No notifications here" text="All notifications from PTU will appear here" />;
 

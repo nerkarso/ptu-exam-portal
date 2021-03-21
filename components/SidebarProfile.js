@@ -15,6 +15,7 @@ function ProfileContainer() {
   const { data, error, loading } = useProfile();
   if (loading) return <ProfileSkeleton />;
   if (error) return <ProfileCard href="/login" title="Error" subtitle={error.message} />;
+  if (data.error) return <ProfileCard href="/" title="Error" subtitle={data.message} />;
   if (!data) return <ProfileCard href="/login" title="Log in" />;
 
   const { rollNo, studentName, photo } = data;
