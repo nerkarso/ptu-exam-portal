@@ -12,9 +12,13 @@ export default function PDFViewerBlob({ url }) {
     fetch(url)
       .then((res) => res.text())
       .then((data) => {
-        const blob = base64toBlob(data);
-        const fileUrl = URL.createObjectURL(blob);
-        setFileUrl(fileUrl);
+        if (data.includes('error')) {
+          setError(JSON.parse(data));
+        } else {
+          const blob = base64toBlob(data);
+          const fileUrl = URL.createObjectURL(blob);
+          setFileUrl(fileUrl);
+        }
       })
       .catch((ex) => setError(ex));
   }, [url]);
