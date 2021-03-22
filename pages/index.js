@@ -1,10 +1,10 @@
 import EmptyMessage from '@/components/EmptyMessage';
 import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
-import MasterDetailsView from '@/components/MasterDetailsView';
-import MasterListItem from '@/components/MasterListItem';
-import PDFViewerUrl from '@/components/PDFViewerUrl';
 import List from '@/elements/List';
+import ListItem from '@/elements/ListItem';
+import ListItemIcon from '@/elements/ListItemIcon';
+import ListItemText from '@/elements/ListItemText';
 import SkeletonList from '@/elements/SkeletonList';
 import { SpeakerphoneOutline } from 'heroicons-react';
 import useSWR from 'swr';
@@ -12,9 +12,9 @@ import useSWR from 'swr';
 export default function Announcements() {
   return (
     <Layout title="Announcements">
-      <MasterDetailsView detailsViewer={PDFViewerUrl}>
+      <div className="overflow-y-auto">
         <MasterPaneContent />
-      </MasterDetailsView>
+      </div>
     </Layout>
   );
 }
@@ -30,8 +30,13 @@ function MasterPaneContent() {
 
   return (
     <List className="my-3">
-      {data.announcements.map(({ id, title, date, url }) => (
-        <MasterListItem icon={SpeakerphoneOutline} id={id} title={title} text={date} url={url} key={id} />
+      {data.announcements.map(({ id, title, date }) => (
+        <ListItem className="px-2 lg:px-3" key={id}>
+          <ListItemIcon contained>
+            <SpeakerphoneOutline size={28} />
+          </ListItemIcon>
+          <ListItemText primary={title} secondary={date} />
+        </ListItem>
       ))}
     </List>
   );
