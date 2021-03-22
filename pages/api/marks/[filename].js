@@ -1,5 +1,6 @@
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
 import { withGetFileContents } from '@/middlewares/withGetFileContents';
+import { withMockHandler } from '@/middlewares/withMockHandler';
 import { withSessionHandler } from '@/middlewares/withSessionHandler';
 
 async function handler(req, res) {
@@ -7,6 +8,6 @@ async function handler(req, res) {
 }
 
 export default withAllowedMethods(
-  withSessionHandler(withGetFileContents(handler, '/frmStudentGradeMarks.aspx'), 'sessionMobile'),
+  withMockHandler(withSessionHandler(withGetFileContents(handler, '/frmStudentGradeMarks.aspx'), 'sessionMobile')),
   ['GET'],
 );

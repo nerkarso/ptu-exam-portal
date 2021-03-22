@@ -1,5 +1,6 @@
 import { constructSession } from '@/middlewares/withAuthHandler';
 import { setCookie } from '@/utils/index';
+import fs from 'fs';
 
 /**
  * Bunch of mock data
@@ -66,7 +67,7 @@ export const payments = [
     amount: 1250,
     paymentStatus: 'Payment Successful',
     date: ['Monday, 1 March 2020 06:00:00', 'Monday, 1 March 2020 07:00:00'],
-    url: 'http://www.ptuexam.com',
+    url: 'http://localhost',
   },
   {
     id: 2,
@@ -84,7 +85,7 @@ export const payments = [
     amount: 1250,
     paymentStatus: 'Payment Successful',
     date: ['Monday, 3 March 2021 11:00:00', 'Monday, 3 March 2021 11:00:00'],
-    url: 'http://www.ptuexam.com',
+    url: 'http://localhost',
   },
 ];
 
@@ -111,23 +112,91 @@ export const results = [
     examSession: 'Nov-2018',
     examDetails: 'BCA, FIRST Semester NEW 2K11, Regular Result',
     date: '03 Mar 2019',
-    filename: 'sample.pdf',
+    filename: 'sample1.pdf',
   },
   {
     id: 2,
     examSession: 'April-2019',
     examDetails: 'BCA, SECOND Semester NEW 2K11, Regular Result',
     date: '03 Sep 2019',
-    filename: 'invalid.pdf',
+    filename: 'invalid',
   },
   {
     id: 3,
     examSession: 'Nov-2019',
     examDetails: 'BCA, Semester-3, 2015, Regular Result',
     date: '17 Feb 2020',
-    filename: 'sample.pdf',
+    filename: 'sample2.pdf',
   },
 ];
+
+export const marks = [
+  {
+    id: 1,
+    examSession: 'Nov-2018',
+    examDetails: 'BCA, FIRST Semester, NEW 2K11, Regular Result',
+    date: '23 Mar 2019',
+    filename: 'sample1.pdf',
+  },
+  {
+    id: 2,
+    examSession: 'April-2019',
+    examDetails: 'BCA, SECOND Semester, New 2K11, Regular Result',
+    date: '17 Sep 2019',
+    filename: 'invalid',
+  },
+  {
+    id: 3,
+    examSession: 'Nov-2019',
+    examDetails: 'BCA, Semester-3, 2016, Regular Result',
+    date: '19 Feb 2020',
+    filename: 'sample2.pdf',
+  },
+];
+
+export const grades = [
+  {
+    id: 1,
+    examSession: 'Nov-2018',
+    examDetails: 'BCA, FIRST Semester NEW 2K11, Regular Result',
+    date: '20 Mar 2019',
+    filename: 'sample1.pdf',
+  },
+  {
+    id: 2,
+    examSession: '',
+    examDetails: 'BCA 2011, 4th Semester, Regular Result',
+    date: '27 Aug 2020',
+    filename: 'invalid',
+  },
+  {
+    id: 3,
+    examSession: 'Nov-2019',
+    examDetails: 'BCA, Semester-3, 2016, Regular Result',
+    date: '18 Feb 2020',
+    filename: 'sample2.pdf',
+  },
+];
+
+export const degree = [
+  {
+    id: 1,
+    title: 'Degree Certificate / April-2020',
+    date: '01 Dec 2020',
+    filename: 'sample1.pdf',
+  },
+  {
+    id: 2,
+    title: 'PDC Certificate / April-2020',
+    date: '11 Nov 2020',
+    filename: 'invalid',
+  },
+];
+
+function getFileBlob() {
+  const file = fs.readFileSync('./public/sample.pdf');
+  return file.toString('base64');
+}
 
 /**
  * This handles the incoming request and respond with mock data
@@ -155,7 +224,11 @@ export const withMockHandler = (handler) => async (req, res) => {
   if (req.url.includes('payments')) return res.json({ payments });
   if (req.url.includes('profile-details')) return res.json(profileDetails);
   if (req.url.includes('profile')) return res.json(profile);
-  if (req.url.includes('results')) return res.json(results);
+  if (req.url.includes('.pdf')) return res.send(getFileBlob());
+  if (req.url.includes('results')) return res.json({ results });
+  if (req.url.includes('marks')) return res.json({ marks });
+  if (req.url.includes('grades')) return res.json({ grades });
+  if (req.url.includes('degree')) return res.json({ degree });
   // Route is not found
   return res.status(404).json({
     error: true,
