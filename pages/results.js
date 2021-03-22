@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import useProtectedFetch from '@/hooks/useProtectedFetch';
-import { DocumentReportOutline } from 'heroicons-react';
+import { TableOutline } from 'heroicons-react';
 
 Results.title = 'Results';
 
@@ -26,7 +26,6 @@ export default function Results() {
 
 function MasterPaneContent() {
   const { data, error, loading } = useProtectedFetch('/api/results');
-  console.log(data);
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
   if (data.error) return <ErrorMessage title="Error" text={data.message} />;
@@ -37,7 +36,7 @@ function MasterPaneContent() {
     <List className="my-3">
       {data.results.map(({ id, examSession, examDetails, date, filename }) => (
         <MasterListItem
-          icon={DocumentReportOutline}
+          icon={TableOutline}
           id={id}
           title={examDetails}
           text={`${examSession} • ${date}`}

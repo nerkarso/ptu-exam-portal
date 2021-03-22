@@ -8,7 +8,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { CreditCardOutline, DocumentReportOutline, LogoutOutline, SpeakerphoneOutline } from 'heroicons-react';
+import { CreditCardOutline, LogoutOutline, SpeakerphoneOutline, TableOutline } from 'heroicons-react';
 import { useRouter } from 'next/router';
 
 export default function Sidebar() {
@@ -31,7 +31,7 @@ export default function Sidebar() {
     {
       href: '/results',
       text: 'Results',
-      icon: <DocumentReportOutline />,
+      icon: <TableOutline />,
     },
     {
       href: '/payments',
