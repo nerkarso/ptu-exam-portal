@@ -8,7 +8,14 @@ import { useAuth } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChartBarOutline, CreditCardOutline, LogoutOutline, SpeakerphoneOutline, TableOutline } from 'heroicons-react';
+import {
+  ChartBarOutline,
+  ChartPieOutline,
+  CreditCardOutline,
+  LogoutOutline,
+  SpeakerphoneOutline,
+  TableOutline,
+} from 'heroicons-react';
 import { useRouter } from 'next/router';
 
 export default function Sidebar() {
@@ -37,6 +44,11 @@ export default function Sidebar() {
       href: '/marks',
       text: 'Marks',
       icon: <ChartBarOutline />,
+    },
+    {
+      href: '/grades',
+      text: 'Grades',
+      icon: <ChartPieOutline />,
     },
     {
       href: '/payments',
