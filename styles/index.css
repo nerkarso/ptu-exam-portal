@@ -61,6 +61,11 @@
       filter: invert(100%);
     }
   }
+
+  /* Remove fill color */
+  .fill-none path {
+    fill: none;
+  }
 }
 
 @keyframes scroll-infinite {

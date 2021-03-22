@@ -21,6 +21,8 @@ export default function PDFViewerBlob({ url }) {
         }
       })
       .catch((ex) => setError(ex));
+    // Clean up the state
+    return () => setFileUrl(null);
   }, [url]);
 
   /**

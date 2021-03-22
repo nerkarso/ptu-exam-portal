@@ -1,4 +1,5 @@
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withExtractListItems } from '@/middlewares/withExtractListItems';
 import { withProtectedRouteMobile } from '@/middlewares/withProtectedRoute';
 
 async function handler(req, res) {
@@ -7,4 +8,7 @@ async function handler(req, res) {
   });
 }
 
-export default withAllowedMethods(withProtectedRouteMobile(handler, '/frmResultTabulation.aspx'), ['GET']);
+export default withAllowedMethods(
+  withProtectedRouteMobile(withExtractListItems(handler), '/frmResultTabulation.aspx'),
+  ['GET'],
+);

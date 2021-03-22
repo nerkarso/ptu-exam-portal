@@ -1,13 +1,23 @@
+import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
+import { withProtectedRouteMobile } from '@/middlewares/withProtectedRoute';
 import { normalizeText } from '@/utils/index';
-import cheerio from 'cheerio';
+import cheerio from 'cheerio/lib/cheerio';
+
+async function handler(req, res) {
+  return res.json({
+    degree: extractListItems(res.html),
+  });
+}
+
+export default withAllowedMethods(withProtectedRouteMobile(handler, '/FrmDegreePDC.aspx'), ['GET']);
 
 /**
  * Extracts the list items from the markup
  */
-export const withExtractListItems = (handler) => async (req, res) => {
+function extractListItems(html) {
   const items = [];
-  if (!res.html.includes('There is no  Certificate')) {
-    const $ = cheerio.load(res.html);
+  if (!html.includes('There is no  Certificate')) {
+    const $ = cheerio.load(html);
     let id = 1;
     $('div[data-role="content"] ul[data-role="listview"] li').each((i, el) => {
       // Since in the original markup the info and date are seperate list items,
@@ -15,8 +25,7 @@ export const withExtractListItems = (handler) => async (req, res) => {
       if (i % 2) {
         items.push({
           id: id++,
-          examSession: normalizeText($('.info_link h2', el).text()),
-          examDetails: normalizeText($('.info_link p', el).text()),
+          title: normalizeText($('.info_link h2', el).text()),
           date: $(el)
             .prev()
             .first()
@@ -31,6 +40,5 @@ export const withExtractListItems = (handler) => async (req, res) => {
       }
     });
   }
-  res.listItems = items;
-  return handler(req, res);
-};
+  return items;
+}

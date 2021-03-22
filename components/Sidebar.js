@@ -9,6 +9,7 @@ import { useSidebar } from '@/hooks/useSidebar';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
+  AcademicCapOutline,
   ChartBarOutline,
   ChartPieOutline,
   CreditCardOutline,
@@ -49,6 +50,11 @@ export default function Sidebar() {
       href: '/grades',
       text: 'Grades',
       icon: <ChartPieOutline />,
+    },
+    {
+      href: '/degree',
+      text: 'Degree',
+      icon: <AcademicCapOutline />,
     },
     {
       href: '/payments',

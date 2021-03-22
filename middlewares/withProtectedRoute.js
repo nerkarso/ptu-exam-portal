@@ -1,7 +1,6 @@
 import { withAuthHandler } from '@/middlewares/withAuthHandler';
 import { withAuthMobileHandler } from '@/middlewares/withAuthMobileHandler';
 import { withDataSourceHandler } from '@/middlewares/withDataSourceHandler';
-import { withExtractListItems } from '@/middlewares/withExtractListItems';
 import { withMockHandler } from '@/middlewares/withMockHandler';
 import { withSessionHandler } from '@/middlewares/withSessionHandler';
 import { withTokenHandler } from '@/middlewares/withTokenHandler';
@@ -28,7 +27,7 @@ export const withProtectedRouteMobile = (handler, endpoint) => {
   return withMockHandler(
     withSessionHandler(
       withDataSourceHandler(
-        withTokenHandler(withAuthMobileHandler(withDataSourceHandler(withExtractListItems(handler)))),
+        withTokenHandler(withAuthMobileHandler(withDataSourceHandler(handler))),
         process.env.SOURCE_MOBILE_BASE_URL + endpoint,
       ),
       'sessionMobile',
