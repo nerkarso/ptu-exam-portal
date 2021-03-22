@@ -6,7 +6,7 @@ import cheerio from 'cheerio';
  */
 export const withExtractListItems = (handler) => async (req, res) => {
   const items = [];
-  if (!res.html.includes('There is no  Certificate')) {
+  if (res.html) {
     const $ = cheerio.load(res.html);
     let id = 1;
     $('div[data-role="content"] ul[data-role="listview"] li').each((i, el) => {
