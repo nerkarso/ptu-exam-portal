@@ -22,10 +22,10 @@ export default function ListItem({ active, button, children, className, href, li
     return (
       <NextLink
         href={href}
-        activeClassName="bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-white hover:bg-primary-100 dark:hover:bg-primary-900 fill-none">
+        activeClassName="bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-white hover:bg-primary-100 dark:hover:bg-primary-900">
         <a
           className={cx(
-            'flex items-center gap-4 p-3 transition duration-300 rounded-lg hover:bg-base-100 dark:hover:bg-invert-800 focus:shadow focus:ring-2 ring-primary-400 focus:outline-none ring-inset',
+            'flex items-center gap-4 p-3 transition duration-300 rounded-lg hover:bg-base-100 dark:hover:bg-invert-800 focus:shadow focus:ring-2 ring-primary-400 focus:outline-none ring-inset fill-none',
             className,
           )}>
           {children}
