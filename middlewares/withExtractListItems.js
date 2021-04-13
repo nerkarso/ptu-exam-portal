@@ -15,8 +15,8 @@ export const withExtractListItems = (handler) => async (req, res) => {
       if (i % 2) {
         items.push({
           id: id++,
-          examSession: normalizeText($('.info_link h2', el).text()),
-          examDetails: normalizeText($('.info_link p', el).text()),
+          examSession: normalizeText($('a h2', el).text()),
+          examDetails: normalizeText($('a p', el).text()),
           date: $(el)
             .prev()
             .first()
@@ -26,7 +26,7 @@ export const withExtractListItems = (handler) => async (req, res) => {
             })
             .text()
             .trim(),
-          filename: $('.info_link', el).attr('gsm'),
+          filename: $('a', el).attr('href'),
         });
       }
     });

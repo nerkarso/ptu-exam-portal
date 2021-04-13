@@ -3,7 +3,7 @@ import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
 import MasterDetailsView from '@/components/MasterDetailsView';
 import MasterListItem from '@/components/MasterListItem';
-import PDFViewerBlob from '@/components/PDFViewerBlob';
+import PDFViewerUrl from '@/components/PDFViewerUrl';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
@@ -16,7 +16,7 @@ export default function Degree() {
   return (
     <ProtectedRoute>
       <Layout title={Degree.title}>
-        <MasterDetailsView detailsViewer={PDFViewerBlob}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
@@ -35,14 +35,7 @@ function MasterPaneContent() {
   return (
     <List className="my-3">
       {data.degree.map(({ id, title, date, filename }) => (
-        <MasterListItem
-          icon={AcademicCapOutline}
-          id={id}
-          title={title}
-          text={date}
-          url={`/api/degree/${filename}`}
-          key={id}
-        />
+        <MasterListItem icon={AcademicCapOutline} id={id} title={title} text={date} url={filename} key={id} />
       ))}
     </List>
   );

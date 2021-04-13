@@ -3,7 +3,7 @@ import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
 import MasterDetailsView from '@/components/MasterDetailsView';
 import MasterListItem from '@/components/MasterListItem';
-import PDFViewerBlob from '@/components/PDFViewerBlob';
+import PDFViewerUrl from '@/components/PDFViewerUrl';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
@@ -16,7 +16,7 @@ export default function Results() {
   return (
     <ProtectedRoute>
       <Layout title={Results.title}>
-        <MasterDetailsView detailsViewer={PDFViewerBlob}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
@@ -40,7 +40,7 @@ function MasterPaneContent() {
           id={id}
           title={examDetails}
           text={`${examSession} • ${date}`}
-          url={`/api/results/${filename}`}
+          url={filename}
           key={id}
         />
       ))}
