@@ -166,12 +166,10 @@
   resolved "https://registry.yarnpkg.com/@next/react-refresh-utils/-/react-refresh-utils-10.0.3.tgz#276bec60eae18768f96baf8a52f668f657f50ab4"
   integrity sha512-XtzzPX2R4+MIyu1waEQUo2tiNwWVEkmObA6pboRCDTPOs4Ri8ckaIE08lN5A5opyF6GVN+IEq/J8KQrgsePsZQ==
 
-"@react-pdf-viewer/core@^2.3.0":
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@react-pdf-viewer/core/-/core-2.3.0.tgz#25c57715e3648ff176fb0378f7f1b4755ecda888"
-  integrity sha512-w76J+9njA3ReyHVTp6C45nTCkGe0NWrTNKqo2mQ6wnn0mZpkQOK9Vx2aqNg78IfrBkhOqdN9xroT0kAPAWdz5A==
-  dependencies:
-    pdfjs-dist "^2.5.207"
+"@react-pdf-viewer/core@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@react-pdf-viewer/core/-/core-2.4.1.tgz#307227703f64ae479a0ee66f0eaa0b18adfd8f57"
+  integrity sha512-K1wmjYdp6Df0WLT2sSUnHIpXP2usSediYUWZoc2CC2GMo8ZPLNZuhvYckd9LNbdEicHv5NQxoE0tRtjPEd0jXQ==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
