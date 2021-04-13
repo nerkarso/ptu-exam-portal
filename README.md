@@ -12,15 +12,60 @@
 
 > NOTE: This project is not affiliated with [I.K. Gujral Punjab Technical University](https://www.ptu.ac.in) nor do we host or serve any sensitive data (student records) on (or from) our server.
 
+## Stack
+
+- Next.js `10.x`
+- React `17.x`
+- Tailwind CSS `2.x`
+
+## Requirements
+
+- Node.js `14.x`
+
 ## Getting started
 
-First, run the development server:
+1. Install Node.js dependencies:
+
+```sh
+yarn
+```
+
+2. Create a new file called `.env.local` and add the following:
+
+```sh
+JWT_SECRET=your-secret-key-here
+NEXT_PUBLIC_PROXY_URL=https://example.com
+```
+
+**Replace the values according to your environment.**
+
+> NOTE: It is possible to override all the environment variables which are specified in the `.env` file.
+
+## Development
+
+**Start the local development server**
 
 ```sh
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Deployment
+
+> NOTE: This project is hosted on [Vercel](https://vercel.com).
+
+1. Put this repository on GitHub or any other supported Git provider.
+2. Create a [new project](https://vercel.com/new) on Vercel.
+3. Connect the repository to the project.
+4. Add the following [environment variables](https://vercel.com/docs/environment-variables):
+
+| Variable                     | Description                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------- |
+| `JWT_SECRET`                 | [JSON Web Token](https://jwt.io) secret key to encrypt the user credentials           |
+| `NEXT_PUBLIC_PROXY_URL`      | Proxy server to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) |
+| `NEXT_PUBLIC_SITE_URL`       | Domain of the project (e.g. https://example.vercel.app)                               |
+| `NEXT_PUBLIC_GA_TRACKING_ID` | Google Analytics tracking ID (optional)                                               |
 
 ## License
 
