@@ -7,7 +7,7 @@ import IconButton from '@/elements/IconButton';
 import { MasterDetailsProvider } from '@/hooks/MasterDetailsContext';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
 import cx from 'classnames';
-import { SparklesOutline, X } from 'heroicons-react';
+import { ExternalLinkOutline, SparklesOutline, X } from 'heroicons-react';
 
 export default function MasterDetailsView({ children, detailsViewer }) {
   return (
@@ -27,6 +27,8 @@ function MasterPane({ children }) {
 function DetailsPane({ viewer: Viewer }) {
   const { details, resetDetails } = useMasterDetails();
 
+  const openNewTab = () => window.open(details.url, '_blank');
+
   return (
     <div
       className={cx(
@@ -38,10 +40,15 @@ function DetailsPane({ viewer: Viewer }) {
       )}>
       {details && (
         <AppBar>
-          <IconButton className="w-8 h-8" onClick={resetDetails}>
+          <IconButton className="w-8 h-8" onClick={resetDetails} title="Close preview">
             <X />
           </IconButton>
           <AppBarTitle>{details.title}</AppBarTitle>
+          <div className="flex items-center ml-auto">
+            <IconButton className="w-8 h-8" onClick={openNewTab} title="Open in new tab">
+              <ExternalLinkOutline />
+            </IconButton>
+          </div>
         </AppBar>
       )}
       <div className="flex-1 overflow-y-auto">
