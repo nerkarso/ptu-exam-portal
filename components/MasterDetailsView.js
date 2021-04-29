@@ -21,7 +21,7 @@ export default function MasterDetailsView({ children, detailsViewer }) {
 }
 
 function MasterPane({ children }) {
-  return <div className="h-full overflow-y-auto">{children}</div>;
+  return <div className="h-full overflow-y-auto bg-white dark:bg-invert-900 transition duration-300">{children}</div>;
 }
 
 function DetailsPane({ viewer: Viewer }) {
