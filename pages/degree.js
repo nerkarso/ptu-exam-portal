@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import useProtectedFetch from '@/hooks/useProtectedFetch';
-import { AcademicCapOutline } from 'heroicons-react';
+import { AcademicCapIcon } from '@heroicons/react/outline';
 
 Degree.title = 'Degree';
 
@@ -35,7 +35,7 @@ function MasterPaneContent() {
   return (
     <List className="my-3">
       {data.degree.map(({ id, title, date, filename }) => (
-        <MasterListItem icon={AcademicCapOutline} id={id} title={title} text={date} url={filename} key={id} />
+        <MasterListItem icon={AcademicCapIcon} id={id} title={title} text={date} url={filename} key={id} />
       ))}
     </List>
   );

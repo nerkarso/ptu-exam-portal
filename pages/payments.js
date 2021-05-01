@@ -8,7 +8,7 @@ import WebViewer from '@/components/WebViewer';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import useProtectedFetch from '@/hooks/useProtectedFetch';
-import { CreditCardOutline } from 'heroicons-react';
+import { CreditCardIcon } from '@heroicons/react/outline';
 
 Payments.title = 'Payments';
 
@@ -44,7 +44,7 @@ function MasterPaneContent() {
     <List className="my-3">
       {data.payments.map(({ id, examSession, feeType, amount, paymentStatus, date, url }) => (
         <MasterListItem
-          icon={CreditCardOutline}
+          icon={CreditCardIcon}
           id={id}
           title={`${feeType} ${examSession}`}
           text={`Rs ${amount} • ${paymentStatus.replace('Payment ', '')} • ${formatDate(date[0])}`}

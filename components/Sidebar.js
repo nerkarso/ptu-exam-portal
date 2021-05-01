@@ -6,17 +6,17 @@ import ListItemIcon from '@/elements/ListItemIcon';
 import ListItemText from '@/elements/ListItemText';
 import { useAuth } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar';
+import {
+  AcademicCapIcon,
+  ChartBarIcon,
+  ChartPieIcon,
+  CreditCardIcon,
+  LogoutIcon,
+  SpeakerphoneIcon,
+  TableIcon,
+} from '@heroicons/react/outline';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import {
-  AcademicCapOutline,
-  ChartBarOutline,
-  ChartPieOutline,
-  CreditCardOutline,
-  LogoutOutline,
-  SpeakerphoneOutline,
-  TableOutline,
-} from 'heroicons-react';
 import { useRouter } from 'next/router';
 
 export default function Sidebar() {
@@ -34,27 +34,27 @@ export default function Sidebar() {
     {
       href: '/results',
       text: 'Results',
-      icon: <TableOutline />,
+      icon: <TableIcon className="w-6 h-6" />,
     },
     {
       href: '/marks',
       text: 'Marks',
-      icon: <ChartBarOutline />,
+      icon: <ChartBarIcon className="w-6 h-6" />,
     },
     {
       href: '/grades',
       text: 'Grades',
-      icon: <ChartPieOutline />,
+      icon: <ChartPieIcon className="w-6 h-6" />,
     },
     {
       href: '/degree',
       text: 'Degree',
-      icon: <AcademicCapOutline />,
+      icon: <AcademicCapIcon className="w-6 h-6" />,
     },
     {
       href: '/payments',
       text: 'Payments',
-      icon: <CreditCardOutline />,
+      icon: <CreditCardIcon className="w-6 h-6" />,
     },
   ];
 
@@ -67,7 +67,7 @@ export default function Sidebar() {
         <List className="flex-grow mb-3 dark:text-invert-400 text-base-600">
           <ListItem link href="/">
             <ListItemIcon>
-              <SpeakerphoneOutline />
+              <SpeakerphoneIcon className="w-6 h-6" />
             </ListItemIcon>
             <ListItemText primary="Announcements" />
           </ListItem>
@@ -83,7 +83,7 @@ export default function Sidebar() {
           {isLoggedIn && (
             <ListItem button onClick={handleLogout}>
               <ListItemIcon>
-                <LogoutOutline />
+                <LogoutIcon className="w-6 h-6" />
               </ListItemIcon>
               <ListItemText primary="Log out" />
             </ListItem>

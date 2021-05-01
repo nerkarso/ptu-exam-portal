@@ -14,7 +14,7 @@ export default function MasterListItem({ icon: Icon, id, title, text, url }) {
       className="px-2 lg:px-3"
       key={id}>
       <ListItemIcon contained>
-        <Icon size={28} />
+        <Icon className="w-7 h-7" />
       </ListItemIcon>
       <ListItemText primary={title} secondary={text} />
     </ListItem>

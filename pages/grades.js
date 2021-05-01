@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import useProtectedFetch from '@/hooks/useProtectedFetch';
-import { ChartPieOutline } from 'heroicons-react';
+import { ChartPieIcon } from '@heroicons/react/outline';
 
 Grades.title = 'Grades';
 
@@ -35,7 +35,7 @@ function MasterPaneContent() {
     <List className="my-3">
       {data.grades.map(({ id, examSession, examDetails, date, filename }) => (
         <MasterListItem
-          icon={ChartPieOutline}
+          icon={ChartPieIcon}
           id={id}
           title={examDetails}
           text={`${examSession ? `${examSession} • ` : ''}${date}`}

@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import useProtectedFetch from '@/hooks/useProtectedFetch';
-import { TableOutline } from 'heroicons-react';
+import { TableIcon } from '@heroicons/react/outline';
 
 Results.title = 'Results';
 
@@ -36,7 +36,7 @@ function MasterPaneContent() {
     <List className="my-3">
       {data.results.map(({ id, examSession, examDetails, date, filename }) => (
         <MasterListItem
-          icon={TableOutline}
+          icon={TableIcon}
           id={id}
           title={examDetails}
           text={`${examSession} • ${date}`}

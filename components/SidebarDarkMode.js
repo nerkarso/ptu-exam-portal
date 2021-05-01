@@ -3,7 +3,7 @@ import ListItemIcon from '@/elements/ListItemIcon';
 import ListItemSecondaryAction from '@/elements/ListItemSecondaryAction';
 import ListItemText from '@/elements/ListItemText';
 import Switch from '@/elements/Switch';
-import { MoonOutline } from 'heroicons-react';
+import { MoonIcon } from '@heroicons/react/outline';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
@@ -17,7 +17,7 @@ export default function SidebarDarkMode() {
   return (
     <ListItem>
       <ListItemIcon>
-        <MoonOutline />
+        <MoonIcon className="w-6 h-6" />
       </ListItemIcon>
       <ListItemText primary="Dark mode" />
       {mounted && (

@@ -6,7 +6,7 @@ import MasterListItem from '@/components/MasterListItem';
 import PDFViewerUrl from '@/components/PDFViewerUrl';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
-import { SpeakerphoneOutline } from 'heroicons-react';
+import { SpeakerphoneIcon } from '@heroicons/react/outline';
 import useSWR from 'swr';
 
 export default function Announcements() {
@@ -31,7 +31,7 @@ function MasterPaneContent() {
   return (
     <List className="my-3">
       {data.announcements.map(({ id, title, date, url }) => (
-        <MasterListItem icon={SpeakerphoneOutline} id={id} title={title} text={date} url={url} key={id} />
+        <MasterListItem icon={SpeakerphoneIcon} id={id} title={title} text={date} url={url} key={id} />
       ))}
     </List>
   );

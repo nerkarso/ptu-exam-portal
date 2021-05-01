@@ -8,7 +8,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
 import useProtectedFetch from '@/hooks/useProtectedFetch';
-import { ChartBarOutline } from 'heroicons-react';
+import { ChartBarIcon } from '@heroicons/react/outline';
 
 Marks.title = 'Marks';
 
@@ -35,7 +35,7 @@ function MasterPaneContent() {
     <List className="my-3">
       {data.marks.map(({ id, examSession, examDetails, date, filename }) => (
         <MasterListItem
-          icon={ChartBarOutline}
+          icon={ChartBarIcon}
           id={id}
           title={examDetails}
           text={`${examSession} • ${date}`}

@@ -6,8 +6,8 @@ import BlankslateText from '@/elements/BlankslateText';
 import IconButton from '@/elements/IconButton';
 import { MasterDetailsProvider } from '@/hooks/MasterDetailsContext';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
+import { ExternalLinkIcon, SparklesIcon, XIcon } from '@heroicons/react/outline';
 import cx from 'classnames';
-import { ExternalLinkOutline, SparklesOutline, X } from 'heroicons-react';
 
 export default function MasterDetailsView({ children, detailsViewer }) {
   return (
@@ -21,7 +21,7 @@ export default function MasterDetailsView({ children, detailsViewer }) {
 }
 
 function MasterPane({ children }) {
-  return <div className="h-full overflow-y-auto bg-white dark:bg-invert-900 transition duration-300">{children}</div>;
+  return <div className="h-full overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">{children}</div>;
 }
 
 function DetailsPane({ viewer: Viewer }) {
@@ -41,12 +41,12 @@ function DetailsPane({ viewer: Viewer }) {
       {details && (
         <AppBar>
           <IconButton className="w-8 h-8" onClick={resetDetails} title="Close preview">
-            <X />
+            <XIcon className="w-6 h-6" />
           </IconButton>
           <AppBarTitle>{details.title}</AppBarTitle>
           <div className="flex items-center ml-auto">
             <IconButton className="w-8 h-8" onClick={openNewTab} title="Open in new tab">
-              <ExternalLinkOutline />
+              <ExternalLinkIcon className="w-6 h-6" />
             </IconButton>
           </div>
         </AppBar>
@@ -56,7 +56,7 @@ function DetailsPane({ viewer: Viewer }) {
           <Viewer url={details.url} />
         ) : (
           <Blankslate full>
-            <BlankslateIcon icon={SparklesOutline} />
+            <BlankslateIcon icon={SparklesIcon} />
             <BlankslateText primary="No preview available" secondary="Choose an item and view it over here" />
           </Blankslate>
         )}
