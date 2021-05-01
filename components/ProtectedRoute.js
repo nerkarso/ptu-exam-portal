@@ -1,17 +1,18 @@
+import AppSkeleton from '@/components/AppSkeleton';
 import { useAuth } from '@/hooks/useAuth';
-import Router from 'next/router';
 import { useEffect } from 'react';
 
 export default function ProtectedRoute({ children }) {
-  const { isLoggedIn } = useAuth();
+  const { loading, isLoggedIn, logout } = useAuth();
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      Router.replace('/login');
+    if (!loading && !isLoggedIn) {
+      logout();
+      window.location.pathname = '/login';
     }
-  }, []);
+  }, [loading, isLoggedIn]);
 
-  if (!isLoggedIn) return null;
+  if (!loading && isLoggedIn) return children;
 
-  return children;
+  return <AppSkeleton />;
 }

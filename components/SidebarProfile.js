@@ -5,7 +5,8 @@ import { useProfile } from '@/hooks/useProfile';
 import { toTitleCase } from '@/utils/index';
 
 export default function SidebarProfile() {
-  const { isLoggedIn } = useAuth();
+  const { loading, isLoggedIn } = useAuth();
+  if (loading) return <ProfileSkeleton />;
   if (!isLoggedIn) return <ProfileCard href="/login" title="Log in" />;
 
   return <ProfileContainer />;

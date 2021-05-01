@@ -20,22 +20,17 @@ import {
 import { useRouter } from 'next/router';
 
 export default function Sidebar() {
-  const { isLoggedIn, setLoggedOut } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const router = useRouter();
 
   const handleLogout = () => {
-    setLoggedOut();
+    logout();
     if (router.route !== '/') {
       router.replace('/');
     }
   };
 
   const links = [
-    // {
-    //   href: '/documents',
-    //   text: 'Documents',
-    //   icon: <DocumentTextOutline />,
-    // },
     {
       href: '/results',
       text: 'Results',

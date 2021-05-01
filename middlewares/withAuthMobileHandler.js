@@ -1,4 +1,4 @@
-import { setCookie } from '@/utils/index';
+import { createCookie } from '@/utils/index';
 import axios from 'axios';
 import { parse } from 'cookie';
 
@@ -28,7 +28,7 @@ export const withAuthMobileHandler = (handler) => async (req, res) => {
         // Constructs the new session and passes it to the response
         res.sessionMobile = constructSession(cookies['ASP.NET_SessionId'], cookies['.ASPXAUTH']);
         // Sets the new session in the cookie header
-        setCookie(res, 'sessionMobile', res.sessionMobile);
+        res.setHeader('Set-Cookie', [createCookie('sessionMobile', res.sessionMobile)]);
       } else {
         return res.json({ auth: false });
       }

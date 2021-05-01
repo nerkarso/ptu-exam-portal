@@ -1,5 +1,5 @@
 import { constructSession } from '@/middlewares/withAuthHandler';
-import { setCookie } from '@/utils/index';
+import { createCookie } from '@/utils/index';
 import fs from 'fs';
 
 /**
@@ -211,11 +211,13 @@ export const withMockHandler = (handler) => async (req, res) => {
     if (req.body.username === '0' && req.body.password === '0') {
       return res.json(loginFailed);
     } else {
+      const cookies = [createCookie('userToken', loginSuccessful.userToken)];
       if (req.url.includes('login-mobile')) {
-        setCookie(res, 'sessionMobile', constructSession('foo', 'bar'));
+        cookies.push(createCookie('sessionMobile', constructSession('foo', 'bar')));
       } else {
-        setCookie(res, 'session', constructSession('foo', 'bar'));
+        cookies.push(createCookie('session', constructSession('foo', 'bar')));
       }
+      res.setHeader('Set-Cookie', cookies);
       return res.json(loginSuccessful);
     }
   }

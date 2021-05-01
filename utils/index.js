@@ -1,13 +1,13 @@
 import { serialize } from 'cookie';
 
 /**
- * Sets the cookie in the header
+ * Creates a cookie
  */
-export function setCookie(res, name, value, options = {}) {
+export function createCookie(name, value, options = {}) {
   const stringValue = typeof value === 'object' ? JSON.stringify(value) : String(value);
   options.path = '/';
   options.maxAge = 60 * 60 * 24 * 30; // 30 days
-  res.setHeader('Set-Cookie', serialize(name, stringValue, options));
+  return serialize(name, stringValue, options);
 }
 
 /**

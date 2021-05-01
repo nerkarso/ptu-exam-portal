@@ -4,30 +4,22 @@ import FormHelperText from '@/elements/FormHelperText';
 import Input from '@/elements/Input';
 import Note from '@/elements/Note';
 import { useAuth } from '@/hooks/useAuth';
-import Router from 'next/router';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 export default function Login() {
-  const { isLoggedIn, setLoggedIn } = useAuth();
+  const router = useRouter();
+  const { error, loading, isLoggedIn, login } = useAuth();
   const { register, handleSubmit, errors } = useForm();
-  const { submit, data, error, loading } = useLogin();
 
-  const onSubmit = (values) => submit(values);
-
-  useEffect(() => {
-    if (data) {
-      setLoggedIn(data);
-    }
-  }, [data]);
+  const onSubmit = (values) => login(values);
 
   useEffect(() => {
     if (isLoggedIn) {
-      Router.replace('/');
+      router.replace('/');
     }
   }, [isLoggedIn]);
-
-  if (isLoggedIn && !data) return null;
 
   return (
     <div className="flex flex-col h-full">
@@ -36,7 +28,7 @@ export default function Login() {
           <Logo />
           {error && (
             <Note type="error" label="Error">
-              {error.message}
+              {error}
             </Note>
           )}
           <div className="space-y-3">
@@ -59,51 +51,6 @@ export default function Login() {
       </footer>
     </div>
   );
-}
-
-function useLogin() {
-  const [data, setData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const submit = async (values) => {
-    setError(null);
-    setLoading(true);
-    try {
-      const data = await Promise.all([
-        await (
-          await fetch('/api/login', {
-            method: 'POST',
-            body: JSON.stringify(values),
-            headers: { 'Content-Type': 'application/json' },
-          })
-        ).json(),
-        await (
-          await fetch('/api/login-mobile', {
-            method: 'POST',
-            body: JSON.stringify(values),
-            headers: { 'Content-Type': 'application/json' },
-          })
-        ).json(),
-      ]);
-      if (data.length > 0 && data[0].auth) {
-        setData(data[0].userToken);
-      } else {
-        setError({ message: 'Username or password is incorrect' });
-      }
-    } catch (ex) {
-      setError(ex);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return {
-    submit,
-    data,
-    error,
-    loading,
-  };
 }
 
 function Logo() {
