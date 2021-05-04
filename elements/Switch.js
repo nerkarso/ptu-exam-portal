@@ -6,7 +6,7 @@ export default function Switch({ id, checked, onChange }) {
         id={id}
         checked={checked}
         onChange={onChange}
-        className="absolute w-6 h-6 transition duration-300 transform bg-white border rounded-full shadow appearance-none cursor-pointer dark:bg-invert-500 dark:border-invert-700 switch-control border-base-200 focus:outline-none"
+        className="absolute w-6 h-6 transition duration-300 transform bg-white border rounded-full shadow appearance-none cursor-pointer dark:border-invert-700 switch-control border-base-200 focus:outline-none"
       />
       <label
         htmlFor={id}
