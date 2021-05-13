@@ -20,7 +20,7 @@ export default function Announcements() {
 }
 
 function MasterPaneContent() {
-  const { data, error } = useSWR('/api/announcements');
+  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_BASE_URL}/announcements`);
 
   if (!data && !error) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;

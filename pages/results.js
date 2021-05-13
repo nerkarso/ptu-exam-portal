@@ -25,7 +25,7 @@ export default function Results() {
 }
 
 function MasterPaneContent() {
-  const { data, error, loading } = useProtectedFetch('/api/results');
+  const { data, error, loading } = useProtectedFetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/results`);
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
   if (data.error) return <ErrorMessage title="Error" text={data.message} />;

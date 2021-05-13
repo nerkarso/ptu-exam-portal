@@ -25,7 +25,7 @@ export default function Payments() {
 }
 
 function MasterPaneContent() {
-  const { data, error, loading } = useProtectedFetch('/api/payments');
+  const { data, error, loading } = useProtectedFetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payments`);
 
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;

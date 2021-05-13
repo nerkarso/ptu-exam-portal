@@ -59,8 +59,8 @@ export function AuthProvider({ children }) {
 
     try {
       const results = await Promise.all([
-        await (await fetch('/api/login', requestOptions)).json(),
-        await (await fetch('/api/login-mobile', requestOptions)).json(),
+        await (await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login`, requestOptions)).json(),
+        await (await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login-mobile`, requestOptions)).json(),
       ]);
       if (results.length > 0 && results[0].auth) {
         dispatch({ type: 'LOGIN', payload: results[0].userToken });
