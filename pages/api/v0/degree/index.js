@@ -1,9 +1,9 @@
+import { withProtectedRouteMobile } from '@/middlewares/v0/withProtectedRoute';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withProtectedRouteMobile } from '@/middlewares/withProtectedRoute';
 import { normalizeText } from '@/utils/index';
-import cheerio from 'cheerio/lib/cheerio';
+import cheerio from 'cheerio';
 
-async function handler(req, res) {
+function handler(req, res) {
   return res.json({
     degree: extractListItems(res.html),
   });

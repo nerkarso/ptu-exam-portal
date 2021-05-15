@@ -1,9 +1,9 @@
-import { withAuthHandler } from '@/middlewares/withAuthHandler';
-import { withAuthMobileHandler } from '@/middlewares/withAuthMobileHandler';
-import { withDataSourceHandler } from '@/middlewares/withDataSourceHandler';
-import { withMockHandler } from '@/middlewares/withMockHandler';
-import { withSessionHandler } from '@/middlewares/withSessionHandler';
-import { withTokenHandler } from '@/middlewares/withTokenHandler';
+import { withAuthHandler } from '@/middlewares/v0/withAuthHandler';
+import { withAuthMobileHandler } from '@/middlewares/v0/withAuthMobileHandler';
+import { withDataSourceHandler } from '@/middlewares/v0/withDataSourceHandler';
+import { withMockHandler } from '@/middlewares/v0/withMockHandler';
+import { withSessionHandler } from '@/middlewares/v0/withSessionHandler';
+import { withTokenHandler } from '@/middlewares/v0/withTokenHandler';
 
 /**
  * This is a combination of middlewares for protected routes

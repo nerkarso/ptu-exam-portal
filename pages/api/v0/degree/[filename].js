@@ -1,9 +1,9 @@
+import { withGetFileContents } from '@/middlewares/v0/withGetFileContents';
+import { withMockHandler } from '@/middlewares/v0/withMockHandler';
+import { withSessionHandler } from '@/middlewares/v0/withSessionHandler';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withGetFileContents } from '@/middlewares/withGetFileContents';
-import { withMockHandler } from '@/middlewares/withMockHandler';
-import { withSessionHandler } from '@/middlewares/withSessionHandler';
 
-async function handler(req, res) {
+function handler(req, res) {
   res.send(res.fileContents);
 }
 

@@ -1,11 +1,11 @@
+import { withAuthHandler } from '@/middlewares/v0/withAuthHandler';
+import { withMockHandler } from '@/middlewares/v0/withMockHandler';
+import { withPreAuthCheck } from '@/middlewares/v0/withPreAuthCheck';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withAuthHandler } from '@/middlewares/withAuthHandler';
-import { withMockHandler } from '@/middlewares/withMockHandler';
-import { withPreAuthCheck } from '@/middlewares/withPreAuthCheck';
 import { createCookie } from '@/utils/index';
 import jwt from 'jsonwebtoken';
 
-async function Login(req, res) {
+function handler(req, res) {
   const userToken = generateUserToken({
     username: res.user.username,
     password: res.user.password,
@@ -17,7 +17,7 @@ async function Login(req, res) {
   });
 }
 
-export default withAllowedMethods(withPreAuthCheck(withMockHandler(withAuthHandler(Login))), ['POST']);
+export default withAllowedMethods(withPreAuthCheck(withMockHandler(withAuthHandler(handler))), ['POST']);
 
 /**
  * Signs and generates a user token

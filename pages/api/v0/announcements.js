@@ -1,10 +1,10 @@
+import { withMockHandler } from '@/middlewares/v0/withMockHandler';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withMockHandler } from '@/middlewares/withMockHandler';
 import { normalizeText } from '@/utils/index';
 import axios from 'axios';
 import cheerio from 'cheerio';
 
-async function Announcements(req, res) {
+async function handler(req, res) {
   try {
     // Fetch the markup from the source provider
     const response = await axios(`${process.env.SOURCE_BASE_URL}/NewLogin.aspx`);
@@ -20,7 +20,7 @@ async function Announcements(req, res) {
   }
 }
 
-export default withAllowedMethods(withMockHandler(Announcements), ['GET']);
+export default withAllowedMethods(withMockHandler(handler), ['GET']);
 
 /**
  * Extracts the data from the markup

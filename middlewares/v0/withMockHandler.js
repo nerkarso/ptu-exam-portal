@@ -1,4 +1,4 @@
-import { constructSession } from '@/middlewares/withAuthHandler';
+import { constructSession } from '@/middlewares/v0/withAuthHandler';
 import { createCookie } from '@/utils/index';
 import fs from 'fs';
 

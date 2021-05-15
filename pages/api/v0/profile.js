@@ -1,12 +1,12 @@
+import { withProtectedRoute } from '@/middlewares/v0/withProtectedRoute';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withProtectedRoute } from '@/middlewares/withProtectedRoute';
 import cheerio from 'cheerio';
 
-async function Profile(req, res) {
+function handler(req, res) {
   return res.json(extractData(res.html));
 }
 
-export default withAllowedMethods(withProtectedRoute(Profile, '/frmStudentPanel.aspx'), ['GET']);
+export default withAllowedMethods(withProtectedRoute(handler, '/frmStudentPanel.aspx'), ['GET']);
 
 /**
  * Extracts the data from the markup

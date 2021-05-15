@@ -1,15 +1,15 @@
+import { withProtectedRoute } from '@/middlewares/v0/withProtectedRoute';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withProtectedRoute } from '@/middlewares/withProtectedRoute';
 import { normalizeText } from '@/utils/index';
 import cheerio from 'cheerio';
 
-async function Payments(req, res) {
+function handler(req, res) {
   return res.json({
     payments: extractData(res.html),
   });
 }
 
-export default withAllowedMethods(withProtectedRoute(Payments, '/ASheetPaymentLedger.aspx'), ['GET']);
+export default withAllowedMethods(withProtectedRoute(handler, '/ASheetPaymentLedger.aspx'), ['GET']);
 
 /**
  * Extracts the data from the markup

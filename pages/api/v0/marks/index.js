@@ -1,8 +1,8 @@
+import { withExtractListItems } from '@/middlewares/v0/withExtractListItems';
+import { withProtectedRouteMobile } from '@/middlewares/v0/withProtectedRoute';
 import { withAllowedMethods } from '@/middlewares/withAllowedMethods';
-import { withExtractListItems } from '@/middlewares/withExtractListItems';
-import { withProtectedRouteMobile } from '@/middlewares/withProtectedRoute';
 
-async function handler(req, res) {
+function handler(req, res) {
   return res.json({
     marks: res.listItems,
   });
