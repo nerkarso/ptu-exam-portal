@@ -1,5 +1,5 @@
 /**
- * Checks for the necessary details before authenticating the user
+ * This middleware checks for the necessary credentials before authenticating the user
  */
 export const withPreAuthCheck = (handler) => (req, res) => {
   const errors = [];
@@ -13,12 +13,12 @@ export const withPreAuthCheck = (handler) => (req, res) => {
     errors.push('Missing `password` in body');
   }
   if (errors.length > 0) {
-    return res.status(400).json({
+    res.status(400).json({
       error: true,
       message: errors,
     });
   }
-  // Passes the user credentials
+  // Pass the user credentials
   res.user = {
     username: req.body.username,
     password: req.body.password,

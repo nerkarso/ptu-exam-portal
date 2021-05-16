@@ -1,5 +1,5 @@
 /**
- * This handles which HTTP methods are allowed
+ * This middleware checks which HTTP methods are allowed
  */
 export const withAllowedMethods = (handler, methods) => (req, res) => {
   // Method is allowed
