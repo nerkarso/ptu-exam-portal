@@ -58,12 +58,9 @@ export function AuthProvider({ children }) {
     };
 
     try {
-      const results = await Promise.all([
-        await (await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login`, requestOptions)).json(),
-        await (await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login-mobile`, requestOptions)).json(),
-      ]);
-      if (results.length > 0 && results[0].auth) {
-        dispatch({ type: 'LOGIN', payload: results[0].userToken });
+      const res = await (await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/login`, requestOptions)).json();
+      if (res.auth) {
+        dispatch({ type: 'LOGIN', payload: res.userToken });
       } else {
         dispatch({ type: 'ERROR', payload: 'Username or password is incorrect' });
       }
@@ -74,14 +71,13 @@ export function AuthProvider({ children }) {
 
   const logout = () => {
     document.cookie = 'userToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    document.cookie = 'sessionMobile=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    document.cookie = 'session=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    document.cookie = 'refreshToken=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     dispatch({ type: 'LOGOUT' });
   };
 
   useEffect(() => {
     const cookies = parse(document.cookie);
-    if (cookies.userToken && cookies.session && cookies.sessionMobile) {
+    if (cookies.userToken && cookies.refreshToken) {
       dispatch({ type: 'LOGIN', payload: cookies.userToken });
     } else {
       dispatch({ type: 'LOGOUT' });

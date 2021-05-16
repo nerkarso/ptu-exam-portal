@@ -9,6 +9,7 @@ import { SWRConfig } from 'swr';
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
+
   useEffect(() => {
     const handleRouteChange = (url) => pageview(url);
     router.events.on('routeChangeComplete', handleRouteChange);

@@ -7,7 +7,7 @@ import PDFViewerUrl from '@/components/PDFViewerUrl';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
-import useProtectedFetch from '@/hooks/useProtectedFetch';
+import { useApi } from '@/hooks/useApi';
 import { TableIcon } from '@heroicons/react/outline';
 
 Results.title = 'Results';
@@ -25,7 +25,8 @@ export default function Results() {
 }
 
 function MasterPaneContent() {
-  const { data, error, loading } = useProtectedFetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/results`);
+  const { data, error, loading } = useApi('/documents');
+
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
   if (data.error) return <ErrorMessage title="Error" text={data.message} />;
@@ -34,13 +35,13 @@ function MasterPaneContent() {
 
   return (
     <List className="my-3">
-      {data.results.map(({ id, examSession, examDetails, date, filename }) => (
+      {data.results.map(({ id, title, examSession, examType, date, url }) => (
         <MasterListItem
           icon={TableIcon}
           id={id}
-          title={examDetails}
-          text={`${examSession} • ${date}`}
-          url={filename}
+          title={title}
+          text={`${examSession} • ${examType} • ${date}`}
+          url={url}
           key={id}
         />
       ))}

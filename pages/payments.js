@@ -7,7 +7,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import WebViewer from '@/components/WebViewer';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
-import useProtectedFetch from '@/hooks/useProtectedFetch';
+import { useApi } from '@/hooks/useApi';
 import { CreditCardIcon } from '@heroicons/react/outline';
 
 Payments.title = 'Payments';
@@ -25,7 +25,7 @@ export default function Payments() {
 }
 
 function MasterPaneContent() {
-  const { data, error, loading } = useProtectedFetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/payments`);
+  const { data, error, loading } = useApi('/payments');
 
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
@@ -33,22 +33,21 @@ function MasterPaneContent() {
   if (data.payments.length === 0)
     return <EmptyMessage title="No transactions here" text="All your bank transactions will appear here" />;
 
-  const formatDate = (date) => {
-    const arr = date.split(' ');
-    arr.shift();
-    arr.pop();
-    return arr.join(' ');
+  const formatDate = (value) => {
+    const date = new Date(value).toUTCString();
+    return date.slice(0, -7);
   };
 
   return (
     <List className="my-3">
-      {data.payments.map(({ id, examSession, feeType, amount, paymentStatus, date, url }) => (
+      {data.payments.map(({ id, examSession, feeType, amount, color, date, url }) => (
         <MasterListItem
           icon={CreditCardIcon}
           id={id}
           title={`${feeType} ${examSession}`}
-          text={`Rs ${amount} • ${paymentStatus.replace('Payment ', '')} • ${formatDate(date[0])}`}
+          text={`Rs ${amount} • ${formatDate(date[0])}`}
           url={url}
+          color={color}
           key={id}
         />
       ))}

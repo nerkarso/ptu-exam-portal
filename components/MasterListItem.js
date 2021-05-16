@@ -3,7 +3,7 @@ import ListItemIcon from '@/elements/ListItemIcon';
 import ListItemText from '@/elements/ListItemText';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
 
-export default function MasterListItem({ icon: Icon, id, title, text, url }) {
+export default function MasterListItem({ icon: Icon, id, title, text, url, color }) {
   const { details, setDetails } = useMasterDetails();
 
   return (
@@ -13,7 +13,7 @@ export default function MasterListItem({ icon: Icon, id, title, text, url }) {
       active={details && details.id === id ? true : false}
       className="px-2 lg:px-3"
       key={id}>
-      <ListItemIcon contained>
+      <ListItemIcon color={color} contained>
         <Icon className="w-7 h-7" />
       </ListItemIcon>
       <ListItemText primary={title} secondary={text} />

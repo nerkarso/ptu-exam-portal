@@ -7,7 +7,7 @@ import PDFViewerUrl from '@/components/PDFViewerUrl';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
-import useProtectedFetch from '@/hooks/useProtectedFetch';
+import { useApi } from '@/hooks/useApi';
 import { AcademicCapIcon } from '@heroicons/react/outline';
 
 Degree.title = 'Degree';
@@ -25,7 +25,8 @@ export default function Degree() {
 }
 
 function MasterPaneContent() {
-  const { data, error, loading } = useProtectedFetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/degree`);
+  const { data, error, loading } = useApi('/documents');
+
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
   if (data.error) return <ErrorMessage title="Error" text={data.message} />;
@@ -34,8 +35,8 @@ function MasterPaneContent() {
 
   return (
     <List className="my-3">
-      {data.degree.map(({ id, title, date, filename }) => (
-        <MasterListItem icon={AcademicCapIcon} id={id} title={title} text={date} url={filename} key={id} />
+      {data.degree.map(({ id, title, date, url }) => (
+        <MasterListItem icon={AcademicCapIcon} id={id} title={title} text={date} url={url} key={id} />
       ))}
     </List>
   );

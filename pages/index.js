@@ -4,25 +4,28 @@ import Layout from '@/components/Layout';
 import MasterDetailsView from '@/components/MasterDetailsView';
 import MasterListItem from '@/components/MasterListItem';
 import PDFViewerUrl from '@/components/PDFViewerUrl';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import List from '@/elements/List';
 import SkeletonList from '@/elements/SkeletonList';
+import { useApi } from '@/hooks/useApi';
 import { SpeakerphoneIcon } from '@heroicons/react/outline';
-import useSWR from 'swr';
 
 export default function Announcements() {
   return (
-    <Layout title="Announcements">
-      <MasterDetailsView detailsViewer={PDFViewerUrl}>
-        <MasterPaneContent />
-      </MasterDetailsView>
-    </Layout>
+    <ProtectedRoute>
+      <Layout title="Announcements">
+        <MasterDetailsView detailsViewer={PDFViewerUrl}>
+          <MasterPaneContent />
+        </MasterDetailsView>
+      </Layout>
+    </ProtectedRoute>
   );
 }
 
 function MasterPaneContent() {
-  const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_API_BASE_URL}/announcements`);
+  const { data, error, loading } = useApi('/announcements');
 
-  if (!data && !error) return <SkeletonList />;
+  if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
   if (data.error) return <ErrorMessage title="Error" text={data.message} />;
   if (data.announcements.length === 0)
