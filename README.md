@@ -34,7 +34,11 @@ yarn
 
 ```sh
 JWT_SECRET=your-secret-key-here
+NEXT_PUBLIC_API_BASE_URL=/api/v1
 NEXT_PUBLIC_PROXY_URL=https://example.com
+NEXT_PUBLIC_SITE_URL=https://example.vercel.app
+SOURCE_API_BASE_URL=https://api.example.com/api
+SOURCE_API_ORIGIN_URL=https://example.com
 ```
 
 **Replace the values according to your environment.**
@@ -63,9 +67,12 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 | Variable                     | Description                                                                           |
 | ---------------------------- | ------------------------------------------------------------------------------------- |
 | `JWT_SECRET`                 | [JSON Web Token](https://jwt.io) secret key to encrypt the user credentials           |
+| `NEXT_PUBLIC_API_BASE_URL`   | Base URL to which the endpoint paths are appended                                     |
+| `NEXT_PUBLIC_GA_TRACKING_ID` | Google Analytics tracking ID (optional)                                               |
 | `NEXT_PUBLIC_PROXY_URL`      | Proxy server to enable [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) |
 | `NEXT_PUBLIC_SITE_URL`       | Domain of the project (e.g. https://example.vercel.app)                               |
-| `NEXT_PUBLIC_GA_TRACKING_ID` | Google Analytics tracking ID (optional)                                               |
+| `SOURCE_API_BASE_URL`        | Base URL to which the endpoint paths are appended                                     |
+| `SOURCE_API_ORIGIN_URL`      | The Origin request header indicates where a request originates from                   |
 
 ## License
 
