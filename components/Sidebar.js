@@ -12,6 +12,7 @@ import {
   ChartPieIcon,
   CreditCardIcon,
   LogoutIcon,
+  PencilAltIcon,
   SpeakerphoneIcon,
   TableIcon,
 } from '@heroicons/react/outline';
@@ -31,6 +32,16 @@ export default function Sidebar() {
   };
 
   const links = [
+    {
+      href: '/',
+      text: 'Announcements',
+      icon: <SpeakerphoneIcon className="w-6 h-6" />,
+    },
+    {
+      href: '/answer-sheets',
+      text: 'Answer Sheets',
+      icon: <PencilAltIcon className="w-6 h-6" />,
+    },
     {
       href: '/results',
       text: 'Results',
@@ -65,12 +76,6 @@ export default function Sidebar() {
         <SidebarHeader />
         <SidebarProfile />
         <List className="flex-grow mb-3 dark:text-invert-400 text-base-600">
-          <ListItem link href="/">
-            <ListItemIcon>
-              <SpeakerphoneIcon className="w-6 h-6" />
-            </ListItemIcon>
-            <ListItemText primary="Announcements" />
-          </ListItem>
           {isLoggedIn &&
             links.map(({ href, icon, text }, i) => (
               <ListItem link href={href} key={i}>
