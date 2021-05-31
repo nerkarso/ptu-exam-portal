@@ -22,21 +22,19 @@
 
 @layer components {
   /* Linear Progress */
-  @variants dark {
-    .linear-progress {
-      background-image: linear-gradient(
-        to left,
-        theme(colors.primary.500),
-        theme(colors.base.900),
-        theme(colors.primary.500)
-      );
-    }
-  }
   .linear-progress {
     height: 4px;
     background-image: linear-gradient(to left, theme(colors.primary.500), white, theme(colors.primary.500));
     background-size: 400%;
     animation: scroll-infinite 1.5s linear infinite;
+  }
+  .dark .linear-progress {
+    background-image: linear-gradient(
+      to left,
+      theme(colors.primary.500),
+      theme(colors.base.900),
+      theme(colors.primary.500)
+    );
   }
 
   /* Switch */
