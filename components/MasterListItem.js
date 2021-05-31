@@ -3,13 +3,13 @@ import ListItemIcon from '@/elements/ListItemIcon';
 import ListItemText from '@/elements/ListItemText';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
 
-export default function MasterListItem({ icon: Icon, id, title, text, url, color }) {
+export default function MasterListItem({ icon: Icon, id, title, text, url, downloadUrl, color }) {
   const { details, setDetails } = useMasterDetails();
 
   return (
     <ListItem
       button
-      onClick={() => setDetails({ id, title, url })}
+      onClick={() => setDetails({ id, title, url, downloadUrl })}
       active={details && details.id === id ? true : false}
       className="px-2 lg:px-3"
       key={id}>

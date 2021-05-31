@@ -16,7 +16,7 @@ export default function AnswerSheets() {
   return (
     <ProtectedRoute>
       <Layout title={AnswerSheets.title}>
-        <MasterDetailsView detailsViewer={PDFViewerBlob}>
+        <MasterDetailsView detailsViewer={PDFViewerBlob} actionDownload={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
@@ -49,6 +49,7 @@ function MasterPaneContent() {
           title={`${subjectCode} ${subjectTitle}`}
           text={`${remarksIsUpdated ? 'Verified' : 'Not verified'} • ${formatDate(examDate)}`}
           url={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}`}
+          downloadUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}/download`}
           color={remarksIsUpdated ? 'green' : 'red'}
           key={id}
         />

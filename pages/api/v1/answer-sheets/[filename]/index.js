@@ -8,7 +8,7 @@ function handler(req, res) {
 
 export default withAllowedMethods(withSetEndpoint(withProtectedEndpoint(withTransformPayload(handler))), ['GET']);
 
-function withTransformPayload(handler) {
+export function withTransformPayload(handler) {
   return (req, res) => {
     res.fileContents = null;
     if (res.payload.success) {
@@ -18,7 +18,7 @@ function withTransformPayload(handler) {
   };
 }
 
-function withSetEndpoint(handler) {
+export function withSetEndpoint(handler) {
   return (req, res) => {
     if (req.query.filename) {
       res.endpoint = `/Student/VerifyAnswerSheets/getPdfData?fileName=${req.query.filename}`;
