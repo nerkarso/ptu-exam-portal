@@ -42,13 +42,14 @@ function ProfileContent() {
     mobile,
     motherName,
     photo,
+    signature,
     studentName,
   } = data.profile;
 
   return (
     <div className="gap-8 md:flex">
       <div className="grid mb-4 place-items-center md:block">
-        <Avatar src={`data:image/jpg;base64,${photo}`} alt="Avatar" className="w-32 h-32 shadow" />
+        <Avatar src={photo} alt="Avatar" className="w-32 h-32 shadow" />
       </div>
       <div className="flex flex-col">
         <div className="mb-5">
@@ -73,6 +74,12 @@ function ProfileContent() {
           <DetailGroup label="Admission status" text={admissionStatus} />
           <DetailGroup label="Degree status" text={degreeStatus} />
         </div>
+        {signature && (
+          <div className="mb-5">
+            <DetailLabel>Signature</DetailLabel>
+            <img src={signature} className="max-w-xs" alt="Signature" />
+          </div>
+        )}
       </div>
     </div>
   );

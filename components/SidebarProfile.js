@@ -32,10 +32,10 @@ function ProfileCard({ href, avatar, title, subtitle }) {
         href={href}
         activeClassName="border-primary-100 dark:border-primary-900 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-white hover:!bg-primary-100 dark:hover:!bg-primary-900">
         <a className="flex items-center h-16 gap-3 px-3 transition duration-300 border rounded-lg focus:shadow dark:border-invert-700 focus:outline-none border-base-200 hover:bg-base-100 dark:hover:bg-invert-800 focus:ring-2 ring-primary-400 ring-inset">
-          <Avatar src={`data:image/jpg;base64,${avatar}`} alt="Avatar" className="w-10 h-10 shadow" />
+          <Avatar src={avatar} alt="Avatar" className="w-10 h-10 shadow" />
           <div className="overflow-hidden font-medium">
             {title && <h5 className="leading-normal truncate">{title}</h5>}
-            {subtitle && <h6 className="text-sm opacity-60">{subtitle}</h6>}
+            {subtitle && <h6 className="text-sm truncate opacity-60">{subtitle}</h6>}
           </div>
         </a>
       </NextLink>

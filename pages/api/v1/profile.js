@@ -9,7 +9,10 @@ function handler(req, res) {
 }
 
 export default withAllowedMethods(
-  withProtectedEndpoint(withTransformPayload(withGetPhoto(handler)), '/Student/StudentActivities/StudentProfile'),
+  withProtectedEndpoint(
+    withTransformPayload(withGetPhotoAndSignature(handler)),
+    '/Student/StudentActivities/StudentProfile',
+  ),
   ['GET'],
 );
 
@@ -32,28 +35,27 @@ function withTransformPayload(handler) {
         studentName: item.studentName,
         mobile: item.mobile,
         email: item.email,
-        photo: item.photo,
+        photo: null,
+        signature: null,
       };
     }
     return handler(req, res);
   };
 }
 
-function withGetPhoto(handler) {
+function withGetPhotoAndSignature(handler) {
   return async (req, res) => {
+    res.endpoint = '/Student/UploadPhotoAndSign/StudentDocumentsData';
     try {
-      const resp = await fetchData(
-        req,
-        res,
-        `/Student/StudentActivities/GetStudentPhoto?fileName=${res.profile.photo}`,
-      );
+      const resp = await fetchData(req, res);
       if (resp.data.success) {
-        res.profile.photo = resp.data.data;
+        res.profile.photo = resp.data.data.photo;
+        res.profile.signature = resp.data.data.sign;
       }
     } catch (ex) {
       return res.status(500).json({
         error: true,
-        message: 'Could not retrieve photo',
+        message: 'Could not retrieve photo and signature',
         details: ex.message,
       });
     }
