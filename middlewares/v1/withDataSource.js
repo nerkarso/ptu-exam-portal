@@ -18,15 +18,15 @@ export const withDataSource = (handler, endpoint) => async (req, res) => {
       res.payload = resp.data;
     }
   } catch (ex) {
-    if (ex.response.status !== 401) {
+    if (ex.response && ex.response.status == 401) {
+      // Delete the old refreshToken so we can get a new one
+      delete res.refreshToken;
+    } else {
       return res.status(500).json({
         error: true,
         message: 'Could not retrieve payload from source provider',
         details: ex.message,
       });
-    } else {
-      // Delete the old refreshToken so we can get a new one
-      delete res.refreshToken;
     }
   }
   return handler(req, res);
