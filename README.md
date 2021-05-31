@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/icon.png" width="96" alt="Icon" />
+  <img src="public/icon-192.png" width="96" alt="Icon" />
 </p>
 
 <h1 align="center">PTU Exam Portal</h1>

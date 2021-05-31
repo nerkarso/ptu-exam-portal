@@ -42,7 +42,8 @@ export default function MyApp({ Component, pageProps }) {
             <meta property="twitter:description" content={process.env.NEXT_PUBLIC_SITE_DESCRIPTION} />
             <meta property="twitter:image" content={`${process.env.NEXT_PUBLIC_SITE_URL}/og-image.png`} />
             <meta name="theme-color" content="#4f46e5" />
-            <link rel="icon" href="/icon.png" />
+            <link rel="manifest" href="/manifest.json" />
+            <link rel="icon" href="/icon-192.png" />
           </Head>
           <Component {...pageProps} />
         </SWRConfig>
