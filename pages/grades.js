@@ -16,7 +16,7 @@ export default function Grades() {
   return (
     <ProtectedRoute>
       <Layout title={Grades.title}>
-        <MasterDetailsView detailsViewer={PDFViewerUrl}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl} actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>

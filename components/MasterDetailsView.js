@@ -9,12 +9,12 @@ import { useMasterDetails } from '@/hooks/useMasterDetails';
 import { DownloadIcon, ExternalLinkIcon, SparklesIcon, XIcon } from '@heroicons/react/outline';
 import cx from 'classnames';
 
-export default function MasterDetailsView({ children, detailsViewer, actionDownload }) {
+export default function MasterDetailsView({ children, detailsViewer, actionDownload, actionNewTab }) {
   return (
     <div className="grid h-full overflow-y-auto md:grid-cols-2 xl:grid-cols-3 md:overflow-y-hidden">
       <MasterDetailsProvider>
         <MasterPane>{children}</MasterPane>
-        <DetailsPane viewer={detailsViewer} actionDownload={actionDownload} />
+        <DetailsPane viewer={detailsViewer} actionDownload={actionDownload} actionNewTab={actionNewTab} />
       </MasterDetailsProvider>
     </div>
   );
@@ -24,7 +24,7 @@ function MasterPane({ children }) {
   return <div className="h-full overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">{children}</div>;
 }
 
-function DetailsPane({ viewer: Viewer, actionDownload }) {
+function DetailsPane({ viewer: Viewer, actionDownload, actionNewTab }) {
   const { details, resetDetails } = useMasterDetails();
 
   const downloadFile = () => {
@@ -56,9 +56,11 @@ function DetailsPane({ viewer: Viewer, actionDownload }) {
                 <DownloadIcon className="w-6 h-6" />
               </IconButton>
             )}
-            <IconButton className="w-8 h-8" onClick={openNewTab} title="Open in new tab">
-              <ExternalLinkIcon className="w-6 h-6" />
-            </IconButton>
+            {actionNewTab && (
+              <IconButton className="w-8 h-8" onClick={openNewTab} title="Open in new tab">
+                <ExternalLinkIcon className="w-6 h-6" />
+              </IconButton>
+            )}
           </div>
         </AppBar>
       )}

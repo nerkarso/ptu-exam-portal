@@ -16,7 +16,7 @@ export default function Results() {
   return (
     <ProtectedRoute>
       <Layout title={Results.title}>
-        <MasterDetailsView detailsViewer={PDFViewerUrl}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl} actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>

@@ -16,7 +16,7 @@ export default function Degree() {
   return (
     <ProtectedRoute>
       <Layout title={Degree.title}>
-        <MasterDetailsView detailsViewer={PDFViewerUrl}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl} actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>

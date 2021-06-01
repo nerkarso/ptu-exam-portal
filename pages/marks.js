@@ -16,7 +16,7 @@ export default function Marks() {
   return (
     <ProtectedRoute>
       <Layout title={Marks.title}>
-        <MasterDetailsView detailsViewer={PDFViewerUrl}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl} actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
