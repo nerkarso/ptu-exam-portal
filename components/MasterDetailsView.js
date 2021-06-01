@@ -6,15 +6,22 @@ import BlankslateText from '@/elements/BlankslateText';
 import IconButton from '@/elements/IconButton';
 import { MasterDetailsProvider } from '@/hooks/MasterDetailsContext';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
-import { DownloadIcon, ExternalLinkIcon, SparklesIcon, XIcon } from '@heroicons/react/outline';
+import { copyToClipboard } from '@/utils/index';
+import { DownloadIcon, ExternalLinkIcon, LinkIcon, SparklesIcon, XIcon } from '@heroicons/react/outline';
 import cx from 'classnames';
+import { toast } from 'react-toastify';
 
-export default function MasterDetailsView({ children, detailsViewer, actionDownload, actionNewTab }) {
+export default function MasterDetailsView({ children, detailsViewer, actionCopyLink, actionDownload, actionNewTab }) {
   return (
     <div className="grid h-full overflow-y-auto md:grid-cols-2 xl:grid-cols-3 md:overflow-y-hidden">
       <MasterDetailsProvider>
         <MasterPane>{children}</MasterPane>
-        <DetailsPane viewer={detailsViewer} actionDownload={actionDownload} actionNewTab={actionNewTab} />
+        <DetailsPane
+          viewer={detailsViewer}
+          actionCopyLink={actionCopyLink}
+          actionDownload={actionDownload}
+          actionNewTab={actionNewTab}
+        />
       </MasterDetailsProvider>
     </div>
   );
@@ -24,8 +31,17 @@ function MasterPane({ children }) {
   return <div className="h-full overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">{children}</div>;
 }
 
-function DetailsPane({ viewer: Viewer, actionDownload, actionNewTab }) {
+function DetailsPane({ viewer: Viewer, actionCopyLink, actionDownload, actionNewTab }) {
   const { details, resetDetails } = useMasterDetails();
+
+  const copyLink = async () => {
+    try {
+      await copyToClipboard(details.url);
+      toast.success('Link copied to clipboard');
+    } catch (ex) {
+      toast.error(`Error: ${ex}`);
+    }
+  };
 
   const downloadFile = () => {
     if (details.downloadUrl) {
@@ -51,8 +67,13 @@ function DetailsPane({ viewer: Viewer, actionDownload, actionNewTab }) {
           </IconButton>
           <AppBarTitle>{details.title}</AppBarTitle>
           <div className="flex items-center gap-4 ml-auto">
+            {actionCopyLink && (
+              <IconButton className="w-8 h-8" onClick={copyLink} title="Copy link">
+                <LinkIcon className="w-6 h-6" />
+              </IconButton>
+            )}
             {actionDownload && (
-              <IconButton className="w-8 h-8" onClick={downloadFile} title="Download">
+              <IconButton className="w-8 h-8" onClick={downloadFile} title="Download file">
                 <DownloadIcon className="w-6 h-6" />
               </IconButton>
             )}

@@ -75,3 +75,13 @@
 .dark .rpv-core-inner-page {
   filter: invert(100%);
 }
+
+/* Toastify */
+.Toastify .Toastify__toast {
+  @apply min-h-0;
+}
+@media (min-width: 480px) {
+  .Toastify .Toastify__toast {
+    @apply mb-2 rounded-lg;
+  }
+}

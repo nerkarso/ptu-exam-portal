@@ -5,6 +5,8 @@ import { ThemeProvider } from 'next-themes';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { Slide, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { SWRConfig } from 'swr';
 
 export default function MyApp({ Component, pageProps }) {
@@ -46,6 +48,14 @@ export default function MyApp({ Component, pageProps }) {
             <link rel="icon" href="/icon-192.png" />
           </Head>
           <Component {...pageProps} />
+          <ToastContainer
+            position="bottom-center"
+            transition={Slide}
+            draggable={false}
+            autoClose={3000}
+            closeButton={false}
+            closeOnClick
+          />
         </SWRConfig>
       </AuthProvider>
     </ThemeProvider>

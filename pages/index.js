@@ -14,7 +14,7 @@ export default function Announcements() {
   return (
     <ProtectedRoute>
       <Layout title="Announcements">
-        <MasterDetailsView detailsViewer={PDFViewerUrl} actionNewTab={true}>
+        <MasterDetailsView detailsViewer={PDFViewerUrl} actionCopyLink={true} actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>

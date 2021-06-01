@@ -16,7 +16,7 @@ export default function Payments() {
   return (
     <ProtectedRoute>
       <Layout title={Payments.title}>
-        <MasterDetailsView detailsViewer={WebViewer} actionNewTab={true}>
+        <MasterDetailsView detailsViewer={WebViewer} actionCopyLink={true} actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
