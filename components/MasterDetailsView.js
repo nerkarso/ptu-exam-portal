@@ -11,13 +11,21 @@ import { DownloadIcon, ExternalLinkIcon, LinkIcon, SparklesIcon, XIcon } from '@
 import cx from 'classnames';
 import { toast } from 'react-toastify';
 
-export default function MasterDetailsView({ children, detailsViewer, actionCopyLink, actionDownload, actionNewTab }) {
+export default function MasterDetailsView({
+  children,
+  detailsViewer,
+  actionCustom,
+  actionCopyLink,
+  actionDownload,
+  actionNewTab,
+}) {
   return (
     <div className="grid h-full overflow-y-auto md:grid-cols-2 xl:grid-cols-3 md:overflow-y-hidden">
       <MasterDetailsProvider>
         <MasterPane>{children}</MasterPane>
         <DetailsPane
           viewer={detailsViewer}
+          actionCustom={actionCustom}
           actionCopyLink={actionCopyLink}
           actionDownload={actionDownload}
           actionNewTab={actionNewTab}
@@ -31,7 +39,7 @@ function MasterPane({ children }) {
   return <div className="h-full overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">{children}</div>;
 }
 
-function DetailsPane({ viewer: Viewer, actionCopyLink, actionDownload, actionNewTab }) {
+function DetailsPane({ viewer: Viewer, actionCustom, actionCopyLink, actionDownload, actionNewTab }) {
   const { details, resetDetails } = useMasterDetails();
 
   const copyLink = async () => {
@@ -67,6 +75,7 @@ function DetailsPane({ viewer: Viewer, actionCopyLink, actionDownload, actionNew
           </IconButton>
           <AppBarTitle>{details.title}</AppBarTitle>
           <div className="flex items-center gap-4 ml-auto">
+            {actionCustom && actionCustom}
             {actionCopyLink && (
               <IconButton className="w-8 h-8" onClick={copyLink} title="Copy link">
                 <LinkIcon className="w-6 h-6" />
