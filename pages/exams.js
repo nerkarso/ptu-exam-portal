@@ -8,6 +8,7 @@ import SkeletonList from '@/elements/SkeletonList';
 import { useApi } from '@/hooks/useApi';
 import { DownloadIcon, PencilAltIcon, UploadIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 Exams.title = 'Exams';
@@ -49,6 +50,8 @@ function Table() {
 }
 
 function TableRow({ item }) {
+  const [uploading, setUploading] = useState(false);
+
   const handleDownload = () => {
     let location = item.location;
     if (!item.location) {
@@ -65,6 +68,7 @@ function TableRow({ item }) {
   };
 
   const handleUpload = async () => {
+    setUploading(true);
     try {
       const data = await (await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/exams/${item.subjectId}/upload`)).json();
       if (data.error) {
@@ -74,6 +78,8 @@ function TableRow({ item }) {
       }
     } catch (ex) {
       toast.error(`Error: ${ex.message}`);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -85,13 +91,18 @@ function TableRow({ item }) {
         </ListItemIcon>
         <div className="flex flex-col flex-grow gap-2 md:grid-cols-5 md:grid">
           <div className="grid grid-cols-4 col-span-3 gap-2 sm:items-center">
-            <div className="col-span-3 gap-2 xl:grid xl:grid-cols-3 sm:col-span-2 xl:col-span-3">
-              <p className="font-bold">
-                {item.subjectCode} ({item.subjectId})
+            <div className="items-center col-span-3 gap-2 xl:grid xl:grid-cols-3 sm:col-span-2 xl:col-span-3">
+              <div>
+                <p className="font-bold">
+                  {item.subjectCode} ({item.subjectId})
+                </p>
+                <p className="truncate">{item.subjectTitle}</p>
+              </div>
+              <p className="col-span-2 truncate xl:text-center text-base-500 dark:text-invert-400">
+                {item.location ? item.location : 'No location specified'}
               </p>
-              <p className="col-span-2">{item.subjectTitle}</p>
             </div>
-            <div className="col-span-3 text-sm md:text-base sm:col-span-2 xl:col-span-1 sm:text-right md:text-left text-base-500 dark:text-invert-400">
+            <div className="col-span-3 text-sm truncate md:text-base sm:col-span-2 xl:col-span-1 sm:text-right text-base-500 dark:text-invert-400">
               {item.examDate} {item.examTime}
             </div>
           </div>
@@ -109,7 +120,12 @@ function TableRow({ item }) {
                 </Button>
               )}
               {item.allowUpload && (
-                <Button onClick={handleUpload} className="gap-2" title="Upload answer sheet">
+                <Button
+                  onClick={handleUpload}
+                  loading={uploading}
+                  loadingText="Opening..."
+                  className="gap-2"
+                  title="Upload answer sheet">
                   <UploadIcon className="w-5 h-5" />
                   Upload
                 </Button>
