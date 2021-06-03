@@ -8,6 +8,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useSidebar } from '@/hooks/useSidebar';
 import {
   AcademicCapIcon,
+  BookOpenIcon,
   ChartBarIcon,
   ChartPieIcon,
   CreditCardIcon,
@@ -38,9 +39,14 @@ export default function Sidebar() {
       icon: <SpeakerphoneIcon className="w-6 h-6" />,
     },
     {
+      href: '/exams',
+      text: 'Exams',
+      icon: <PencilAltIcon className="w-6 h-6" />,
+    },
+    {
       href: '/answer-sheets',
       text: 'Answer Sheets',
-      icon: <PencilAltIcon className="w-6 h-6" />,
+      icon: <BookOpenIcon className="w-6 h-6" />,
     },
     {
       href: '/results',
