@@ -13,7 +13,6 @@ import {
   ChartPieIcon,
   CreditCardIcon,
   IdentificationIcon,
-  LogoutIcon,
   MailIcon,
   PencilAltIcon,
   SpeakerphoneIcon,
@@ -21,18 +20,9 @@ import {
 } from '@heroicons/react/outline';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 
 export default function Sidebar() {
-  const { isLoggedIn, logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    if (router.route !== '/') {
-      router.replace('/');
-    }
-  };
+  const { isLoggedIn } = useAuth();
 
   const links = [
     {
@@ -103,14 +93,6 @@ export default function Sidebar() {
             ))}
           <div className="flex-1"></div>
           <SidebarDarkMode />
-          {isLoggedIn && (
-            <ListItem button onClick={handleLogout}>
-              <ListItemIcon>
-                <LogoutIcon className="w-6 h-6" />
-              </ListItemIcon>
-              <ListItemText primary="Log out" />
-            </ListItem>
-          )}
         </List>
       </SidebarDrawer>
     </>
