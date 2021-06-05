@@ -12,6 +12,7 @@ import {
   ChartBarIcon,
   ChartPieIcon,
   CreditCardIcon,
+  IdentificationIcon,
   LogoutIcon,
   PencilAltIcon,
   SpeakerphoneIcon,
@@ -67,6 +68,11 @@ export default function Sidebar() {
       href: '/degree',
       text: 'Degree',
       icon: <AcademicCapIcon className="w-6 h-6" />,
+    },
+    {
+      href: '/admit-card',
+      text: 'Admit Card',
+      icon: <IdentificationIcon className="w-6 h-6" />,
     },
     {
       href: '/payments',
