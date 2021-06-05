@@ -6,7 +6,7 @@ import Button from '@/elements/Button';
 import ListItemIcon from '@/elements/ListItemIcon';
 import SkeletonList from '@/elements/SkeletonList';
 import { useApi } from '@/hooks/useApi';
-import { DownloadIcon, PencilAltIcon, UploadIcon } from '@heroicons/react/outline';
+import { DownloadIcon, HandIcon, PencilAltIcon, UploadIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon } from '@heroicons/react/solid';
 import cx from 'classnames';
 import { useState } from 'react';
@@ -24,8 +24,12 @@ export default function Exams() {
   );
 }
 
+function useExamsApi() {
+  return useApi('/exams');
+}
+
 function Table() {
-  const { data, error, loading } = useApi('/exams');
+  const { data, error, loading } = useExamsApi();
 
   if (loading) return <SkeletonList />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
@@ -51,7 +55,31 @@ function Table() {
 }
 
 function TableRow({ item }) {
+  const [marking, setMarking] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const { mutate } = useExamsApi();
+
+  const handleMarkAttendance = async () => {
+    const confirmed = window.confirm('Do you want to mark your attendance?');
+    if (confirmed) {
+      setMarking(true);
+      try {
+        const data = await (
+          await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/exams/${item.subjectId}/attendance`)
+        ).json();
+        if (data.error) {
+          toast.error(`Error: ${data.message}`);
+        } else {
+          mutate();
+          toast.success('Your attendance has been marked');
+        }
+      } catch (ex) {
+        toast.error(`Error: ${ex.message}`);
+      } finally {
+        setMarking(false);
+      }
+    }
+  };
 
   const handleDownload = () => {
     let location = item.location;
@@ -113,15 +141,26 @@ function TableRow({ item }) {
               <span>Answer sheet uploaded</span>
             </div>
           ) : (
-            <div className="flex items-center col-span-2 gap-2 md:justify-end">
+            <div className="flex flex-wrap items-center col-span-2 gap-2 md:justify-end">
+              <Button
+                onClick={handleMarkAttendance}
+                loading={marking}
+                loadingText="Marking..."
+                className={cx('gap-2', {
+                  hidden: item.attendanceMarked,
+                })}
+                title="Mark attendance">
+                <HandIcon className="flex-shrink-0 w-5 h-5" />
+                <span className="truncate">Attendance</span>
+              </Button>
               <Button
                 onClick={handleDownload}
                 className={cx('gap-2', {
                   hidden: !item.allowDownload,
                 })}
                 title="Download question paper">
-                <DownloadIcon className="w-5 h-5" />
-                Download
+                <DownloadIcon className="flex-shrink-0 w-5 h-5" />
+                <span className="truncate">Download</span>
               </Button>
               <Button
                 onClick={handleUpload}
@@ -131,8 +170,8 @@ function TableRow({ item }) {
                   hidden: !item.allowUpload,
                 })}
                 title="Upload answer sheet">
-                <UploadIcon className="w-5 h-5" />
-                Upload
+                <UploadIcon className="flex-shrink-0 w-5 h-5" />
+                <span className="truncate">Upload</span>
               </Button>
             </div>
           )}

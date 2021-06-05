@@ -27,6 +27,7 @@ function withTransformPayload(handler) {
         allowDownload: item.AllowToDownload,
         allowUpload: item.ShowUploadButton,
         answerSheetUploaded: item.IsASheetUploaded,
+        attendanceMarked: item.isMarkAttendance,
       }));
     }
     return handler(req, res);
