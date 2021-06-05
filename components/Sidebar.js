@@ -14,6 +14,7 @@ import {
   CreditCardIcon,
   IdentificationIcon,
   LogoutIcon,
+  MailIcon,
   PencilAltIcon,
   SpeakerphoneIcon,
   TableIcon,
@@ -73,6 +74,11 @@ export default function Sidebar() {
       href: '/admit-card',
       text: 'Admit Card',
       icon: <IdentificationIcon className="w-6 h-6" />,
+    },
+    {
+      href: '/postal-receipts',
+      text: 'Postal Receipts',
+      icon: <MailIcon className="w-6 h-6" />,
     },
     {
       href: '/payments',
