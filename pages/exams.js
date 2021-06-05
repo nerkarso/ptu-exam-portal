@@ -8,6 +8,7 @@ import SkeletonList from '@/elements/SkeletonList';
 import { useApi } from '@/hooks/useApi';
 import { DownloadIcon, PencilAltIcon, UploadIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon } from '@heroicons/react/solid';
+import cx from 'classnames';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -92,7 +93,7 @@ function TableRow({ item }) {
         <div className="flex flex-col flex-grow gap-2 md:grid-cols-5 md:grid">
           <div className="grid grid-cols-4 col-span-3 gap-2 sm:items-center">
             <div className="items-center col-span-3 gap-2 xl:grid xl:grid-cols-3 sm:col-span-2 xl:col-span-3">
-              <div>
+              <div className="mb-1">
                 <p className="font-bold">
                   {item.subjectCode} ({item.subjectId})
                 </p>
@@ -113,23 +114,26 @@ function TableRow({ item }) {
             </div>
           ) : (
             <div className="flex items-center col-span-2 gap-2 md:justify-end">
-              {item.allowDownload && (
-                <Button onClick={handleDownload} className="gap-2" title="Download question paper">
-                  <DownloadIcon className="w-5 h-5" />
-                  Download
-                </Button>
-              )}
-              {item.allowUpload && (
-                <Button
-                  onClick={handleUpload}
-                  loading={uploading}
-                  loadingText="Opening..."
-                  className="gap-2"
-                  title="Upload answer sheet">
-                  <UploadIcon className="w-5 h-5" />
-                  Upload
-                </Button>
-              )}
+              <Button
+                onClick={handleDownload}
+                className={cx('gap-2', {
+                  hidden: !item.allowDownload,
+                })}
+                title="Download question paper">
+                <DownloadIcon className="w-5 h-5" />
+                Download
+              </Button>
+              <Button
+                onClick={handleUpload}
+                loading={uploading}
+                loadingText="Opening..."
+                className={cx('gap-2', {
+                  hidden: !item.allowUpload,
+                })}
+                title="Upload answer sheet">
+                <UploadIcon className="w-5 h-5" />
+                Upload
+              </Button>
             </div>
           )}
         </div>
