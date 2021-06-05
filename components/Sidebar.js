@@ -1,4 +1,3 @@
-import SidebarDarkMode from '@/components/SidebarDarkMode';
 import SidebarProfile from '@/components/SidebarProfile';
 import List from '@/elements/List';
 import ListItem from '@/elements/ListItem';
@@ -91,8 +90,6 @@ export default function Sidebar() {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
-          <div className="flex-1"></div>
-          <SidebarDarkMode />
         </List>
       </SidebarDrawer>
     </>
