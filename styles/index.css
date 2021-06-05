@@ -71,9 +71,10 @@
 /* React PDF Viewer */
 .rpv-core-inner-page {
   background: transparent !important;
+  @apply transition duration-300;
 }
 .dark .rpv-core-inner-page {
-  filter: invert(100%);
+  @apply filter invert;
 }
 
 /* Toastify */

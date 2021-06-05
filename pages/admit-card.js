@@ -32,7 +32,7 @@ export default function AdmitCard() {
   return (
     <ProtectedRoute>
       <Layout title={AdmitCard.title}>
-        <Blankslate full>
+        <Blankslate className="transition duration-300 bg-white dark:bg-invert-900" full>
           <BlankslateIcon icon={IdentificationIcon} />
           <BlankslateText
             primary="Admit Card"

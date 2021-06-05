@@ -12,7 +12,7 @@ export default function Profile() {
   return (
     <ProtectedRoute>
       <Layout title={Profile.title}>
-        <div className="flex-grow h-full p-6 overflow-y-auto">
+        <div className="flex-grow h-full p-6 overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">
           <div className="container h-full max-w-screen-md">
             <ProfileContent />
           </div>
