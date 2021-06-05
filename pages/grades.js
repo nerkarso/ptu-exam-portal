@@ -1,3 +1,4 @@
+import DocumentDownloadAction from '@/components/DocumentDownloadAction';
 import EmptyMessage from '@/components/EmptyMessage';
 import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
@@ -16,7 +17,11 @@ export default function Grades() {
   return (
     <ProtectedRoute>
       <Layout title={Grades.title}>
-        <MasterDetailsView detailsViewer={PDFViewerUrl} actionCopyLink={true} actionNewTab={true}>
+        <MasterDetailsView
+          detailsViewer={PDFViewerUrl}
+          actionCustom={<DocumentDownloadAction />}
+          actionCopyLink={true}
+          actionNewTab={true}>
           <MasterPaneContent />
         </MasterDetailsView>
       </Layout>
