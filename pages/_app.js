@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/hooks/AuthContext';
+import { AuthProvider } from '@/contexts/AuthContext';
 import '@/styles/index.css';
 import { pageview } from '@/utils/gtag';
 import { ThemeProvider } from 'next-themes';

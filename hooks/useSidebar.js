@@ -1,4 +1,4 @@
-import { SidebarContext } from '@/hooks/SidebarContext';
+import { SidebarContext } from '@/contexts/SidebarContext';
 import { useContext } from 'react';
 
 export function useSidebar() {

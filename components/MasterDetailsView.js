@@ -1,10 +1,10 @@
+import { MasterDetailsProvider } from '@/contexts/MasterDetailsContext';
 import AppBar from '@/elements/AppBar';
 import AppBarTitle from '@/elements/AppBarTitle';
 import Blankslate from '@/elements/Blankslate';
 import BlankslateIcon from '@/elements/BlankslateIcon';
 import BlankslateText from '@/elements/BlankslateText';
 import IconButton from '@/elements/IconButton';
-import { MasterDetailsProvider } from '@/hooks/MasterDetailsContext';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
 import { copyToClipboard } from '@/utils/index';
 import { DownloadIcon, ExternalLinkIcon, LinkIcon, SparklesIcon, XIcon } from '@heroicons/react/outline';

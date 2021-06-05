@@ -1,4 +1,4 @@
-import { MasterDetailsContext } from '@/hooks/MasterDetailsContext';
+import { MasterDetailsContext } from '@/contexts/MasterDetailsContext';
 import { useContext } from 'react';
 
 export function useMasterDetails() {

@@ -1,10 +1,10 @@
 import Sidebar from '@/components/Sidebar';
 import SidebarToggleButton from '@/components/SidebarToggleButton';
+import { SidebarProvider } from '@/contexts/SidebarContext';
 import AppBar from '@/elements/AppBar';
 import AppBarTitle from '@/elements/AppBarTitle';
 import Button from '@/elements/Button';
 import Switch from '@/elements/Switch';
-import { SidebarProvider } from '@/hooks/SidebarContext';
 import { useAuth } from '@/hooks/useAuth';
 import { MoonIcon, SunIcon } from '@heroicons/react/outline';
 import { useTheme } from 'next-themes';
