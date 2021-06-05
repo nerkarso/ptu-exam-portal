@@ -24,7 +24,7 @@ function withTransformPayload(handler) {
         paymentStatus: item.PaymentStatus,
         color: item.PaymentColor,
         date: [item.Edp_InsertDate, item.Edp_BankResponseDate],
-        url: `${process.env.SOURCE_BASE_URL}/ASheetConfirmedPaymentSlip.aspx/?Guid=${item.Edp_Guid}`,
+        url: `http://pages.ptuexam.com/ASheetConfirmedPaymentSlip/?Guid=${item.Edp_Guid}`,
       }));
     }
     return handler(req, res);
