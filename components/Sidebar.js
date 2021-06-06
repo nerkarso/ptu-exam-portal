@@ -1,3 +1,4 @@
+import SidebarDarkMode from '@/components/SidebarDarkMode';
 import SidebarProfile from '@/components/SidebarProfile';
 import List from '@/elements/List';
 import ListItem from '@/elements/ListItem';
@@ -12,6 +13,7 @@ import {
   ChartPieIcon,
   CreditCardIcon,
   IdentificationIcon,
+  LogoutIcon,
   MailIcon,
   PencilAltIcon,
   SpeakerphoneIcon,
@@ -19,9 +21,18 @@ import {
 } from '@heroicons/react/outline';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 
 export default function Sidebar() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    if (router.route !== '/') {
+      router.replace('/');
+    }
+  };
 
   const links = [
     {
@@ -90,6 +101,15 @@ export default function Sidebar() {
                 <ListItemText primary={text} />
               </ListItem>
             ))}
+          <SidebarDarkMode />
+          {isLoggedIn && (
+            <ListItem button onClick={handleLogout} className="lg:hidden">
+              <ListItemIcon>
+                <LogoutIcon className="w-6 h-6" />
+              </ListItemIcon>
+              <ListItemText primary="Log out" />
+            </ListItem>
+          )}
         </List>
       </SidebarDrawer>
     </>

@@ -30,7 +30,7 @@ export default function Layout({ children, title }) {
           <AppBar className="lg:px-6">
             <SidebarToggleButton />
             <AppBarTitle>{title}</AppBarTitle>
-            <div className="grid items-center flex-shrink-0 grid-flow-col gap-4 ml-auto">
+            <div className="items-center flex-shrink-0 hidden grid-flow-col gap-4 ml-auto lg:grid">
               <DarkModeSwitch />
               <Button onClick={handleLogout} className="truncate">
                 Log out

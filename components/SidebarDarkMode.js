@@ -15,7 +15,7 @@ export default function SidebarDarkMode() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <ListItem>
+    <ListItem className="lg:hidden">
       <ListItemIcon>
         <MoonIcon className="w-6 h-6" />
       </ListItemIcon>
