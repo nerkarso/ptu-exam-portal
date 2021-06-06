@@ -46,7 +46,7 @@ function MasterPaneContent() {
           id={id}
           title={`${feeType} ${examSession}`}
           text={`Rs ${amount} • ${formatDate(date[0])}`}
-          url={url}
+          url={`${process.env.NEXT_PUBLIC_PROXY_URL}/?url=${url}`}
           color={color}
           key={id}
         />
