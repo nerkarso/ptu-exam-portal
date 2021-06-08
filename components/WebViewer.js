@@ -18,7 +18,7 @@ export default function WebViewer({ url }) {
           <Spinner className="w-8 h-8 text-primary-600 dark:text-primary-500" />
         </div>
       )}
-      <iframe src={url} className="w-full h-full transition duration-300 border-0 dark:filter-invert" ref={ref} />
+      <iframe src={url} className="w-full h-full transition duration-300 border-0 dark:filter dark:invert" ref={ref} />
     </div>
   );
 }

@@ -47,12 +47,6 @@
 }
 
 @layer utilities {
-  @variants dark {
-    .filter-invert {
-      filter: invert(100%);
-    }
-  }
-
   /* Remove fill color */
   .fill-none path {
     fill: none;
