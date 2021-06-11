@@ -8,7 +8,6 @@ import SkeletonList from '@/elements/SkeletonList';
 import { useApi } from '@/hooks/useApi';
 import { DownloadIcon, HandIcon, PencilAltIcon, UploadIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon } from '@heroicons/react/solid';
-import cx from 'classnames';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -142,37 +141,32 @@ function TableRow({ item }) {
             </div>
           ) : (
             <div className="flex flex-wrap items-center col-span-2 gap-2 md:justify-end">
-              <Button
-                onClick={handleMarkAttendance}
-                loading={marking}
-                loadingText="Marking..."
-                className={cx('gap-2', {
-                  hidden: item.attendanceMarked,
-                })}
-                title="Mark attendance">
-                <HandIcon className="flex-shrink-0 w-5 h-5" />
-                <span className="truncate">Attendance</span>
-              </Button>
-              <Button
-                onClick={handleDownload}
-                className={cx('gap-2', {
-                  hidden: !item.allowDownload,
-                })}
-                title="Download question paper">
+              {!item.attendanceMarked && (
+                <Button
+                  onClick={handleMarkAttendance}
+                  loading={marking}
+                  loadingText="Marking..."
+                  className="gap-2"
+                  title="Mark attendance">
+                  <HandIcon className="flex-shrink-0 w-5 h-5" />
+                  <span className="truncate">Attendance</span>
+                </Button>
+              )}
+              <Button onClick={handleDownload} className="gap-2" title="Download question paper">
                 <DownloadIcon className="flex-shrink-0 w-5 h-5" />
                 <span className="truncate">Download</span>
               </Button>
-              <Button
-                onClick={handleUpload}
-                loading={uploading}
-                loadingText="Opening..."
-                className={cx('gap-2', {
-                  hidden: !item.allowUpload,
-                })}
-                title="Upload answer sheet">
-                <UploadIcon className="flex-shrink-0 w-5 h-5" />
-                <span className="truncate">Upload</span>
-              </Button>
+              {item.allowUpload && (
+                <Button
+                  onClick={handleUpload}
+                  loading={uploading}
+                  loadingText="Opening..."
+                  className="gap-2"
+                  title="Upload answer sheet">
+                  <UploadIcon className="flex-shrink-0 w-5 h-5" />
+                  <span className="truncate">Upload</span>
+                </Button>
+              )}
             </div>
           )}
         </div>
