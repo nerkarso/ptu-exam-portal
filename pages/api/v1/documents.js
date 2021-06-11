@@ -26,7 +26,7 @@ function withTransformPayload(handler) {
       if (item.documentType === type) {
         array.push({
           id: item.notiNum || index,
-          title: normalizeText(item.scheme),
+          title: item.scheme ? normalizeText(item.scheme) : item.documentType,
           examSession: item.examSession,
           examType: item.rType,
           date: item.resultDate,
@@ -35,12 +35,14 @@ function withTransformPayload(handler) {
       }
     };
     if (res.payload.success) {
-      res.payload.data.forEach((item, index) => {
-        groupItem(item, index, res.results, 'Result Tabulation');
-        groupItem(item, index, res.marks, 'Detailed Marks Card');
-        groupItem(item, index, res.grades, 'DMC');
-        groupItem(item, index, res.degree, 'Degree');
-      });
+      if (res.payload.data && res.payload.data.length > 0) {
+        res.payload.data.forEach((item, index) => {
+          groupItem(item, index, res.results, 'Result Tabulation');
+          groupItem(item, index, res.marks, 'Detailed Marks Card');
+          groupItem(item, index, res.grades, 'DMC');
+          groupItem(item, index, res.degree, 'Degree');
+        });
+      }
     }
     return handler(req, res);
   };
