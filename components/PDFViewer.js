@@ -27,24 +27,6 @@ export default function PDFViewer({ url }) {
           {({ CurrentPageInput, CurrentScale, GoToNextPage, GoToPreviousPage, NumberOfPages, ZoomIn, ZoomOut }) => {
             return (
               <div className="flex items-center p-4 transition duration-300 border-t border-base-200 dark:border-invert-700">
-                <ZoomOut>
-                  {(props) => (
-                    <IconButton onClick={props.onClick} className="w-8 h-8">
-                      <ZoomOutIcon className="w-5 h-5" />
-                    </IconButton>
-                  )}
-                </ZoomOut>
-                <div className="text-center w-14 text-base-600 dark:text-invert-400">
-                  <CurrentScale>{(props) => <span>{`${Math.round(props.scale * 100)}%`}</span>}</CurrentScale>
-                </div>
-                <ZoomIn>
-                  {(props) => (
-                    <IconButton onClick={props.onClick} className="w-8 h-8">
-                      <ZoomInIcon className="w-5 h-5" />
-                    </IconButton>
-                  )}
-                </ZoomIn>
-                <div className="flex-1"></div>
                 <GoToPreviousPage>
                   {(props) => (
                     <IconButton className="w-8 h-8" onClick={props.onClick} disabled={props.isDisabled}>
@@ -62,6 +44,24 @@ export default function PDFViewer({ url }) {
                     </IconButton>
                   )}
                 </GoToNextPage>
+                <div className="flex-1"></div>
+                <ZoomOut>
+                  {(props) => (
+                    <IconButton onClick={props.onClick} className="w-8 h-8">
+                      <ZoomOutIcon className="w-5 h-5" />
+                    </IconButton>
+                  )}
+                </ZoomOut>
+                <div className="text-center w-14 text-base-600 dark:text-invert-400">
+                  <CurrentScale>{(props) => <span>{`${Math.round(props.scale * 100)}%`}</span>}</CurrentScale>
+                </div>
+                <ZoomIn>
+                  {(props) => (
+                    <IconButton onClick={props.onClick} className="w-8 h-8">
+                      <ZoomInIcon className="w-5 h-5" />
+                    </IconButton>
+                  )}
+                </ZoomIn>
               </div>
             );
           }}
