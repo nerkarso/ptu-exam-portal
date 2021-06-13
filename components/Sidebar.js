@@ -21,18 +21,9 @@ import {
 } from '@heroicons/react/outline';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRouter } from 'next/router';
 
 export default function Sidebar() {
   const { isLoggedIn, logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    if (router.route !== '/') {
-      router.replace('/');
-    }
-  };
 
   const links = [
     {
@@ -103,7 +94,7 @@ export default function Sidebar() {
             ))}
           <SidebarDarkMode />
           {isLoggedIn && (
-            <ListItem button onClick={handleLogout} className="lg:hidden">
+            <ListItem button onClick={logout} className="lg:hidden">
               <ListItemIcon>
                 <LogoutIcon className="w-6 h-6" />
               </ListItemIcon>

@@ -8,19 +8,10 @@ import Switch from '@/elements/Switch';
 import { useAuth } from '@/hooks/useAuth';
 import { MoonIcon, SunIcon } from '@heroicons/react/outline';
 import { useTheme } from 'next-themes';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 export default function Layout({ children, title }) {
   const { logout } = useAuth();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    logout();
-    if (router.route !== '/') {
-      router.replace('/');
-    }
-  };
 
   return (
     <div className="flex h-full">
@@ -32,7 +23,7 @@ export default function Layout({ children, title }) {
             <AppBarTitle>{title}</AppBarTitle>
             <div className="items-center flex-shrink-0 hidden grid-flow-col gap-4 ml-auto lg:grid">
               <DarkModeSwitch />
-              <Button onClick={handleLogout} className="truncate">
+              <Button onClick={logout} className="truncate">
                 Log out
               </Button>
             </div>
