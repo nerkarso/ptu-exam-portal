@@ -90,6 +90,9 @@ function TableRow({ item }) {
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/exams/${item.subjectId}/download?location=${location}`,
         '_self',
       );
+      setTimeout(() => {
+        mutate();
+      }, 3000);
     } else {
       toast.error('Please enter your current location');
     }
