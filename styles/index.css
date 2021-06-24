@@ -11,6 +11,10 @@
     @apply h-full;
   }
 
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
     @apply h-full dark:bg-invert-900 dark:text-white;
   }
