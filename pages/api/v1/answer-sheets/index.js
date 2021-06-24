@@ -24,7 +24,7 @@ function withTransformPayload(handler) {
         subjectId: item.ED_SubID,
         subjectCode: item.SUB_CODE,
         subjectTitle: item.SUB_TITLE,
-        examDate: item.SUB_ExamTime,
+        examDate: item.Sub_Date,
         filename: item.Ed_OLASheetFileName,
         remarks: item.Ed_StudentRemarksDuringCrossChecking,
         remarksIsUpdated: item.IsRemarksUpdated,

@@ -34,13 +34,6 @@ function useAnswerSheetsApi() {
 function MasterPaneContent() {
   const api = useAnswerSheetsApi();
 
-  const formatDate = (value) => {
-    const now = new Date(value);
-    const date = now.toUTCString();
-    const time = now.toTimeString();
-    return `${date.slice(0, -13)} ${time.substr(0, 5)}`;
-  };
-
   return (
     <MasterPaneContentContainer
       listKey="answerSheets"
@@ -54,7 +47,7 @@ function MasterPaneContent() {
               icon={BookOpenIcon}
               id={id}
               title={`${subjectCode} ${subjectTitle}`}
-              text={`${remarksIsUpdated ? 'Verified' : 'Not verified'} • ${formatDate(examDate)}`}
+              text={`${remarksIsUpdated ? 'Verified' : 'Not verified'} • ${examDate}`}
               url={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}`}
               downloadUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}/download`}
               color={remarksIsUpdated ? 'green' : 'red'}
