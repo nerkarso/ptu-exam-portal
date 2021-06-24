@@ -28,7 +28,8 @@ function ProfileContent() {
   if (loading) return <ProfileSkeleton />;
   if (error) return <ErrorMessage title="Error" text={error.message} />;
   if (data.error) return <ErrorMessage title="Error" text={data.message} />;
-  if (!data.profile) return <EmptyMessage title="No details available" text="Your profile details will appear here" />;
+  if (data.auth === false || !data.profile)
+    return <EmptyMessage title="No details available" text="Your profile details will appear here" />;
 
   const {
     admissionStatus,

@@ -1,13 +1,11 @@
-import EmptyMessage from '@/components/EmptyMessage';
-import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
 import MasterDetailsView from '@/components/MasterDetailsView';
 import MasterListItem from '@/components/MasterListItem';
+import MasterPaneContentContainer from '@/components/MasterPaneContentContainer';
 import PDFViewerBlob from '@/components/PDFViewerBlob';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Button from '@/elements/Button';
 import List from '@/elements/List';
-import SkeletonList from '@/elements/SkeletonList';
 import { useApi } from '@/hooks/useApi';
 import { useMasterDetails } from '@/hooks/useMasterDetails';
 import { BookOpenIcon } from '@heroicons/react/outline';
@@ -34,13 +32,7 @@ function useAnswerSheetsApi() {
 }
 
 function MasterPaneContent() {
-  const { data, error, loading } = useAnswerSheetsApi();
-
-  if (loading) return <SkeletonList />;
-  if (error) return <ErrorMessage title="Error" text={error.message} />;
-  if (data.error) return <ErrorMessage title="Error" text={data.message} />;
-  if (data.answerSheets.length === 0)
-    return <EmptyMessage title="No answer sheets here" text="All your answer sheets will appear here" />;
+  const api = useAnswerSheetsApi();
 
   const formatDate = (value) => {
     const now = new Date(value);
@@ -50,21 +42,29 @@ function MasterPaneContent() {
   };
 
   return (
-    <List className="my-3">
-      {data.answerSheets.map(({ id, subjectId, subjectCode, subjectTitle, examDate, filename, remarksIsUpdated }) => (
-        <MasterListItem
-          icon={BookOpenIcon}
-          id={id}
-          title={`${subjectCode} ${subjectTitle}`}
-          text={`${remarksIsUpdated ? 'Verified' : 'Not verified'} • ${formatDate(examDate)}`}
-          url={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}`}
-          downloadUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}/download`}
-          color={remarksIsUpdated ? 'green' : 'red'}
-          extraDetails={{ subjectId, remarksIsUpdated }}
-          key={id}
-        />
-      ))}
-    </List>
+    <MasterPaneContentContainer
+      listKey="answerSheets"
+      errorTitle="No answer sheets here"
+      errorDescription="All your answer sheets will appear here"
+      {...api}>
+      {(data) => (
+        <List className="my-3">
+          {data.map(({ id, subjectId, subjectCode, subjectTitle, examDate, filename, remarksIsUpdated }) => (
+            <MasterListItem
+              icon={BookOpenIcon}
+              id={id}
+              title={`${subjectCode} ${subjectTitle}`}
+              text={`${remarksIsUpdated ? 'Verified' : 'Not verified'} • ${formatDate(examDate)}`}
+              url={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}`}
+              downloadUrl={`${process.env.NEXT_PUBLIC_API_BASE_URL}/answer-sheets/${filename}/download`}
+              color={remarksIsUpdated ? 'green' : 'red'}
+              extraDetails={{ subjectId, remarksIsUpdated }}
+              key={id}
+            />
+          ))}
+        </List>
+      )}
+    </MasterPaneContentContainer>
   );
 }
 

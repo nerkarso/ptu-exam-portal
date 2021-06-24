@@ -1,10 +1,8 @@
-import EmptyMessage from '@/components/EmptyMessage';
-import ErrorMessage from '@/components/ErrorMessage';
 import Layout from '@/components/Layout';
+import MasterPaneContentContainer from '@/components/MasterPaneContentContainer';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Button from '@/elements/Button';
 import ListItemIcon from '@/elements/ListItemIcon';
-import SkeletonList from '@/elements/SkeletonList';
 import { useApi } from '@/hooks/useApi';
 import { DownloadIcon, HandIcon, PencilAltIcon, UploadIcon } from '@heroicons/react/outline';
 import { CheckCircleIcon } from '@heroicons/react/solid';
@@ -28,28 +26,24 @@ function useExamsApi() {
 }
 
 function Table() {
-  const { data, error, loading } = useExamsApi();
-
-  if (loading) return <SkeletonList />;
-  if (error) return <ErrorMessage title="Error" text={error.message} />;
-  if (data.error) return <ErrorMessage title="Error" text={data.message} />;
-  if (data.exams.length === 0) {
-    return (
-      <EmptyMessage
-        title="No exams today"
-        text="You will be able to download the question papers and upload your answer sheets on the day of the exam"
-      />
-    );
-  }
+  const api = useExamsApi();
 
   return (
-    <div className="flex-grow h-full overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">
-      <div className="divide-y divide-base-200 dark:divide-invert-700">
-        {data.exams.map((item) => (
-          <TableRow item={item} key={item.id} />
-        ))}
-      </div>
-    </div>
+    <MasterPaneContentContainer
+      listKey="exams"
+      errorTitle="No exams today"
+      errorDescription="You will be able to download the question papers and upload your answer sheets on the day of the exam"
+      {...api}>
+      {(data) => (
+        <div className="flex-grow h-full overflow-y-auto transition duration-300 bg-white dark:bg-invert-900">
+          <div className="divide-y divide-base-200 dark:divide-invert-700">
+            {data.map((item) => (
+              <TableRow item={item} key={item.id} />
+            ))}
+          </div>
+        </div>
+      )}
+    </MasterPaneContentContainer>
   );
 }
 
