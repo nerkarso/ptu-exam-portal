@@ -34,8 +34,8 @@ function withTransformPayload(handler) {
         });
       }
     };
-    if (res.payload.success) {
-      if (res.payload.data && res.payload.data.length > 0) {
+    if (res?.payload?.success) {
+      if (res?.payload?.data?.length > 0) {
         res.payload.data.forEach((item, index) => {
           groupItem(item, index, res.results, 'Result Tabulation');
           groupItem(item, index, res.marks, 'Detailed Marks Card');

@@ -13,7 +13,7 @@ export default withAllowedMethods(withProtectedEndpoint(withTransformPayload(han
 export function withTransformPayload(handler) {
   return async (req, res) => {
     res.url = null;
-    if (res.payload.success) {
+    if (res?.payload?.success) {
       const menuItem = res.payload.data.find((menu) => menu.name === 'Admit Card Download');
       if (menuItem) {
         const redirectUrl = `${process.env.SOURCE_API_BASE_URL}/Student/ValidateToken/ExternalRedirectDetails?RedirectId=${menuItem.externalRedirectId}`;

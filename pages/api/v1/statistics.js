@@ -14,8 +14,8 @@ export default withAllowedMethods(
 
 function withTransformPayload(handler) {
   return (req, res) => {
-    res.sgpa = {};
-    if (res.payload.success) {
+    res.sgpa = null;
+    if (res?.payload?.success) {
       res.sgpa = res.payload.data;
     }
     return handler(req, res);

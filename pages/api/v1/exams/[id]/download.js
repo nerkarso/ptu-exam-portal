@@ -21,7 +21,7 @@ export default withAllowedMethods(withSetEndpoint(withProtectedEndpoint(withTran
 export function withTransformPayload(handler) {
   return (req, res) => {
     res.fileContents = null;
-    if (res.payload.success) {
+    if (res?.payload?.success) {
       res.fileContents = res.payload.data;
     }
     return handler(req, res);
@@ -30,8 +30,13 @@ export function withTransformPayload(handler) {
 
 export function withSetEndpoint(handler) {
   return (req, res) => {
-    if (req.query.id) {
+    if (req?.query?.id) {
       res.endpoint = `/Student/OnlineQPDownload/QPDownloadDetail?SubId=${req.query.id}&Location=${req.query.location}`;
+    } else {
+      return res.status(400).json({
+        error: true,
+        message: 'Missing id parameter in path',
+      });
     }
     return handler(req, res);
   };

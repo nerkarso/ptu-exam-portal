@@ -18,7 +18,7 @@ export default withAllowedMethods(
 function withTransformPayload(handler) {
   return (req, res) => {
     res.answerSheets = [];
-    if (res.payload.success) {
+    if (res?.payload?.success) {
       res.answerSheets = res.payload.data.map((item) => ({
         id: item.ED_SubID,
         subjectId: item.ED_SubID,

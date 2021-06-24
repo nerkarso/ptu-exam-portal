@@ -43,7 +43,7 @@ export function withTransformPayload(handler) {
           },
         },
       );
-      if (resp.data.success) {
+      if (resp?.data?.success) {
         res.verified = true;
       }
     } catch (ex) {

@@ -15,7 +15,7 @@ export default withAllowedMethods(
 function withTransformPayload(handler) {
   return (req, res) => {
     res.payments = [];
-    if (res.payload.success) {
+    if (res?.payload?.success) {
       res.payments = res.payload.data.map((item) => ({
         id: item.Edp_Id,
         examSession: item.Edp_SessionName,

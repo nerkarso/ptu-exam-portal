@@ -7,10 +7,10 @@ export const withPreAuthCheck = (handler) => (req, res) => {
     errors.push('Missing body in request');
   }
   if (!req.body.username) {
-    errors.push('Missing `username` in body');
+    errors.push('Missing username field in body');
   }
   if (!req.body.password) {
-    errors.push('Missing `password` in body');
+    errors.push('Missing password field in body');
   }
   if (errors.length > 0) {
     res.status(400).json({

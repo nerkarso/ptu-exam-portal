@@ -15,7 +15,7 @@ export default withAllowedMethods(
 function withTransformPayload(handler) {
   return (req, res) => {
     res.announcements = [];
-    if (res.payload.success) {
+    if (res?.payload?.success) {
       res.announcements = res.payload.data.map((item) => ({
         id: item.id,
         title: item.title,

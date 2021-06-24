@@ -15,7 +15,7 @@ export default withAllowedMethods(
 function withTransformPayload(handler) {
   return (req, res) => {
     res.exams = [];
-    if (res.payload.success) {
+    if (res?.payload?.success) {
       res.exams = res.payload.data.map((item) => ({
         id: item.SUB_ID,
         subjectId: item.SUB_ID,

@@ -18,8 +18,8 @@ export default withAllowedMethods(
 
 function withTransformPayload(handler) {
   return (req, res) => {
-    res.profile = {};
-    if (res.payload.success) {
+    res.profile = null;
+    if (res?.payload?.success) {
       const item = res.payload.data[0];
       res.profile = {
         admissionStatus: item.admissionStatus,
@@ -45,19 +45,21 @@ function withTransformPayload(handler) {
 
 function withGetPhotoAndSignature(handler) {
   return async (req, res) => {
-    res.endpoint = '/Student/UploadPhotoAndSign/StudentDocumentsData';
-    try {
-      const resp = await fetchData(req, res);
-      if (resp.data.success) {
-        res.profile.photo = resp.data.data.photo;
-        res.profile.signature = resp.data.data.sign;
+    if (res.profile) {
+      res.endpoint = '/Student/UploadPhotoAndSign/StudentDocumentsData';
+      try {
+        const resp = await fetchData(req, res);
+        if (resp.data && resp.data.success) {
+          res.profile.photo = resp.data.data.photo;
+          res.profile.signature = resp.data.data.sign;
+        }
+      } catch (ex) {
+        return res.status(500).json({
+          error: true,
+          message: 'Could not retrieve photo and signature',
+          details: ex.message,
+        });
       }
-    } catch (ex) {
-      return res.status(500).json({
-        error: true,
-        message: 'Could not retrieve photo and signature',
-        details: ex.message,
-      });
     }
     return handler(req, res);
   };
