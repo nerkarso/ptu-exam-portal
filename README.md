@@ -7,7 +7,7 @@
 <p align="center">The fastest and easiest way to access the IKGPTU exam portal.</p>
 
 <p align="center">
-  <img src="demo.png" width="720" />
+  <img src="demo.png" width="1024" />
 </p>
 
 > NOTE: This project is not affiliated with [I.K. Gujral Punjab Technical University](https://www.ptu.ac.in) nor do we host or serve any sensitive data (student records) on (or from) our server.
