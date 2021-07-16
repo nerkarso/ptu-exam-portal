@@ -21,6 +21,7 @@ import {
 } from '@heroicons/react/outline';
 import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Sidebar() {
   const { isLoggedIn, logout } = useAuth();
@@ -155,7 +156,7 @@ function SidebarDrawer({ children }) {
 function SidebarHeader() {
   return (
     <header className="flex items-center flex-shrink-0 h-16 gap-3 px-3 mx-3">
-      <img src="/logo.svg" alt="Logo" className="w-8 h-8" />
+      <Image src="/logo.svg" alt="Logo" width={32} height={32} quality={1} />
       <span className="text-xl font-bold">{process.env.NEXT_PUBLIC_SITE_TITLE}</span>
     </header>
   );

@@ -4,6 +4,7 @@ import FormHelperText from '@/elements/FormHelperText';
 import Input from '@/elements/Input';
 import Note from '@/elements/Note';
 import { useAuth } from '@/hooks/useAuth';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -72,8 +73,8 @@ export default function Login() {
 function Logo() {
   return (
     <div className="space-y-3 text-center">
-      <img src="/logo.svg" alt="Logo" className="w-16 h-16 mx-auto" />
-      <h1 className="text-2xl font-bold">PTU Exam Portal</h1>
+      <Image src="/logo.svg" alt="Logo" className="mx-auto" width={64} height={64} quality={1} />
+      <h1 className="text-2xl font-bold">{process.env.NEXT_PUBLIC_SITE_TITLE}</h1>
       <p className="text-base-500 dark:text-invert-500">Please verify yourself to continue</p>
     </div>
   );

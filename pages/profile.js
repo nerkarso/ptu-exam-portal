@@ -5,6 +5,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import Avatar from '@/elements/Avatar';
 import { useApi } from '@/hooks/useApi';
 import { toTitleCase } from '@/utils/index';
+import Image from 'next/image';
 
 Profile.title = 'Profile';
 
@@ -78,7 +79,9 @@ function ProfileContent() {
         {signature && (
           <div className="mb-5">
             <DetailLabel>Signature</DetailLabel>
-            <img src={signature} className="max-w-xs" alt="Signature" />
+            <div className="relative w-64 h-16">
+              <Image src={signature} alt="Signature" quality={1} layout="fill" />
+            </div>
           </div>
         )}
       </div>

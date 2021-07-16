@@ -1,4 +1,5 @@
 import cx from 'classnames';
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function Avatar({ className, src, ...props }) {
@@ -9,9 +10,11 @@ export default function Avatar({ className, src, ...props }) {
       {!src || error ? (
         <Anonymous />
       ) : (
-        <img
+        <Image
           src={src}
           className="absolute inset-0 object-cover w-full h-full"
+          quality={1}
+          layout="fill"
           onError={() => setError(true)}
           {...props}
         />
