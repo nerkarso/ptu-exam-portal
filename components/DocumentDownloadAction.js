@@ -11,7 +11,7 @@ export default function DocumentDownloadAction() {
   const handleDownload = async () => {
     setIsLoading(true);
     try {
-      const data = await (await fetch(`${process.env.NEXT_PUBLIC_PROXY_URL}/?url=${details.url}`)).blob();
+      const data = await (await fetch(`${process.env.NEXT_PUBLIC_PROXY_URL}/${details.url}`)).blob();
       if (data.error) {
         toast.error(`Error: ${data.message}`);
       } else {
