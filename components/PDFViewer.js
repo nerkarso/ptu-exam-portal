@@ -17,7 +17,7 @@ export default function PDFViewer({ url }) {
         <div className="flex-1 overflow-hidden">
           <Viewer
             fileUrl={url}
-            defaultScale={SpecialZoomLevel.PageFit}
+            defaultScale={SpecialZoomLevel.ActualSize}
             plugins={[toolbarPluginInstance]}
             renderLoader={RenderSpinner}
             renderError={RenderError}
