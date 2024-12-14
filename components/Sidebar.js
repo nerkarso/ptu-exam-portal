@@ -85,7 +85,7 @@ export default function Sidebar() {
       <SidebarDrawer>
         <SidebarHeader />
         <SidebarProfile />
-        <List className="flex-grow mb-3 dark:text-invert-400 text-base-600">
+        <List className="flex-grow mb-12 dark:text-invert-400 text-base-600">
           {isLoggedIn &&
             links.map(({ href, icon, text }, i) => (
               <ListItem link href={href} key={i}>

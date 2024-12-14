@@ -53,7 +53,7 @@ export default function Login() {
           </Button>
         </form>
       </main>
-      <footer className="flex-shrink-0 px-4 py-6 text-sm text-center text-base-500 dark:text-invert-500">
+      <footer className="flex-shrink-0 px-4 pt-6 pb-12 sm:pb-6 text-sm text-center text-base-500 dark:text-invert-500">
         <p>
           &copy; 2020-{new Date().getFullYear()}
           {' Made by '}
