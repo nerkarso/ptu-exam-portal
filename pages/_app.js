@@ -1,3 +1,4 @@
+import FeedbackWidget from '@/components/FeedbackWidget';
 import { AuthProvider } from '@/contexts/AuthContext';
 import '@/styles/index.css';
 import { pageview } from '@/utils/gtag';
@@ -48,6 +49,7 @@ export default function MyApp({ Component, pageProps }) {
             <link rel="icon" href="/icon-192.png" />
           </Head>
           <Component {...pageProps} />
+          <FeedbackWidget />
           <ToastContainer
             position="bottom-center"
             transition={Slide}
